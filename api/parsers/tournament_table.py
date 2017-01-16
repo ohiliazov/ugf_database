@@ -1,7 +1,7 @@
 import re
-from tournaments.models import Tournament
-from details.models import Participant, Pairing
-from players.models import Player
+from UGD.models.tournaments import Tournament
+# from details.models import Participant, Pairing
+from UGD.models.players import Player
 
 
 def tournament_info(request):
@@ -51,6 +51,7 @@ def update_tournament_info(data):
     )
 
 
+"""
 def update_tournament_results(data, results):
     tournament = Tournament.objects.get(egf_code=data['TC'])
     for line in sorted(results):
@@ -119,3 +120,4 @@ def update_tournament_results(data, results):
             )
             round_count += 1
             print(pair)
+"""
