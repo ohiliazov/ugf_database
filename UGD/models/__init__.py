@@ -1,1 +1,1 @@
-from . import clubs, ranks, players, tournaments
+from . import clubs, ranks, players, tournaments, games
