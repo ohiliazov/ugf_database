@@ -23,3 +23,10 @@ def tournament_list_upload(request):
         egd_tournaments.get_tournament_list(request)
         return HttpResponse("Загружено")
     return HttpResponse("No files")
+
+
+def tournaments_upload(request):
+    if request.body:
+        egd_tournaments.tournaments_upload(request)
+        return HttpResponse("Загружено")
+    return HttpResponse("No files")
