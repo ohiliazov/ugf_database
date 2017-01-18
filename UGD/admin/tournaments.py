@@ -9,8 +9,8 @@ class TournamentAdmin(ModelAdmin):
         'date_end',
         'city',
         'ranked',
-		'egd_name',
-		'egd_class',
+        'egd_name',
+        'egd_class',
         'egd_code',
         'table'
     )
@@ -19,7 +19,7 @@ class TournamentAdmin(ModelAdmin):
             'fields': ('name', 'date_begin', 'date_end', 'city')
         }),
         ('Інформація про турнір', {
-            'classes': ('wide', 'extrapretty'),
+            'classes': ('wide',),
             'fields': ('ranked', 'egd_name', 'egd_class', 'egd_code', 'table')
         })
     )
