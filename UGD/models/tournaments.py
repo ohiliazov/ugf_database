@@ -1,5 +1,6 @@
 from django.db import models
-from .clubs import Club
+from .clubs import City
+
 
 class Tournament(models.Model):
     name = models.CharField(
@@ -19,7 +20,7 @@ class Tournament(models.Model):
         verbose_name="дата завершення"
     )
     city = models.ForeignKey(
-        Club,
+        City,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -27,7 +28,7 @@ class Tournament(models.Model):
     )
     ranked = models.NullBooleanField(
         default=True,
-		choices=(
+        choices=(
             (False, 'Ні'),
             (True, 'Так'),
         ),
@@ -43,11 +44,11 @@ class Tournament(models.Model):
     egd_class = models.CharField(
         null=True,
         blank=True,
-		choices=(
+        choices=(
             ('A', 'A'),
             ('B', 'B'),
-			('C', 'C'),
-			('D', 'D'),
+            ('C', 'C'),
+            ('D', 'D'),
         ),
         max_length=1,
         verbose_name="клас турніру в EGD"

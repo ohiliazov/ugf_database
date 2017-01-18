@@ -28,6 +28,39 @@ class Country(models.Model):
             return self.id
 
 
+class City(models.Model):
+    name = models.CharField(
+        null=True,
+        blank=True,
+        max_length=255,
+        verbose_name="назва міста"
+    )
+    egd_name = models.CharField(
+        null=True,
+        blank=True,
+        max_length=255,
+        verbose_name="місто в EGD"
+    )
+    country = models.ForeignKey(
+        Country,
+        default=1,
+        on_delete=models.CASCADE,
+        verbose_name="країна"
+    )
+
+    class Meta:
+        verbose_name = "місто"
+        verbose_name_plural = "міста"
+
+    def __str__(self):
+        if self.name:
+            return self.name
+        elif self.egd_name:
+            return self.egd_name
+        else:
+            return self.id
+
+
 class Club(models.Model):
     name = models.CharField(
         null=True,
