@@ -100,8 +100,7 @@ table.main + ul.pagination > li.cardinality {
 
 table.main > tbody > tr > td > span.true,
 table.main > tbody > tr > td > span.false {
-    background-position: top left;
-    background-repeat: no-repeat;
+    background: no-repeat top left;
     display: inline-block;
     height: 10px;
     overflow: hidden;

@@ -44,7 +44,7 @@ class Player(models.Model):
     )
     sex = models.NullBooleanField(
         default=None,
-		choices=(
+        choices=(
             (False, '♀'),
             (True, '♂'),
         ),

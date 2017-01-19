@@ -28,14 +28,18 @@ def get_tournament_list(request):
                             'egd_rating_finish': line.split()[10]
                         }
                     )
-                    print(str(player.__str__())+' @ '+str(tournament.__str__())+' - '+str(line.split()[9])+' --> '+str(line.split()[10]))
+                    print(str(player.__str__())
+                          + ' @ ' + str(tournament.__str__())
+                          + ' - ' + str(line.split()[9])
+                          + ' --> ' + str(line.split()[10]))
     file.close()
 
 
 def tournaments_upload(request):
     file = open('D:/Python/ugf_database/api/parsers/tourn.txt')
     for line in file:
-        if len(line.split(maxsplit=6)) == 7 and line.split(maxsplit=6)[0] in [tournament.egd_code for tournament in Tournament.objects.all()]:
+        if len(line.split(maxsplit=6)) == 7 \
+                and line.split(maxsplit=6)[0] in [tournament.egd_code for tournament in Tournament.objects.all()]:
             tournament = Tournament.objects.get(egd_code=line.split(maxsplit=6)[0])
             reg_date = re.match(r".(?P<date>[\d]+)+", line.split(maxsplit=6)[0])
             tournament.date_begin = datetime.datetime.strptime(reg_date.group('date'), "%y%m%d").date()
