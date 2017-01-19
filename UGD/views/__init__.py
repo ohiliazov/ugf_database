@@ -1,1 +1,1 @@
-from . import rating_list
+from . import rating_list, player_info
