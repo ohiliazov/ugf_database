@@ -1,1 +1,1 @@
-from .views import *
+from . import rating_list

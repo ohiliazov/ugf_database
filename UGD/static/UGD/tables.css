@@ -1,0 +1,128 @@
+div.table-container {
+    display: inline-table;
+    align-content: center;
+}
+
+table.main {
+    display: inline-table;
+    align-self: center;
+    align-content: center;
+    border: 2px solid darkgreen;
+    width: 1000px;
+    border-collapse: collapse;
+    vertical-align: middle;
+	background-color: #d9ead3;
+}
+
+table.main,
+table.main + ul.pagination {
+    font-family: "Times New Roman", sans-serif;
+}
+
+table.main a:link,
+table.main a:visited,
+table.main + ul.pagination > li > a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+table.main a:hover {
+    color: darkgreen;
+}
+
+table.main td,
+table.main th {
+    text-align: center;
+    padding: 10px;
+    line-height: 14px;
+}
+
+
+table.main thead th,
+table.main thead td {
+    background: darkgreen left bottom repeat-x;
+    padding: 10px 10px;
+    color: white;
+}
+
+table.main thead th > a:link,
+table.main thead th > a:visited {
+    color: white;
+}
+
+table.main thead th.orderable > a {
+    padding-right: 20px;
+    background: url(images/arrow-inactive-up.png) right center no-repeat;
+}
+table.main thead th.orderable.asc > a {
+    background-image: url(images/arrow-active-up.png);
+}
+table.main thead th.orderable.desc > a {
+    background-image: url(images/arrow-active-down.png);
+}
+
+table.main tr.odd {
+    background-color: whitesmoke;
+}
+
+table.main tr.even {
+    background-color: whitesmoke;
+}
+
+table.main tr:hover {
+    background-color: darkgreen;
+    color: white;
+    cursor: pointer;
+}
+table.main + ul.pagination {
+    background: white url(images/pagination-bg.gif) left 180% repeat-x;
+    overflow: auto;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+}
+
+table.main + ul.pagination > li {
+    float: left;
+    line-height: 22px;
+    margin-left: 10px;
+}
+
+table.main + ul.pagination > li:first-child {
+    margin-left: 0;
+}
+
+table.main + ul.pagination > li.cardinality {
+    float: right;
+    color: #8d8d8d;
+}
+
+table.main > tbody > tr > td > span.true,
+table.main > tbody > tr > td > span.false {
+    background-position: top left;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 10px;
+    overflow: hidden;
+    text-indent: -200px;
+    width: 10px;
+}
+
+table.main > tbody > tr > td > .missing {
+    background: transparent url(images/missing.png) right center no-repeat;
+    color: #717171;
+    padding-right: 20px;
+}
+
+table.main > tbody > tr > td > .missing:hover {
+    color: #333;
+}
+
+table.main > tbody > tr > td > span.true {
+    background-image: url(images/true.gif);
+}
+
+table.main > tbody > tr > td > span.false {
+    background-image: url(images/false.gif);
+}

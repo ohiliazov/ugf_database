@@ -1,0 +1,31 @@
+{% load render_table from django_tables2 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UGF Database: рейтинг-лист</title>
+    <link rel="stylesheet" href="{% static 'UGD/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
+    <link rel="stylesheet" href="{% static 'UGD/filters.css' %}" />
+</head>
+<header>
+    <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}">
+</header>
+<body>
+    <div class="title"><h1>Рейтинг-лист УФГО</h1></div>
+    <div class="filter">
+        <form class="filter">
+            {% block content %}
+                <div>
+                    <table class="filter">
+                        {{ filter.form.as_table }}
+                    </table>
+                </div>
+            <button type="submit">OK</button>
+            {% endblock %}
+        </form>
+    </div>
+    {% render_table table %}
+</body>
+</html>

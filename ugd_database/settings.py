@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    # 'django_tables2',
+    'django_tables2',
     'api.apps.ApiConfig',
     'UGD.apps.UgdConfig',
     'django.contrib.admin',

@@ -1,0 +1,23 @@
+﻿{% load render_table from django_tables2 %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>UGF Database: {{ player.last_name }} {{ player.first_name }}</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'UGD/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
+    </head>
+    <header>
+        <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}">
+        <p>It is {% now "SHORT_DATE_FORMAT" %}</p>
+    </header>
+	<body>
+		<h1>{{ player.last_name }} {{ player.first_name }}</h1>
+		<button onclick="location.href='{% url 'UGD:rating_list' %}'">До рейтинг-листу</button>
+		<p>Місто: {{ player.city.name }}</p>
+		<p>Ранг: {{ player.rank.name }}</p>
+        {% render_table table %}
+	</body>
+	
+</html>

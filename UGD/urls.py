@@ -1,13 +1,13 @@
 from django.conf.urls import url
 
-from . import views
+from .views import rating_list
 
 # Create your urls here.
 
 app_name = 'UGD'
 urlpatterns = [
     # Index
-    url(r'^rating_list/$', views.RatingListView.as_view(), name='rating_list'),
+    url(r'^rating_list/$', rating_list.RatingListView.as_view(), name='rating_list'),
     # Player info
-    # url(r'^player/(?P<pk>[0-9]+)/$', views.PlayerInfoView.as_view(), name='player_info'),
+    # url(r'^player/(?P<pk>[0-9]+)/$', rating_list.PlayerInfoView.as_view(), name='player_info'),
 ]
