@@ -1,5 +1,5 @@
 from django.contrib.admin import ModelAdmin, site
-from ..models.games import TournamentPlayer
+from ..models.games import TournamentPlayer, Pairing
 
 
 class TournamentPlayerAdmin(ModelAdmin):
@@ -24,4 +24,28 @@ class TournamentPlayerAdmin(ModelAdmin):
         'tournament'
     ]
 
+
+class PairingAdmin(ModelAdmin):
+    list_display = (
+        'player_black',
+        'player_white',
+        'tournament_round',
+        'winner_color',
+        'technical_win'
+    )
+    fieldsets = (
+        (None, {
+            'fields': ('player_black', 'player_white', 'tournament_round', 'color', 'handicap')
+        }),
+        ('Інформація про партію', {
+            'classes': ('wide',),
+            'fields': ('winner_color', 'technical_win', 'round_skip', 'game_record')
+        })
+    )
+    search_fields = [
+        'player_black',
+        'player_white'
+    ]
+
 site.register(TournamentPlayer, TournamentPlayerAdmin)
+site.register(Pairing, PairingAdmin)
