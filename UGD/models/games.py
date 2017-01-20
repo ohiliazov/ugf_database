@@ -69,7 +69,7 @@ class TournamentPlayer(models.Model):
             tournament_name = self.tournament.egd_name
         else:
             tournament_name = self.tournament.id
-        return tournament_name+' @ '+full_name
+        return tournament_name+' @ '+str(full_name)
 
     def get_rating_delta(self):
         if self.rating_start and self.rating_finish:
@@ -108,7 +108,7 @@ class Pairing(models.Model):
         verbose_name="раунд"
     )
     color = models.BooleanField(
-        default=False,
+        default=True,
         verbose_name="колір"
     )
     handicap = models.PositiveIntegerField(
