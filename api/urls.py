@@ -6,9 +6,6 @@ from . import views
 
 app_name = 'UGD'
 urlpatterns = [
-    # url(r'^UGD/ufgo/$', views.ufgo_players_upload, name='ufgo_players_upload'),
-    url(r'^tournament_list/$', views.tournament_list_upload, name='tournament_list_upload'),
-    url(r'^tournaments_upload/$', views.tournaments_upload, name='tournaments_upload'),
-    # url(r'^UGD/egd/$', views.egd_players_upload, name='egd_players_upload'),
-    url(r'^upload_tournament/$', views.upload_tournament, name='upload_tournament'),
+    url(r'^upload/$', views.upload, name='upload'),
+    url(r'^download/$', views.download, name='download'),
 ]

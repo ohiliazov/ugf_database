@@ -38,4 +38,3 @@ def parse(request):
             print(line[0]+' '+line[1]+' - OK')
         count += 1
     return count
-
