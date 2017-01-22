@@ -1,14 +1,7 @@
 from django.contrib.admin import TabularInline, ModelAdmin, site
-from ..models.clubs import Country, Club, City
+from ..models.clubs import Country, City
 from ..models.players import Player
 from ..models.tournaments import Tournament
-
-
-class ClubInline(TabularInline):
-    model = Club
-    extra = 0
-    fields = ('name', 'egd_name')
-    ordering = ['name']
 
 
 class CityInline(TabularInline):
@@ -47,7 +40,7 @@ class TournamentInline(TabularInline):
 
 
 class CountryAdmin(ModelAdmin):
-    inlines = [ClubInline, CityInline]
+    inlines = [CityInline]
     list_display = ('name', 'egd_name')
     search_fields = ['name', 'egd_name']
     ordering = ['name']
@@ -69,4 +62,3 @@ class ClubAdmin(ModelAdmin):
 
 site.register(Country, CountryAdmin)
 site.register(City, CityAdmin)
-site.register(Club, ClubAdmin)

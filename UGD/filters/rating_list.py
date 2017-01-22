@@ -1,6 +1,6 @@
 import django_filters
 from ..models.players import Player
-from ..models.clubs import Club
+from ..models.clubs import City
 
 
 class PlayersFilter(django_filters.FilterSet):
@@ -13,7 +13,7 @@ class PlayersFilter(django_filters.FilterSet):
         label="Ім'я"
     )
     city = django_filters.ChoiceFilter(
-        choices=[(city.id, city.name) for city in Club.objects.all()],
+        choices=[(city.id, city.name) for city in City.objects.all()],
         empty_label="--Не обрано--",
         label="Місто"
     )

@@ -1,5 +1,5 @@
 from django.db import models
-from .clubs import Club
+from .clubs import City
 from .ranks import Rank, LocalRank
 
 
@@ -16,8 +16,8 @@ class Player(models.Model):
         max_length=255,
         verbose_name="ім'я"
     )
-    club = models.ForeignKey(
-        Club,
+    city = models.ForeignKey(
+        City,
         on_delete=models.SET_NULL,
         null=True,
         blank=True,

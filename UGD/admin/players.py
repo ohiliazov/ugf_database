@@ -6,7 +6,7 @@ class PlayerAdmin(ModelAdmin):
     list_display = (
         'last_name',
         'first_name',
-        'club',
+        'city',
         'rating',
         'rank'
     )
