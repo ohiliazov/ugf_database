@@ -1,6 +1,5 @@
 import django_tables2 as tables
 from ..models.players import Player
-from ..models.games import TournamentPlayer
 import itertools
 
 
@@ -9,6 +8,18 @@ class PlayerTable(tables.Table):
         accessor="__str__",
         verbose_name="Прізвище та ім'я",
         order_by="last_name"
+
+    )
+    local_rank = tables.Column(
+        accessor="local_rank.abbreviate",
+        verbose_name="Спортивний розряд",
+        order_by="id"
+    )
+    rating = tables.Column(
+        verbose_name="Рейтинг УФГО"
+    )
+    ufgo_member = tables.BooleanColumn(
+        verbose_name="Член УФГО"
     )
 
     class Meta:
@@ -23,6 +34,7 @@ class PlayerTable(tables.Table):
             'club',
             'rating',
             'rank',
-            'local_rank'
+            'local_rank',
+            'ufgo_member'
         )
         attrs = {'class': 'main'}
