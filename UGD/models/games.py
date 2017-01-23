@@ -56,6 +56,10 @@ class TournamentPlayer(models.Model):
         verbose_name="рейтинг EGD-2"
     )
 
+    class Meta:
+        verbose_name = "учасник турніру"
+        verbose_name_plural = "учасники турніру"
+
     def __str__(self):
         if self.player.first_name and self.player.last_name:
             full_name = self.player.first_name+' '+self.player.last_name
@@ -80,49 +84,53 @@ class TournamentPlayer(models.Model):
 
 
 class Pairing(models.Model):
-    HANDICAP_CHOICES = (
-        (0, 'Без фори'),
-        (1, 'Комі 0.5 очок'),
-        (2, '2 камня'),
-        (3, '3 камня'),
-        (4, '4 камня'),
-        (5, '5 каменів'),
-        (6, '6 каменів'),
-        (7, '7 каменів'),
-        (8, '8 каменів'),
-        (9, '9 каменів'),
+    tournament_player = models.ForeignKey(
+        TournamentPlayer,
+        verbose_name="гравець",
+        related_name="tournament_player"
     )
-    player_black = models.ForeignKey(
+    tournament_player_opponent = models.ForeignKey(
         TournamentPlayer,
         null=True,
-        verbose_name="чорні",
-        related_name="player_black"
-    )
-    player_white = models.ForeignKey(
-        TournamentPlayer,
-        null=True,
-        verbose_name="білі",
-        related_name="player_white"
+        blank=True,
+        verbose_name="суперник",
+        related_name="tournament_player_opponent"
     )
     tournament_round = models.PositiveIntegerField(
         verbose_name="раунд"
     )
-    color = models.BooleanField(
-        default=True,
+    color = models.NullBooleanField(
+        default=None,
+        choices=(
+            (None, 'Невідомо'),
+            (False, 'Чорні'),
+            (True, 'Білі')
+        ),
         verbose_name="колір"
     )
     handicap = models.PositiveIntegerField(
         default=0,
-        choices=HANDICAP_CHOICES,
+        choices=(
+            (0, 'Без фори'),
+            (1, 'Комі 0.5 очок'),
+            (2, '2 камня'),
+            (3, '3 камня'),
+            (4, '4 камня'),
+            (5, '5 каменів'),
+            (6, '6 каменів'),
+            (7, '7 каменів'),
+            (8, '8 каменів'),
+            (9, '9 каменів'),
+        ),
         verbose_name="гандікап"
     )
-    winner_color = models.NullBooleanField(
-        default=None,
-        verbose_name="колір переможця"
-    )
-    technical_win = models.BooleanField(
+    game_result = models.BooleanField(
         default=False,
-        verbose_name="технічна перемога"
+        verbose_name="перемога"
+    )
+    technical_result = models.BooleanField(
+        default=False,
+        verbose_name="технічний результат"
     )
     round_skip = models.BooleanField(
         default=False,
@@ -134,5 +142,11 @@ class Pairing(models.Model):
         upload_to='uploads/game_records/'
     )
 
+    class Meta:
+        verbose_name = "результат партії"
+        verbose_name_plural = "результати партії"
+
     def __str__(self):
-        return self.player_black.tournament+' @ '+self.player_black.player+' vs. '+self.player_white.player
+        return self.tournament_player.tournament\
+               + ' @ ' + self.tournament_player.player\
+               + ' vs. ' + self.tournament_player_opponent.player
