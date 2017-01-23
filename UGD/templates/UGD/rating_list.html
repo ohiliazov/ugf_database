@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>UGF Database: рейтинг-лист</title>
+    <link rel="shortcut icon" href="{% static 'favicon.png' %}"/>
     <link rel="stylesheet" href="{% static 'UGD/style.css' %}" />
     <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
     <link rel="stylesheet" href="{% static 'UGD/filters.css' %}" />
@@ -22,10 +23,12 @@
                         {{ filter.form.as_table }}
                     </table>
                 </div>
-            <button type="submit">OK</button>
+                <button type="submit">OK</button>
             {% endblock %}
         </form>
     </div>
-    {% render_table table %}
+    <div>
+        {% render_table table %}
+    </div>
 </body>
 </html>
