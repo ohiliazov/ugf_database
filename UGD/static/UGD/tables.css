@@ -17,6 +17,7 @@ table.main {
 table.main,
 table.main + ul.pagination {
     font-family: "Times New Roman", sans-serif;
+    margin: 20px;
 }
 
 table.main a:link,
@@ -28,7 +29,7 @@ table.main + ul.pagination > li > a {
 }
 
 table.main a:hover {
-    color: darkgreen;
+    color: whitesmoke;
 }
 
 table.main td,
@@ -115,7 +116,7 @@ table.main > tbody > tr > td > .missing {
 }
 
 table.main > tbody > tr > td > .missing:hover {
-    color: #333;
+    color: whitesmoke;
 }
 
 table.main > tbody > tr > td > span.true {

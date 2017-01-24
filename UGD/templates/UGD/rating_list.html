@@ -16,14 +16,14 @@
 <body>
     <div class="title"><h1>Рейтинг-лист УФГО</h1></div>
     <div class="filter">
-        <form class="filter">
+        <form id="filter_submit" class="filter">
             {% block content %}
-                <div>
+                <div class="filter">
                     <table class="filter">
                         {{ filter.form.as_table }}
                     </table>
+                    <button id="filter_submit_button" type="submit">OK</button>
                 </div>
-                <button type="submit">OK</button>
             {% endblock %}
         </form>
     </div>

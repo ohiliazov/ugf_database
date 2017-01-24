@@ -1,18 +1,12 @@
 div.filter {
     display: inline-table;
-    align-content: center;
 }
 
 table.filter {
     display: inline-table;
-    align-self: center;
-    align-content: center;
-    border: 2px solid darkgreen;
     width: 400px;
-    text-align: center;
     border-collapse: collapse;
     vertical-align: middle;
-	background-color: #d9ead3;
     font-family: "Times New Roman", sans-serif;
 }
 
@@ -43,4 +37,8 @@ table.filter tr:hover {
     background-color: darkgreen;
     color: white;
     cursor: pointer;
+}
+
+button {
+    display: inline-block;
 }

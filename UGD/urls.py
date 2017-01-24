@@ -1,5 +1,4 @@
 from django.conf.urls import url
-
 from .views import rating_list, player_info
 
 # Create your urls here.

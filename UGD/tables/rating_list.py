@@ -1,14 +1,17 @@
 import django_tables2 as tables
 from ..models.players import Player
+from django_tables2.utils import A
 import itertools
 
 
 class PlayerTable(tables.Table):
-    full_name = tables.Column(
+    full_name = tables.LinkColumn(
         accessor="__str__",
         verbose_name="Прізвище та ім'я",
-        order_by="last_name"
-
+        order_by="last_name",
+        viewname='UGD:player_info',
+        empty_values=(),
+        args=[A('pk')]
     )
     local_rank = tables.Column(
         accessor="local_rank.abbreviate",
@@ -24,10 +27,6 @@ class PlayerTable(tables.Table):
 
     class Meta:
         model = Player
-        row_attrs = {
-            'player_id': lambda player: player.pk,
-            'onclick': lambda player: "location.href='/UGD/player/%d/'" % player.pk,
-        }
         fields = (
             'id',
             'full_name',
