@@ -12,7 +12,7 @@ class PlayerAdmin(ModelAdmin):
     )
     fieldsets = (
         (None, {
-            'fields': ('last_name', 'first_name', 'club', 'sex')
+            'fields': ('last_name', 'first_name', 'city', 'sex')
         }),
         ('Інформація про гравця', {
             'classes': ('wide',),

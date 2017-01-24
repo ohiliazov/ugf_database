@@ -15,14 +15,7 @@ class PlayerTable(tables.Table):
     )
     local_rank = tables.Column(
         accessor="local_rank.abbreviate",
-        verbose_name="Розряд",
         order_by="id"
-    )
-    city = tables.Column(
-        verbose_name="Місто"
-    )
-    rating = tables.Column(
-        verbose_name="Рейтинг"
     )
     ufgo_member = tables.BooleanColumn(
         verbose_name="Член УФГО"

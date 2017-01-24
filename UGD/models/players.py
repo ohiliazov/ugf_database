@@ -21,12 +21,12 @@ class Player(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        verbose_name="клуб"
+        verbose_name="місто"
     )
     rating = models.PositiveIntegerField(
         null=True,
         blank=True,
-        verbose_name="рейтинг УФГО"
+        verbose_name="рейтинг"
     )
     rank = models.ForeignKey(
         Rank,
@@ -40,7 +40,7 @@ class Player(models.Model):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
-        verbose_name="спортивний розряд"
+        verbose_name="розряд"
     )
     sex = models.NullBooleanField(
         default=None,
