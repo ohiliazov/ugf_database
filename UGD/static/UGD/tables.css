@@ -103,10 +103,10 @@ table.main > tbody > tr > td > span.true,
 table.main > tbody > tr > td > span.false {
     background: no-repeat top left;
     display: inline-block;
-    height: 10px;
+    height: 16px;
     overflow: hidden;
     text-indent: -200px;
-    width: 10px;
+    width: 16px;
 }
 
 table.main > tbody > tr > td > .missing {
@@ -120,9 +120,5 @@ table.main > tbody > tr > td > .missing:hover {
 }
 
 table.main > tbody > tr > td > span.true {
-    background-image: url(images/true.gif);
-}
-
-table.main > tbody > tr > td > span.false {
-    background-image: url(images/false.gif);
+    background-image: url(images/true.png);
 }
