@@ -54,6 +54,10 @@ class Player(models.Model):
         default=False,
         verbose_name="Член УФГО"
     )
+    active = models.BooleanField(
+        default=False,
+        verbose_name="Активний"
+    )
     egd_last_name = models.CharField(
         null=True,
         blank=True,

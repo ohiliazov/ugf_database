@@ -1,7 +1,7 @@
 import django_tables2 as tables
-from ..models.players import Player
 from django_tables2.utils import A
-import itertools
+
+from ..models.players import Player
 
 
 class PlayerTable(tables.Table):

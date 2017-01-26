@@ -49,7 +49,8 @@ def upload_rating_list(request):
                 "rating": row[4],
                 "rank": rank,
                 "local_rank": local_rank,
-                "ufgo_member": ufgo_member
+                "ufgo_member": ufgo_member,
+                "active": True
             }
         )
         if player[1]:
