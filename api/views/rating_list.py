@@ -2,6 +2,7 @@ from django.http import HttpResponse, JsonResponse
 from UGD.models.ranks import Rank, LocalRank
 from UGD.models.players import Player
 from UGD.models.clubs import City, Country
+from functions.current_rank import current_rank
 import re
 # Create your views here.
 
@@ -29,7 +30,7 @@ def upload_rating_list(request):
         try:
             rank = Rank.objects.get(name=row[5])
         except Rank.DoesNotExist:
-            rank = None
+            rank = current_rank(row[4])
 
         try:
             local_rank = LocalRank.objects.get(abbreviate=row[6])
