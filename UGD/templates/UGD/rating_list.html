@@ -2,33 +2,55 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>UGF Database: рейтинг-лист</title>
-    <link rel="shortcut icon" href="{% static 'favicon.png' %}"/>
-    <link rel="stylesheet" href="{% static 'UGD/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
-    <link rel="stylesheet" href="{% static 'UGD/filters.css' %}" />
-</head>
-<header>
-    <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}">
-</header>
-<body>
-    <div class="title"><h1>Рейтинг-лист УФГО</h1></div>
-    <div class="filter">
-        <form id="filter_submit" class="filter">
-            {% block content %}
-                <div class="filter">
-                    <table class="filter">
-                        {{ filter.form.as_table }}
-                    </table>
-                    <button id="filter_submit_button" type="submit">OK</button>
-                </div>
-            {% endblock %}
-        </form>
-    </div>
-    <div>
-        {% render_table table %}
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>UGF Database: рейтинг-лист</title>
+        <link rel="shortcut icon" href="{% static 'favicon.png' %}"/>
+        <link rel="stylesheet" href="{% static 'UGD/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
+        <link rel="stylesheet" href="{% static 'UGD/filters.css' %}" />
+    </head>
+    <header>
+        <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}">
+    </header>
+    <body>
+        <div class="title"><h1>Рейтинг-лист УФГО</h1></div>
+        <div class="filter">
+            <form id="filter_submit" class="filter">
+                {% block content %}
+                    <div class="filter">
+                        <input type="text" id="full_name_search" onkeyup="myFunction()" placeholder="Введіть прізвище або ім'я...">
+                        <table class="filter">
+                            {{ filter.form.as_table }}
+                        </table>
+                    </div>
+                {% endblock %}
+            </form>
+        </div>
+        <div>
+            {% render_table table %}
+        </div>
+    </body>
+    <script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("full_name_search");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("rating_list_table");
+      tr = table.getElementsByTagName("tr");
+
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
 </html>
