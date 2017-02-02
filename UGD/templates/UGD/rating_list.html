@@ -19,8 +19,8 @@
             <form id="filter_submit" class="filter">
                 {% block content %}
                     <div class="filter">
-                        <input type="text" id="full_name_search" onkeyup="myFunction()" placeholder="Введіть прізвище або ім'я...">
                         <table class="filter">
+                            <tr><th for="full_name_search">Прізвизе та ім'я</th><td><input type="text" id="full_name_search" onkeyup="myFunction(0)" placeholder="Введіть прізвище або ім'я..."></td></tr>
                             {{ filter.form.as_table }}
                         </table>
                     </div>
@@ -32,7 +32,7 @@
         </div>
     </body>
     <script>
-    function myFunction() {
+    function myFunction(id) {
       // Declare variables
       var input, filter, table, tr, td, i;
       input = document.getElementById("full_name_search");
@@ -42,7 +42,7 @@
 
       // Loop through all table rows, and hide those who don't match the search query
       for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1];
+        td = tr[i].getElementsByTagName("td")[id];
         if (td) {
           if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
             tr[i].style.display = "";

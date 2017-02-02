@@ -17,19 +17,23 @@ class PlayerTable(tables.Table):
         accessor="local_rank.abbreviate",
         order_by="id"
     )
+    """
     ufgo_member = tables.BooleanColumn(
         verbose_name="Член УФГО"
     )
+    """
 
     class Meta:
         model = Player
         fields = (
-            'id',
             'full_name',
             'city',
             'rating',
             'rank',
             'local_rank',
-            'ufgo_member'
+            # 'ufgo_member'
         )
-        attrs = {'class': 'main'}
+        attrs = {
+            'id': 'rating_list_table',
+            'class': 'main'
+        }
