@@ -17,19 +17,12 @@ class PlayersFilter(django_filters.FilterSet):
         name="ufgo_member",
         label="Член УФГО",
     )
-    active = django_filters.ChoiceFilter(
-        choices=[
-            (False, 'Ні'),
-            (True, 'Так')
-        ],
-        name="active",
-        label="Активні гравці",
-    )
 
     class Meta:
-        model = Player
         fields = (
             'city',
-            'ufgo_member',
-            'active'
+            'ufgo_member'
         )
+        row_attrs = {
+            "onkeyup": 'myFunction(1)'
+        }
