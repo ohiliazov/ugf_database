@@ -25,7 +25,7 @@ class Country(models.Model):
         elif self.egd_name:
             return self.egd_name
         else:
-            return self.id
+            return str(self.id)
 
 
 class City(models.Model):
