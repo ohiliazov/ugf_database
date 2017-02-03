@@ -15,23 +15,22 @@ class PlayerTable(tables.Table):
     )
     local_rank = tables.Column(
         accessor="local_rank.abbreviate",
-        order_by="id"
+        order_by="id",
+        verbose_name="Розряд"
     )
-    """
-    ufgo_member = tables.BooleanColumn(
-        verbose_name="Член УФГО"
+    place = tables.Column(
+        verbose_name="№"
     )
-    """
 
     class Meta:
         model = Player
         fields = (
+            'place',
             'full_name',
             'city',
             'rating',
             'rank',
-            'local_rank',
-            # 'ufgo_member'
+            'local_rank'
         )
         attrs = {
             'id': 'rating_list_table',
