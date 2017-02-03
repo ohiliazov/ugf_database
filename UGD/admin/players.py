@@ -20,7 +20,7 @@ class PlayerAdmin(ModelAdmin):
         }),
         ('Гравець у EGD', {
             'classes': ('collapse',),
-            'fields': ('egd_last_name', 'egd_first_name', 'egd_rating', 'egd_place', 'egd_pin')
+            'fields': ('egd_pin',)
         })
     )
     search_fields = [

@@ -16,7 +16,7 @@ class TournamentPlayerAdmin(ModelAdmin):
         }),
         ('Інформація про гравця', {
             'classes': ('wide',),
-            'fields': ('rating_start', 'rating_finish', 'egd_rating_start', 'egd_rating_finish')
+            'fields': ('rating_start', 'rating_finish')
         })
     )
     search_fields = [

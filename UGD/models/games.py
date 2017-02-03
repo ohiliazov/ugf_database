@@ -41,20 +41,6 @@ class TournamentPlayer(models.Model):
         decimal_places=4,
         verbose_name="рейтинг-2"
     )
-    egd_rating_start = models.DecimalField(
-        null=True,
-        blank=True,
-        max_digits=8,
-        decimal_places=4,
-        verbose_name="рейтинг EGD-1"
-    )
-    egd_rating_finish = models.DecimalField(
-        null=True,
-        blank=True,
-        max_digits=8,
-        decimal_places=4,
-        verbose_name="рейтинг EGD-2"
-    )
 
     class Meta:
         verbose_name = "учасник турніру"

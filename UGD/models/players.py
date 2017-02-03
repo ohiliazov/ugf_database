@@ -63,28 +63,6 @@ class Player(models.Model):
         default=False,
         verbose_name="Активний"
     )
-    egd_last_name = models.CharField(
-        null=True,
-        blank=True,
-        max_length=255,
-        verbose_name="прізвище у EGD"
-    )
-    egd_first_name = models.CharField(
-        null=True,
-        blank=True,
-        max_length=255,
-        verbose_name="ім'я у EGD"
-    )
-    egd_rating = models.PositiveIntegerField(
-        null=True,
-        blank=True,
-        verbose_name="Єврорейтинг"
-    )
-    egd_place = models.PositiveIntegerField(
-        null=True,
-        blank=True,
-        verbose_name="Місце у EGD"
-    )
     egd_pin = models.CharField(
         null=True,
         blank=True,
@@ -99,7 +77,5 @@ class Player(models.Model):
     def __str__(self):
         if self.last_name and self.first_name:
             return self.last_name + ' ' + self.first_name
-        elif self.egd_last_name and self.egd_first_name:
-            return self.egd_last_name + ' ' + self.egd_first_name
         else:
             return self.id

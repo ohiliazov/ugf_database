@@ -35,24 +35,6 @@ class Tournament(models.Model):
         max_length=1,
         verbose_name="рейтинговий"
     )
-    egd_name = models.CharField(
-        null=True,
-        blank=True,
-        max_length=255,
-        verbose_name="назва турніру в EGD"
-    )
-    egd_class = models.CharField(
-        null=True,
-        blank=True,
-        choices=(
-            ('A', 'A'),
-            ('B', 'B'),
-            ('C', 'C'),
-            ('D', 'D'),
-        ),
-        max_length=1,
-        verbose_name="клас турніру в EGD"
-    )
     egd_code = models.CharField(
         null=True,
         blank=True,
@@ -73,7 +55,5 @@ class Tournament(models.Model):
     def __str__(self):
         if self.name:
             return self.name
-        elif self.egd_name:
-            return self.egd_name
         else:
             return self.id
