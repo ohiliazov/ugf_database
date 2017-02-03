@@ -21,6 +21,9 @@ class PlayerTable(tables.Table):
     place = tables.Column(
         verbose_name="№"
     )
+    egd_pin = tables.Column(
+        verbose_name="EGD"
+    )
 
     class Meta:
         model = Player
@@ -30,7 +33,8 @@ class PlayerTable(tables.Table):
             'city',
             'rating',
             'rank',
-            'local_rank'
+            'local_rank',
+            'egd_pin'
         )
         attrs = {
             'id': 'rating_list_table',
