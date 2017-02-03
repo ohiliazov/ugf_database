@@ -23,6 +23,11 @@ class Player(models.Model):
         blank=True,
         verbose_name="місто"
     )
+    place = models.PositiveIntegerField(
+        null=True,
+        blank=True,
+        verbose_name="позиція в рейтингу"
+    )
     rating = models.PositiveIntegerField(
         null=True,
         blank=True,
