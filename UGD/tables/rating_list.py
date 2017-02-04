@@ -21,8 +21,10 @@ class PlayerTable(tables.Table):
     place = tables.Column(
         verbose_name="№"
     )
-    egd_pin = tables.Column(
-        verbose_name="EGD"
+    egd_pin = tables.LinkColumn(
+        verbose_name="EGD",
+        viewname="UGD:egd_link",
+        args=[A('egd_pin')]
     )
 
     class Meta:
@@ -38,5 +40,5 @@ class PlayerTable(tables.Table):
         )
         attrs = {
             'id': 'rating_list_table',
-            'class': 'main'
+            'class': 'rating_list'
         }

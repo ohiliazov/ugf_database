@@ -1,7 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from UGD.models.players import Player
-from functions.translit import translit
-import re
+from functions import translit
 # Create your views here.
 
 
@@ -17,10 +16,14 @@ def upload_egd_pins(request):
             continue
         pin_list.append(string)
     print(pin_list)
-    for player in Player.objects.all():
-        for row in pin_list:
-            if row[1] == translit(player.last_name) and row[2] == translit(player.first_name):
-                player.egd_pin = row[0]
-                print(player, player.egd_pin)
-                count += 1
+    for translation in translit.ALL_TRANSLITERATIONS:
+        for player in Player.objects.all():
+            for row in pin_list:
+                if row[1] == translit.translit(player.last_name, translation) \
+                        and row[2] == translit.translit(player.first_name, translation) \
+                        and not player.egd_pin:
+                    player.egd_pin = row[0]
+                    player.save()
+                    print(translation, player, player.egd_pin)
+                    count += 1
     return HttpResponse("%d rows updated" % count)
