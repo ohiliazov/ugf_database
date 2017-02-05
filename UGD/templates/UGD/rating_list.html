@@ -20,8 +20,8 @@
                 {% block content %}
                     <div class="filter">
                         <table class="filter">
-                            <tr><th><label for="full_name_search">Прізвище та ім'я</label></th><td><input type="text" id="full_name_search" onkeyup="myFunction()" placeholder="Введіть прізвище або ім'я..."></td></tr>
-                            <tr><th><label for="city_search">Місто</label></th><td><input type="text" id="city_search" onkeyup="myFunction()" placeholder="Введіть назву міста..."></td></tr>
+                            <tr><th><label for="full_name_search">Прізвище та ім'я:</label></th><td><input type="text" id="full_name_search" onkeyup="myFunction()" placeholder="Введіть прізвище або ім'я..."></td></tr>
+                            <tr><th><label for="city_search">Місто:</label></th><td><input type="text" id="city_search" onkeyup="myFunction()" placeholder="Введіть назву міста..."></td></tr>
                         </table>
                     </div>
                 {% endblock %}
@@ -31,31 +31,5 @@
             {% render_table table %}
         </div>
     </body>
-    <script>
-    function myFunction() {
-        var input1, input2, filter1, filter2, table, tr, td1, td2, i;
-
-        input1 = document.getElementById('full_name_search');
-        input2 = document.getElementById('city_search');
-
-        filter1 = input1.value.toUpperCase();
-        filter2 = input2.value.toUpperCase();
-
-        table = document.getElementById('rating_list_table');
-        tr = table.getElementsByTagName("tr");
-
-        for (i = 0; i < tr.length; i++) {
-            td1 = tr[i].getElementsByTagName("td")[1];
-            td2 = tr[i].getElementsByTagName("td")[2];
-            if (td1) {
-                if (td1.innerHTML.toUpperCase().indexOf(filter1) > -1 && td2.innerHTML.toUpperCase().indexOf(filter2) > -1) {
-                        tr[i].style.display = "";
-                }
-                else {
-                        tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-    </script>
+    <script src="{% static 'UGD/js/rating_list_filter.js' %}"></script>
 </html>

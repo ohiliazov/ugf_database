@@ -15,7 +15,7 @@ class PlayerTable(tables.Table):
     )
     local_rank = tables.Column(
         accessor="local_rank.abbreviate",
-        order_by="id",
+        order_by="local_rank.id",
         verbose_name="Розряд"
     )
     place = tables.Column(

@@ -4,7 +4,6 @@ div.filter {
 
 table.filter {
     display: inline-table;
-    width: 400px;
     border-collapse: collapse;
     vertical-align: middle;
     font-family: "Times New Roman", sans-serif;

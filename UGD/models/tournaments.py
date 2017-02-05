@@ -56,4 +56,4 @@ class Tournament(models.Model):
         if self.name:
             return self.name
         else:
-            return self.id
+            return str(self.id)
