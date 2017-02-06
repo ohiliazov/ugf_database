@@ -1,7 +1,10 @@
-from django.http.response import HttpResponseRedirect
-from django.urls import reverse
 from django.shortcuts import redirect
 
 
-def egd_link(request, egd_pin):
+def egd_player_link(request, egd_pin):
     return redirect("http://www.europeangodatabase.eu/EGD/Player_Card.php?key="+egd_pin)
+
+
+def egd_tournament_link(request, egd_code):
+    return redirect("http://europeangodatabase.eu/EGD/Tournament_Card.php?key="+egd_code)
+

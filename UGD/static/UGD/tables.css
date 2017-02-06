@@ -3,7 +3,7 @@ div.table-container {
     align-content: center;
 }
 
-table.rating_list {
+table.ugd_table {
     display: inline-table;
     align-self: center;
     align-content: center;
@@ -14,75 +14,75 @@ table.rating_list {
 	background-color: #d9ead3;
 }
 
-table.rating_list,
-table.rating_list + ul.pagination {
+table.ugd_table,
+table.ugd_table + ul.pagination {
     font-family: "Times New Roman", sans-serif;
     margin: 20px;
 }
 
-table.rating_list a:link,
-table.rating_list a:visited,
-table.rating_list + ul.pagination > li > a {
+table.ugd_table a:link,
+table.ugd_table a:visited,
+table.ugd_table + ul.pagination > li > a {
     color: black;
     display: inline-block;
     text-decoration: none;
     font-weight: bold;
 }
 
-table.rating_list a:hover {
+table.ugd_table a:hover {
     color: whitesmoke;
 }
 
-table.rating_list td,
-table.rating_list th {
+table.ugd_table td,
+table.ugd_table th {
     text-align: center;
     padding: 10px;
     line-height: 14px;
 }
 
 
-table.rating_list thead th,
-table.rating_list thead td {
+table.ugd_table thead th,
+table.ugd_table thead td {
     background: darkgreen left bottom repeat-x;
     padding: 10px 10px;
     color: white;
 }
 
-table.rating_list thead th > a:link,
-table.rating_list thead th > a:visited {
+table.ugd_table thead th > a:link,
+table.ugd_table thead th > a:visited {
     color: white;
 }
 
-table.rating_list thead th.orderable > a {
+table.ugd_table thead th.orderable > a {
     padding-right: 20px;
     background: url(images/arrow-inactive-up.png) right center no-repeat;
 }
-table.rating_list thead th.orderable.asc > a {
+table.ugd_table thead th.orderable.asc > a {
     background-image: url(images/arrow-active-up.png);
 }
-table.rating_list thead th.orderable.desc > a {
+table.ugd_table thead th.orderable.desc > a {
     background-image: url(images/arrow-active-down.png);
 }
 
-table.rating_list tr.odd {
+table.ugd_table tr.odd {
     background-color: whitesmoke;
 }
 
-table.rating_list tr.even {
+table.ugd_table tr.even {
     background-color: whitesmoke;
 }
 
-table.rating_list tr:hover, table.rating_list tr:hover td a {
+table.ugd_table tr:hover, table.ugd_table tr:hover td a {
     background-color: darkgreen;
     color: white;
 }
 
-table.rating_list tr:hover td a {
+table.ugd_table tr:hover td a {
     cursor: pointer;
     display: block;
 }
 
-table.rating_list + ul.pagination {
+table.ugd_table + ul.pagination {
     background: white url(images/pagination-bg.gif) left 180% repeat-x;
     overflow: auto;
     margin: 0;
@@ -90,23 +90,23 @@ table.rating_list + ul.pagination {
     list-style: none;
 }
 
-table.rating_list + ul.pagination > li {
+table.ugd_table + ul.pagination > li {
     float: left;
     line-height: 22px;
     margin-left: 10px;
 }
 
-table.rating_list + ul.pagination > li:first-child {
+table.ugd_table + ul.pagination > li:first-child {
     margin-left: 0;
 }
 
-table.rating_list + ul.pagination > li.cardinality {
+table.ugd_table + ul.pagination > li.cardinality {
     float: right;
     color: #8d8d8d;
 }
 
-table.rating_list > tbody > tr > td > span.true,
-table.rating_list > tbody > tr > td > span.false {
+table.ugd_table > tbody > tr > td > span.true,
+table.ugd_table > tbody > tr > td > span.false {
     background: no-repeat top left;
     display: inline-block;
     height: 16px;
@@ -115,17 +115,17 @@ table.rating_list > tbody > tr > td > span.false {
     width: 16px;
 }
 
-table.rating_list > tbody > tr > td > .missing {
+table.ugd_table > tbody > tr > td > .missing {
     background: transparent url(images/missing.png) right center no-repeat;
     color: #717171;
     padding-right: 20px;
 }
 
-table.rating_list > tbody > tr > td > .missing:hover {
+table.ugd_table > tbody > tr > td > .missing:hover {
     color: whitesmoke;
 }
 
-table.rating_list > tbody > tr > td > span.true {
+table.ugd_table > tbody > tr > td > span.true {
     background-image: url(images/true.png);
 }
 

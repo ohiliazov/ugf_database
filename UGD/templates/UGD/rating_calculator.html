@@ -1,0 +1,31 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>UGF Database: калькулятор рейтингу</title>
+        <link rel="shortcut icon" href="{% static 'favicon.png' %}"/>
+        <link rel="stylesheet" href="{% static 'UGD/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
+        <link rel="stylesheet" href="{% static 'UGD/filters.css' %}" />
+    </head>
+    <header>
+        <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}">
+    </header>
+    <body>
+        <div class="title"><h1>Калькулятор рейтингу УФГО</h1></div>
+        <div class="filter">
+            <form id="rating_form" class="rating_calculator" method="get" action="{% url 'UGD:rating_calculator' %}">
+                <table class="filter">
+                    <tr><th><label for="first_rating">Рейтинг першого гравця:</label></th><td><input type="text" id="first_rating" name="first_rating" value="{{ request.GET.first_rating }}"></td></tr>
+                    <tr><th><label for="second_rating">Рейтинг другого гравця:</label></th><td><input type="text" id="second_rating" name="second_rating" value="{{ request.GET.second_rating }}"></td></tr>
+                    <tr><th><label for="result">Результат:</label></th><td><input type="text" name="result" id="result" value="{{ request.GET.result }}"></td></tr>
+                    <tr><th><label for="submit">Отправить</label></th><td><input type="submit" id="submit"></td></tr>
+                    <tr><th><label for="new_rating">Рассчетный рейтинг:</label></th><td><input type="text" id="new_rating" value="{{ new_rating }}"></td></tr>
+                </table>
+            </form>
+        </div>
+        <div>
+        </div>
+    </body>
+</html>

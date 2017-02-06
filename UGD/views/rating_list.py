@@ -16,4 +16,4 @@ class RatingListView(SingleTableMixin, FilterView):
     filterset_class = PlayersFilter
 
     def get_queryset(self):
-        return Player.objects.filter(active=True)
+        return Player.objects.filter(active=True).order_by('-rating')
