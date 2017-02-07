@@ -1,0 +1,35 @@
+{% load render_table from django_tables2 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>UGF Database: рейтинг-лист</title>
+        <link rel="shortcut icon" href="{% static 'favicon.png' %}"/>
+        <link rel="stylesheet" href="{% static 'UGD/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
+        <link rel="stylesheet" href="{% static 'UGD/filters.css' %}" />
+    </head>
+    <header>
+        <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}">
+    </header>
+    <body>
+        <div class="title"><h1>Рейтинг-лист УФГО</h1></div>
+        <div class="filter">
+            <form id="filter_submit" class="filter">
+                {% block content %}
+                    <div class="filter">
+                        <table class="filter">
+                            <tr><th><label for="full_name_search">Прізвище та ім'я:</label></th><td><input type="text" id="full_name_search" onkeyup="myFunction()" placeholder="Введіть прізвище або ім'я..."></td></tr>
+                            <tr><th><label for="city_search">Місто:</label></th><td><input type="text" id="city_search" onkeyup="myFunction()" placeholder="Введіть назву міста..."></td></tr>
+                        </table>
+                    </div>
+                {% endblock %}
+            </form>
+        </div>
+        <div>
+            {% render_table table %}
+        </div>
+    </body>
+    <script src="{% static 'UGD/js/rating_list_filter.js' %}"></script>
+</html>

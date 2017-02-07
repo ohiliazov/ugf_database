@@ -1,13 +1,13 @@
 body {
 	background-color: whitesmoke;
 	text-align: center;
-    font-family: Times, serif;
     align-self: center;
     vertical-align: baseline;
 }
 
 h1 {
 	color: black;
+	font-family: "Georgia", sans-serif;
 	margin: 5px;
 }
 

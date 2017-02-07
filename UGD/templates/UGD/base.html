@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="shortcut icon" href="{% static 'favicon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'UGD/style.css' %}" />
+    {% block extrastyles %}{% endblock %}
+</head>
+<header>
+    <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}">
+    {% block header %}{% endblock %}
+</header>
+<body>
+    {% block body %}{% endblock %}
+</body>
+{% block javascripts %}{% endblock %}
+</html>
