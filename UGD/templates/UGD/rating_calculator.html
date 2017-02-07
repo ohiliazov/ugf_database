@@ -16,35 +16,38 @@
         <div class="title"><h1>Калькулятор рейтингу УФГО</h1></div>
         <div class="filter">
             <form id="rating_form" class="rating_calculator" method="get" action="{% url 'UGD:rating_calculator' %}">
-                <table class="filter">
-                    <tr>
-                        <th><label for="first_rating">Текущий R1:</label></th><td><input type="number" id="first_rating" name="first_rating" value="{{ request.GET.first_rating }}"></td>
-                        <th><label for="second_rating">Текущий R2:</label></th><td><input type="number" id="second_rating" name="second_rating" value="{{ request.GET.second_rating }}"></td></tr>
-                    <tr>
-                        <th><label for="result">Результат:</label></th><td><input type="number" name="result" id="result" value="{{ request.GET.result }}"></td>
-                        <th><label for="submit">Отправить</label></th><td><input type="submit" id="submit"></td>
-                    </tr>
-                </table>
                 <table class="ugd_table">
                     <tr>
-                        <th><label for="new_rating_1">Новый R1:</label></th><td><input type="text" id="new_rating_1" value="{{ new_rating_1 }}"></td>
-                        <th><label for="new_rating_2">Новый R2:</label></th><td><input type="text" id="new_rating_2" value="{{ new_rating_2 }}"></td>
+                        <th><label for="first_rating">Текущий R1:</label></th>
+                        <th><label for="second_rating">Текущий R2:</label></th>
+                        <th><label for="result">Результат:</label></th>
+                        <th><label for="submit">Отправить</label></th>
+                    </tr>
+                    <tr class="input">
+                        <td><input type="number" maxlength="8" id="first_rating" name="first_rating" value="{{ request.GET.first_rating }}"></td>
+                        <td><input type="number" id="second_rating" name="second_rating" value="{{ request.GET.second_rating }}"></td>
+                        <td><input type="number" name="result" id="result" value="{{ request.GET.result }}"></td>
+                        <td><input type="submit" id="submit" value="Рассчет"></td>
                     </tr>
                     <tr>
-                        <th><label for="new_rating_1a">Альтернативний R1:</label></th><td><input type="text" id="new_rating_1a" value="{{ new_rating_1a }}"></td>
-                        <th><label for="new_rating_2a">Альтернативний R2:</label></th><td><input type="text" id="new_rating_2a" value="{{ new_rating_2a }}"></td>
+                        <th><label for="new_rating_1">Новый R1:</label></th><td><input disabled="disabled" type="text" id="new_rating_1" value="{{ new_rating_1 }}"></td>
+                        <th><label for="new_rating_2">Новый R2:</label></th><td><input disabled="disabled" type="text" id="new_rating_2" value="{{ new_rating_2 }}"></td>
                     </tr>
                     <tr>
-                        <th><label for="win_exp_1">Вероятность победы R1:</label></th><td><input type="text" id="win_exp_1" value="{{ win_exp_1 }}"></td>
-                        <th><label for="win_exp_2">Вероятность победы R2:</label></th><td><input type="text" id="win_exp_2" value="{{win_exp_2 }}"></td>
+                        <th><label for="new_rating_1a">Альтернативний R1:</label></th><td><input disabled="disabled" type="text" id="new_rating_1a" value="{{ new_rating_1a }}"></td>
+                        <th><label for="new_rating_2a">Альтернативний R2:</label></th><td><input disabled="disabled" type="text" id="new_rating_2a" value="{{ new_rating_2a }}"></td>
                     </tr>
                     <tr>
-                        <th><label for="con_param_1">con R1:</label></th><td><input type="text" id="con_param_1" value="{{ con_param_1 }}"></td>
-                        <th><label for="con_param_2">con R2:</label></th><td><input type="text" id="con_param_2" value="{{con_param_2 }}"></td>
+                        <th><label for="win_exp_1">Вероятность победы R1:</label></th><td><input disabled="disabled" type="text" id="win_exp_1" value="{{ win_exp_1 }}"></td>
+                        <th><label for="win_exp_2">Вероятность победы R2:</label></th><td><input disabled="disabled" type="text" id="win_exp_2" value="{{win_exp_2 }}"></td>
                     </tr>
                     <tr>
-                        <th><label for="a_param_1">a R1:</label></th><td><input type="text" id="a_param_1" value="{{ a_param_1 }}"></td>
-                        <th><label for="a_param_2">a R2:</label></th><td><input type="text" id="a_param_2" value="{{ a_param_2 }}"></td>
+                        <th><label for="con_param_1">con R1:</label></th><td><input disabled="disabled" type="text" id="con_param_1" value="{{ con_param_1 }}"></td>
+                        <th><label for="con_param_2">con R2:</label></th><td><input disabled="disabled" type="text" id="con_param_2" value="{{con_param_2 }}"></td>
+                    </tr>
+                    <tr>
+                        <th><label for="a_param_1">a R1:</label></th><td><input disabled="disabled" type="text" id="a_param_1" value="{{ a_param_1 }}"></td>
+                        <th><label for="a_param_2">a R2:</label></th><td><input disabled="disabled" type="text" id="a_param_2" value="{{ a_param_2 }}"></td>
                     </tr>
                 </table>
             </form>

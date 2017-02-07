@@ -129,3 +129,10 @@ table.ugd_table > tbody > tr > td > span.true {
     background-image: url(images/true.png);
 }
 
+input:disabled {
+    background-color: whitesmoke;
+    text-decoration: none;
+    color: black;
+    font-family: 'Cambria Math', sans-serif;
+    font-size: 14px;
+}
