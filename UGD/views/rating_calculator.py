@@ -10,8 +10,23 @@ class RatingCalculatorView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(RatingCalculatorView, self).get_context_data(**kwargs)
         try:
-            context['new_rating'] = int(self.request.GET['first_rating']) + rate_calc_func.growth(self.request.GET['first_rating'], self.request.GET['second_rating'], self.request.GET['result'])
-            print(context['new_rating'])
+            first_rating = int(self.request.GET['first_rating'])
+            second_rating = int(self.request.GET['second_rating'])
+            result = int(self.request.GET['result'])
+            context['new_rating_1'] = rate_calc_func.new_rating(
+                first_rating, second_rating, result)
+            context['new_rating_1a'] = rate_calc_func.new_rating(
+                first_rating, second_rating, (1-result))
+            context['new_rating_2'] = rate_calc_func.new_rating(
+                second_rating, first_rating, (1-result))
+            context['new_rating_2a'] = rate_calc_func.new_rating(
+                second_rating, first_rating, result)
+            context['con_param_1'] = rate_calc_func.con(first_rating)
+            context['con_param_2'] = rate_calc_func.con(second_rating)
+            context['a_param_1'] = rate_calc_func.a_param(first_rating)
+            context['a_param_2'] = rate_calc_func.a_param(second_rating)
+            context['win_exp_1'] = round(rate_calc_func.winning_expectancy(first_rating, second_rating), 2)
+            context['win_exp_2'] = round(rate_calc_func.winning_expectancy(second_rating, first_rating), 2)
         except KeyError:
             print(2)
         return context
