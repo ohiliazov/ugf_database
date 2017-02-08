@@ -1,5 +1,6 @@
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from UGD.models.tournaments import Tournament
+from UGD.models.games import Player, TournamentPlayer
 import re
 # todo Добавить загрузку участников и результатов
 
@@ -22,4 +23,34 @@ def upload_egd_tournament(request):
     tournament.date_end = tournament_dates[1]
     tournament.save()
     print(tournament)
-    return HttpResponse(tournament_head['EV']+' uploaded')
+    count = 0
+    for line in file:
+        tag = re.match(
+            r"^\s?(?P<place>[0-9]+)(\s)+"                          # +Место в турнире
+            r"(?P<last_name>[\w]+)(\s)+"                        # +Фамилия
+            r"(?P<first_name>[\w]+)(\s)+"                       # +Имя
+            r"(?P<rank>[\ddpk]+)(\s)+"                          # -Ранг
+            r"(?P<country>[\w]+)(\s)+"                          # -Страна
+            r"(?P<club>[\w]+)(\s)+"                             # -Город
+            r"(?P<points>(([\d.])+(\s)+)+)+"                    # -Очки
+            r"(?P<results>([\d]+[=+-]+(/[bw]+[\d]?)?[\s]+)+)+"  # +Результаты партии
+            r"\|+(?P<egd_pin>[\d]+)",                           # +Код игрока в EGF
+            line
+        )
+        print(line)
+        if tag is not None:
+            player = Player.objects.get_or_create(
+                egd_pin=tag.group('egd_pin'),
+                defaults={
+                    "last_name": tag.group('last_name'),
+                    "first_name": tag.group('first_name')
+                }
+            )[0]
+            tournament_player = TournamentPlayer.objects.update_or_create(
+                player=player,
+                tournament=tournament,
+                defaults={"place": tag.group('place')}
+            )
+            count += 1
+            print(count, tournament_player)
+    return HttpResponse('%s uploaded - %d participants' % (tournament.name, count))
