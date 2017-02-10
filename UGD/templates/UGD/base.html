@@ -4,13 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}{% endblock %}</title>
-    <link rel="shortcut icon" href="{% static 'favicon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" />
     <link rel="stylesheet" href="{% static 'UGD/style.css' %}" />
+    <link rel="shortcut icon" href="{% static 'favicon.png' %}"/>
     {% block extrastyles %}{% endblock %}
 </head>
 <header>
     <div>
-        <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}">
+        <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}" style="width:800px">
         {% block header %}{% endblock %}
     </div>
 </header>

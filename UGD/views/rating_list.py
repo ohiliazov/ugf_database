@@ -1,19 +1,21 @@
-from django_tables2 import SingleTableMixin
-from django_filters.views import FilterView
+from django_tables2 import MultiTableMixin
 from ..tables.rating_list import PlayerTable
-from ..filters.rating_list import PlayersFilter
 from ..models.players import Player
+from django.views.generic import TemplateView
 
 
 # Create your views here.
-class RatingListView(SingleTableMixin, FilterView):
+class RatingListView(MultiTableMixin, TemplateView):
     """
     Рейтинг-лист УФГО
     """
-    table_class = PlayerTable
     table_pagination = False
     template_name = 'UGD/rating_list.html'
-    filterset_class = PlayersFilter
-
-    def get_queryset(self):
-        return Player.objects.filter(active=True).order_by('-rating')
+    tables = [
+        PlayerTable(Player.objects.filter(active=True, rank__gte=28).order_by('-rating')),
+        PlayerTable(Player.objects.filter(active=True, rank__lt=27, rank__gte=21).order_by('-rating')),
+        PlayerTable(Player.objects.filter(active=True, rank__lt=21, rank__gte=17).order_by('-rating')),
+        PlayerTable(Player.objects.filter(active=True, rank__lt=17, rank__gte=12).order_by('-rating')),
+        PlayerTable(Player.objects.filter(active=True, rank__lt=12, rank__gte=7).order_by('-rating')),
+        PlayerTable(Player.objects.filter(active=True, rank__lt=7).order_by('-rating'))
+    ]

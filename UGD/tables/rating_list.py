@@ -10,7 +10,6 @@ class PlayerTable(tables.Table):
         verbose_name="Прізвище та ім'я",
         order_by="last_name",
         viewname='UGD:player_info',
-        empty_values=(),
         args=[A('pk')]
     )
     local_rank = tables.Column(
@@ -42,3 +41,4 @@ class PlayerTable(tables.Table):
             'id': 'rating_list_table',
             'class': 'ugd_table'
         }
+        default = ''

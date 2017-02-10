@@ -25,7 +25,18 @@
         </form>
     </div>
     <div>
-        {% render_table table %}
+        <div class="title"><h1>Професіонали</h1></div>
+        {% render_table tables.0 %}
+        <div class="title"><h1>Дани</h1></div>
+        {% render_table tables.1 %}
+        <div class="title"><h1>1-4 кю</h1></div>
+        {% render_table tables.2 %}
+        <div class="title"><h1>5-9 кю</h1></div>
+        {% render_table tables.3 %}
+        <div class="title"><h1>10-14 кю</h1></div>
+        {% render_table tables.4 %}
+        <div class="title"><h1>15-20 кю</h1></div>
+        {% render_table tables.5 %}
     </div>
 {% endblock %}
 {% block javascripts %}

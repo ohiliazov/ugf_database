@@ -25,7 +25,12 @@ SECRET_KEY = 'emi(m(el6mt&jox87_4=a*i@o+-#(1-&#&^0^+7yudormy7==f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '192.168.0.107',
+    '127.0.0.1',
+    'localhost',
+    '159.224.79.172'
+]
 
 
 # Application definition

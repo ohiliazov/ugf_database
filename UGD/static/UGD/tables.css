@@ -1,23 +1,18 @@
 div.table-container {
     display: inline-table;
-    align-content: center;
+    align-self: center;
 }
 
 table.ugd_table {
-    display: inline-table;
-    align-self: center;
-    align-content: center;
     border: 2px solid darkgreen;
-    width: 1000px;
-    border-collapse: collapse;
-    vertical-align: middle;
 	background-color: #d9ead3;
+    width: 800px;
 }
 
 table.ugd_table,
 table.ugd_table + ul.pagination {
-    font-family: "Times New Roman", sans-serif;
-    margin: 20px;
+    font-family: "Georgia", sans-serif;
+    margin: 5px;
 }
 
 table.ugd_table a:link,
@@ -127,12 +122,4 @@ table.ugd_table > tbody > tr > td > .missing:hover {
 
 table.ugd_table > tbody > tr > td > span.true {
     background-image: url(images/true.png);
-}
-
-input:disabled {
-    background-color: whitesmoke;
-    text-decoration: none;
-    color: black;
-    font-family: 'Cambria Math', sans-serif;
-    font-size: 14px;
 }
