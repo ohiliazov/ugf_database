@@ -9,8 +9,10 @@
     {% block extrastyles %}{% endblock %}
 </head>
 <header>
-    <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}">
-    {% block header %}{% endblock %}
+    <div>
+        <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}">
+        {% block header %}{% endblock %}
+    </div>
 </header>
 <body>
     {% block body %}{% endblock %}
