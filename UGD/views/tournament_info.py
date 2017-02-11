@@ -2,6 +2,7 @@ from django.views.generic import TemplateView
 from ..charts.rating_history import player_rating_history
 # todo Незакончено
 
+
 ###
 class TournamentInfoView(TemplateView):
     template_name = 'UGD/tournament_info.html'

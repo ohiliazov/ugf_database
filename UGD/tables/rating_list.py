@@ -1,10 +1,10 @@
 import django_tables2 as tables
 from django_tables2.utils import A
-
 from ..models.players import Player
 
 
 class PlayerTable(tables.Table):
+
     full_name = tables.LinkColumn(
         accessor="__str__",
         verbose_name="Прізвище та ім'я",

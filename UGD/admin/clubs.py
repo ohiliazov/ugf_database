@@ -32,7 +32,6 @@ class TournamentInline(TabularInline):
         'date_begin',
         'date_end',
         'city',
-        'egd_name',
         'egd_code'
     )
     extra = 0
@@ -46,13 +45,6 @@ class CountryAdmin(ModelAdmin):
     ordering = ['name']
 
 
-class CityAdmin(ModelAdmin):
-    inlines = [TournamentInline]
-    list_display = ('name', 'egd_name', 'country')
-    search_fields = ['name', 'egd_name']
-    ordering = ['country', 'name']
-
-
 class ClubAdmin(ModelAdmin):
     inlines = [PlayerInline]
     list_display = ('name', 'egd_name', 'country')
@@ -61,4 +53,4 @@ class ClubAdmin(ModelAdmin):
 
 
 site.register(Country, CountryAdmin)
-site.register(City, CityAdmin)
+site.register(City, ClubAdmin)

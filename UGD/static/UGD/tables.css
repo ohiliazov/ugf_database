@@ -4,53 +4,46 @@ div.table-container {
 }
 
 table.ugd_table {
-    border: 2px solid darkgreen;
-	background-color: #d9ead3;
-    width: 800px;
+    border: none;
+    width: 1000px;
 }
 
-table.ugd_table,
-table.ugd_table + ul.pagination {
+table.ugd_table {
     font-family: "Georgia", sans-serif;
     margin: 5px;
 }
 
 table.ugd_table a:link,
-table.ugd_table a:visited,
-table.ugd_table + ul.pagination > li > a {
+table.ugd_table a:visited {
     color: black;
     display: inline-block;
-    text-decoration: none;
+    text-decoration: underline;
     font-weight: bold;
-}
-
-table.ugd_table a:hover {
-    color: whitesmoke;
 }
 
 table.ugd_table td,
 table.ugd_table th {
     text-align: center;
-    padding: 10px;
-    line-height: 14px;
+    padding: 5px;
 }
 
 
 table.ugd_table thead th,
 table.ugd_table thead td {
     background: darkgreen left bottom repeat-x;
-    padding: 10px 10px;
+    padding: 5px 5px;
     color: white;
 }
 
 table.ugd_table thead th > a:link,
 table.ugd_table thead th > a:visited {
     color: white;
+    text-decoration: none;
 }
 
 table.ugd_table thead th.orderable > a {
-    padding-right: 20px;
-    background: url(images/arrow-inactive-up.png) right center no-repeat;
+    padding-right: 15px;
+    background: right center no-repeat;
 }
 table.ugd_table thead th.orderable.asc > a {
     background-image: url(images/arrow-active-up.png);
@@ -59,67 +52,12 @@ table.ugd_table thead th.orderable.desc > a {
     background-image: url(images/arrow-active-down.png);
 }
 
-table.ugd_table tr.odd {
-    background-color: whitesmoke;
-}
-
-table.ugd_table tr.even {
-    background-color: whitesmoke;
-}
-
 table.ugd_table tr:hover, table.ugd_table tr:hover td a {
     background-color: darkgreen;
-    color: white;
+    color: snow;
 }
 
 table.ugd_table tr:hover td a {
     cursor: pointer;
     display: block;
-}
-
-table.ugd_table + ul.pagination {
-    background: white url(images/pagination-bg.gif) left 180% repeat-x;
-    overflow: auto;
-    margin: 0;
-    padding: 10px;
-    list-style: none;
-}
-
-table.ugd_table + ul.pagination > li {
-    float: left;
-    line-height: 22px;
-    margin-left: 10px;
-}
-
-table.ugd_table + ul.pagination > li:first-child {
-    margin-left: 0;
-}
-
-table.ugd_table + ul.pagination > li.cardinality {
-    float: right;
-    color: #8d8d8d;
-}
-
-table.ugd_table > tbody > tr > td > span.true,
-table.ugd_table > tbody > tr > td > span.false {
-    background: no-repeat top left;
-    display: inline-block;
-    height: 16px;
-    overflow: hidden;
-    text-indent: -200px;
-    width: 16px;
-}
-
-table.ugd_table > tbody > tr > td > .missing {
-    background: transparent url(images/missing.png) right center no-repeat;
-    color: #717171;
-    padding-right: 20px;
-}
-
-table.ugd_table > tbody > tr > td > .missing:hover {
-    color: whitesmoke;
-}
-
-table.ugd_table > tbody > tr > td > span.true {
-    background-image: url(images/true.png);
 }

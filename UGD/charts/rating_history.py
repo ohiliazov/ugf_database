@@ -8,9 +8,9 @@ from ..models.games import TournamentPlayer
 def player_rating_history(player_id):
     x = [tournament_player.tournament.date_begin for tournament_player in
          TournamentPlayer.objects.filter(player_id=player_id, tournament__date_begin__gte=datetime.datetime.now()-datetime.timedelta(days=720))]
-    y = [tournament_player.egd_rating_start for tournament_player in
+    y = [tournament_player.rating_start for tournament_player in
          TournamentPlayer.objects.filter(player_id=player_id, tournament__date_begin__gte=datetime.datetime.now()-datetime.timedelta(days=720))]
-    z = [tournament_player.egd_rating_finish for tournament_player in
+    z = [tournament_player.rating_finish for tournament_player in
          TournamentPlayer.objects.filter(player_id=player_id, tournament__date_begin__gte=datetime.datetime.now()-datetime.timedelta(days=720))]
 
     rating_before = go.Scatter(x=x, y=y, marker={'color': 'blue', 'symbol': "square-dot", 'size': "10"},
