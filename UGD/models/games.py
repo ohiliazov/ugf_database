@@ -110,8 +110,7 @@ class Pairing(models.Model):
         ),
         verbose_name="гандікап"
     )
-    game_result = models.BooleanField(
-        default=False,
+    game_result = models.NullBooleanField(
         verbose_name="перемога"
     )
     technical_result = models.BooleanField(
