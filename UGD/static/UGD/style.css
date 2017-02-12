@@ -11,25 +11,6 @@ h1 {
 	margin: 5px;
 }
 
-button {
-	align-self: center;
-	align-content: center;
-    margin: 5px;
-	background-color: #040;
-    border: 1px solid green;
-    color: white;
-    padding: 5px 20px;
-    text-align: center;
-    font-size: 16px;
-}
-
-button:hover {
-	cursor: pointer;
-	background-color: #fff;
-	color: black;
-    border: 1px solid black;
-}
-
 td, th {
-	padding: 5px 10px;
+	padding: 5px 5px;
 }

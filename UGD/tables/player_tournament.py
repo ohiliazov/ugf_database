@@ -10,6 +10,8 @@ class PlayerTournamentTable(tables.Table):
         viewname='UGD:tournament_info',
         args=[A('pk')]
     )
+    get_result = tables.Column(verbose_name="Перемог")
+    get_rating_delta = tables.Column(verbose_name="ΔR")
 
     class Meta:
         model = TournamentPlayer
@@ -20,7 +22,9 @@ class PlayerTournamentTable(tables.Table):
             'rank',
             'place',
             'rating_start',
-            'rating_finish'
+            'rating_finish',
+            'get_result',
+            'get_rating_delta'
         )
         attrs = {
             'id': 'player_tournament_table',

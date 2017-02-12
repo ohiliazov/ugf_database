@@ -6,37 +6,33 @@
 {% endblock %}
 {% block extrastyles %}
     <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
-    <link rel="stylesheet" href="{% static 'UGD/filters.css' %}" />
 {% endblock %}
 {% block header %}
     <div class="title"><h1>Рейтинг-лист УФГО</h1></div>
 {% endblock %}
+{% block boy_attrs %}{% endblock %}
 {% block body %}
-    <div class="filter">
-        <form id="filter_submit" class="filter">
-            {% block content %}
-                <div class="filter">
-                    <table class="filter">
-                        <tr><th><label for="full_name_search">Прізвище та ім'я:</label></th><td><input type="text" id="full_name_search" onkeyup="myFunction()" placeholder="Введіть прізвище або ім'я..."></td></tr>
-                        <tr><th><label for="city_search">Місто:</label></th><td><input type="text" id="city_search" onkeyup="myFunction()" placeholder="Введіть назву міста..."></td></tr>
-                    </table>
-                </div>
-            {% endblock %}
-        </form>
+    <div class="form-inline" style="display:inline-table" onkeyup="playerFilter()">
+        <table id="player_filter">
+            <tr>
+                <td>
+                    <input type="text" class="form-control" id="full_name_search" placeholder="Введіть прізвище або ім'я...">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" class="form-control" id="city_search" placeholder="Введіть назву міста...">
+                </td>
+            </tr>
+        </table>
     </div>
     <div>
-        <div class="title"><h1>Професіонали</h1></div>
-        {% render_table tables.0 %}
-        <div class="title"><h1>Дани</h1></div>
-        {% render_table tables.1 %}
-        <div class="title"><h1>1-4 кю</h1></div>
-        {% render_table tables.2 %}
-        <div class="title"><h1>5-9 кю</h1></div>
-        {% render_table tables.3 %}
-        <div class="title"><h1>10-14 кю</h1></div>
-        {% render_table tables.4 %}
-        <div class="title"><h1>15-20 кю</h1></div>
-        {% render_table tables.5 %}
+        <div class="gold_belt">{% render_table tables.0 %}</div>
+        <div class="black_belt">{% render_table tables.1 %}</div>
+        <div class="blue_belt">{% render_table tables.2 %}</div>
+        <div class="green_belt">{% render_table tables.3 %}</div>
+        <div class="yellow_belt">{% render_table tables.4 %}</div>
+        <div class="white_belt">{% render_table tables.5 %}</div>
     </div>
 {% endblock %}
 {% block javascripts %}

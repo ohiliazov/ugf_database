@@ -22,7 +22,7 @@ def upload_egd_tournament(request):
     tournament_results = {}
     count = 0
 
-    # Ищем записи, которые соответствуют шапке турнира
+    # ЗАПИСЬ ШАПКИ ТУРНИРА
     for line in file:
         tag = re.match(r"^; (?P<tag>[\w]+)+\[(?P<value>[\w\W]+)+\]", line)
         if tag and tag.group('tag') in INFO_TAGS:
@@ -37,8 +37,7 @@ def upload_egd_tournament(request):
     tournament.save()
     print(tournament)
 
-    # Ищем записи, которые соответствуют результатам
-
+    # ЗАПИСЬ УЧАСТНИКОВ ТУРНИРА
     for line in file:
         if line in (';', ';.', False):
             # Пропускаем пустые строки
@@ -84,6 +83,7 @@ def upload_egd_tournament(request):
         elif re.match(r"^; (?P<tag>[\w]+)+\[(?P<value>[\w\W]+)+\]", line) is None:
             print(line, tag)
 
+    # ЗАПИСЬ РЕЗУЛЬТАТОВ ПАРТИЙ
     for place in tournament_results:
         round_count = 0
         for results in tournament_results[place][1]:

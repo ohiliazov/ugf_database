@@ -52,9 +52,58 @@ table.ugd_table thead th.orderable.desc > a {
     background-image: url(images/arrow-active-down.png);
 }
 
-table.ugd_table tr:hover, table.ugd_table tr:hover td a {
+div.gold_belt table tr:hover,
+div.gold_belt table tr th,
+div.gold_belt table tr th a:link,
+div.gold_belt table tr th a:visited,
+div.gold_belt table tr:hover td a {
+    background-color: darkgoldenrod;
+    color: black;
+}
+
+div.black_belt table tr:hover,
+div.black_belt table tr th,
+div.black_belt table tr th a:link,
+div.black_belt table tr th a:visited,
+div.black_belt table tr:hover td a {
+    background-color: black;
+    color: whitesmoke;
+}
+
+div.blue_belt table tr:hover,
+div.blue_belt table tr th,
+div.blue_belt table tr th a:link,
+div.blue_belt table tr th a:visited,
+div.blue_belt table tr:hover td a {
+    background-color: darkblue;
+    color: whitesmoke;
+}
+
+div.green_belt table tr:hover,
+div.green_belt table tr th,
+div.green_belt table tr th a:link,
+div.green_belt table tr th a:visited,
+div.green_belt table tr:hover td a {
     background-color: darkgreen;
-    color: snow;
+    color: whitesmoke;
+}
+
+div.yellow_belt table tr:hover,
+div.yellow_belt table tr th,
+div.yellow_belt table tr th a:link,
+div.yellow_belt table tr th a:visited,
+div.yellow_belt table tr:hover td a {
+    background-color: yellow;
+    color: black;
+}
+
+div.white_belt table tr:hover,
+div.white_belt table tr th,
+div.white_belt table tr th a:link,
+div.white_belt table tr th a:visited,
+div.white_belt table tr:hover td a {
+    background-color: white;
+    color: black;
 }
 
 table.ugd_table tr:hover td a {

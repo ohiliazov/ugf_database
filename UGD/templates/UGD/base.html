@@ -15,8 +15,10 @@
         {% block header %}{% endblock %}
     </div>
 </header>
-<body>
+<body {% block boy_attrs %}{% endblock %}>
     {% block body %}{% endblock %}
 </body>
+<script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
+<script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
 {% block javascripts %}{% endblock %}
 </html>

@@ -1,4 +1,4 @@
-function myFunction() {
+function playerFilter() {
     var input1, input2, filter1, filter2, tables, tr, td1, td2, i;
 
     input1 = document.getElementById('full_name_search');
@@ -24,4 +24,4 @@ function myFunction() {
             }
         }
     }
-}
+};

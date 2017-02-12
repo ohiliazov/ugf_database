@@ -32,14 +32,14 @@ class TournamentPlayer(models.Model):
         blank=True,
         max_digits=8,
         decimal_places=4,
-        verbose_name="рейтинг-1"
+        verbose_name="R1"
     )
     rating_finish = models.DecimalField(
         null=True,
         blank=True,
         max_digits=8,
         decimal_places=4,
-        verbose_name="рейтинг-2"
+        verbose_name="R2"
     )
 
     class Meta:
@@ -63,20 +63,38 @@ class TournamentPlayer(models.Model):
 
     def get_rating_delta(self):
         if self.rating_start and self.rating_finish:
-            return self.rating_finish - self.rating_start
+            if self.rating_finish > self.rating_start:
+                return "+%s" % self.rating_finish - self.rating_start
+            else:
+                return self.rating_finish - self.rating_start
         else:
-            return "-"
-    get_rating_delta.short_description = 'Δ Rating'
+            return ""
+    get_rating_delta.short_description = 'ΔR'
+
+    def get_games_count(self):
+        return Pairing.objects.filter(tournament_player=self.pk, tournament_player_opponent__isnull=False).count()
+
+    def get_wins_count(self):
+        return Pairing.objects.filter(
+            tournament_player=self.pk,
+            tournament_player_opponent__isnull=False,
+            game_result=True
+        ).count()
+
+    def get_result(self):
+        return "%s/%s" % (self.get_wins_count(), self.get_games_count())
 
 
 class Pairing(models.Model):
     tournament_player = models.ForeignKey(
         TournamentPlayer,
+        on_delete=models.CASCADE,
         verbose_name="гравець",
         related_name="tournament_player"
     )
     tournament_player_opponent = models.ForeignKey(
         TournamentPlayer,
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
         verbose_name="суперник",
@@ -132,6 +150,11 @@ class Pairing(models.Model):
         verbose_name_plural = "результати партії"
 
     def __str__(self):
-        return self.tournament_player.tournament\
-               + ' @ ' + self.tournament_player.player\
-               + ' vs. ' + self.tournament_player_opponent.player
+        if self.tournament_player_opponent:
+            return str(self.tournament_player.tournament)\
+                   + ' @ ' + str(self.tournament_player.player)\
+                   + ' vs. ' + str(self.tournament_player_opponent.player)
+        else:
+            return str(self.tournament_player.tournament)\
+                   + ' @ ' + str(self.tournament_player.player)\
+                   + ' - round skip '

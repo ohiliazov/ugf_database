@@ -4,7 +4,7 @@ import os, re
 path = 'D:/Python/data/tables/'
 tournament_dir_list = os.listdir(path)
 for directory in tournament_dir_list:
-    if directory != '2016':
+    if directory != '2014':
         continue
     tournament_path = path+directory+'/'
     tournament_list = os.listdir(tournament_path)
