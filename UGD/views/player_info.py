@@ -10,6 +10,7 @@ from ..models.players import Player
 class PlayerInfoView(SingleTableMixin, TemplateView):
     template_name = 'UGD/player_info.html'
     table_class = PlayerTournamentTable
+    table_pagination = False
 
     def get_table_data(self):
         return TournamentPlayer.objects.filter(player=self.kwargs['pk'])
