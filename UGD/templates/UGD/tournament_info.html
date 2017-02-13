@@ -2,13 +2,13 @@
 {% load render_table from django_tables2 %}
 {% load static %}
 {% block title %}
-    UGF: информація про гравця
+    UGF: информація про турнір
 {% endblock %}
 {% block extrastyles %}
     <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
 {% endblock %}
 {% block header %}
-    <div class="title"><h1>{{ player }} ({{ player.rank }})</h1></div>
+    <div class="title"><h1>{{ tournament }}</h1></div>
 {% endblock %}
 {% block body %}
     {% render_table table %}

@@ -13,12 +13,19 @@ table.ugd_table {
     margin: 5px;
 }
 
-table.ugd_table a:link,
-table.ugd_table a:visited {
-    color: black;
+table.ugd_table a {
     display: inline-block;
     text-decoration: underline;
     font-weight: bold;
+
+}
+
+table.ugd_table a:link {
+    color: black;
+}
+
+table.ugd_table a:visited {
+    color: darkgreen;
 }
 
 table.ugd_table td,
@@ -55,7 +62,6 @@ table.ugd_table thead th.orderable.desc > a {
 div.gold_belt table tr:hover,
 div.gold_belt table tr th,
 div.gold_belt table tr th a:link,
-div.gold_belt table tr th a:visited,
 div.gold_belt table tr:hover td a {
     background-color: darkgoldenrod;
     color: black;
@@ -64,7 +70,6 @@ div.gold_belt table tr:hover td a {
 div.black_belt table tr:hover,
 div.black_belt table tr th,
 div.black_belt table tr th a:link,
-div.black_belt table tr th a:visited,
 div.black_belt table tr:hover td a {
     background-color: black;
     color: whitesmoke;
@@ -73,7 +78,6 @@ div.black_belt table tr:hover td a {
 div.blue_belt table tr:hover,
 div.blue_belt table tr th,
 div.blue_belt table tr th a:link,
-div.blue_belt table tr th a:visited,
 div.blue_belt table tr:hover td a {
     background-color: darkblue;
     color: whitesmoke;
@@ -82,7 +86,6 @@ div.blue_belt table tr:hover td a {
 div.green_belt table tr:hover,
 div.green_belt table tr th,
 div.green_belt table tr th a:link,
-div.green_belt table tr th a:visited,
 div.green_belt table tr:hover td a {
     background-color: darkgreen;
     color: whitesmoke;
@@ -91,7 +94,6 @@ div.green_belt table tr:hover td a {
 div.yellow_belt table tr:hover,
 div.yellow_belt table tr th,
 div.yellow_belt table tr th a:link,
-div.yellow_belt table tr th a:visited,
 div.yellow_belt table tr:hover td a {
     background-color: yellow;
     color: black;
@@ -100,7 +102,6 @@ div.yellow_belt table tr:hover td a {
 div.white_belt table tr:hover,
 div.white_belt table tr th,
 div.white_belt table tr th a:link,
-div.white_belt table tr th a:visited,
 div.white_belt table tr:hover td a {
     background-color: white;
     color: black;

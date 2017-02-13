@@ -1,1 +1,1 @@
-from . import rating_list, tournament_list
+from . import rating_list, tournament_list, tournament_info, player_tournament

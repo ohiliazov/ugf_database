@@ -151,10 +151,9 @@ class Pairing(models.Model):
 
     def __str__(self):
         if self.tournament_player_opponent:
-            return str(self.tournament_player.tournament)\
-                   + ' @ ' + str(self.tournament_player.player)\
-                   + ' vs. ' + str(self.tournament_player_opponent.player)
+            return str(self.tournament_player.tournament.name) + ' @ ' + \
+                   str(self.tournament_player) + ' vs. ' + \
+                   str(self.tournament_player_opponent.player)
         else:
-            return str(self.tournament_player.tournament)\
-                   + ' @ ' + str(self.tournament_player.player)\
-                   + ' - round skip '
+            return str(self.tournament_player.tournament.name) + ' @ ' + \
+                   str(self.tournament_player) + ' - пропуск туру'
