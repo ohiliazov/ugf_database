@@ -82,6 +82,8 @@ def upload_egd_tournament(request):
 
         elif re.match(r"^; (?P<tag>[\w]+)+\[(?P<value>[\w\W]+)+\]", line) is None:
             print(line, tag)
+            tournament.delete()
+            return HttpResponse('%s upload failed' % tournament_head['TC'])
 
     # ЗАПИСЬ РЕЗУЛЬТАТОВ ПАРТИЙ
     for place in tournament_results:

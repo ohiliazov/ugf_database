@@ -31,14 +31,12 @@ table.ugd_table a:visited {
 table.ugd_table td,
 table.ugd_table th {
     text-align: center;
-    padding: 5px;
+    padding: 5px 5px;
 }
 
 
-table.ugd_table thead th,
-table.ugd_table thead td {
+table.ugd_table th {
     background: darkgreen left bottom repeat-x;
-    padding: 5px 5px;
     color: white;
 }
 

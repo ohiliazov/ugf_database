@@ -1,27 +1,26 @@
-function playerFilter() {
-    var input1, input2, filter1, filter2, tables, tr, td1, td2, i;
-
-    input1 = document.getElementById('full_name_search');
-    input2 = document.getElementById('city_search');
-
-    filter1 = input1.value.toUpperCase();
-    filter2 = input2.value.toUpperCase();
-
-    tables = document.getElementsByClassName('ugd_table');
-    for (j = 0; j < 6; j++) {
-        tr = tables[j].getElementsByTagName("tr");
-
-        for (i = 0; i < tr.length; i++) {
-            td1 = tr[i].getElementsByTagName("td")[1];
-            td2 = tr[i].getElementsByTagName("td")[2];
-            if (td1) {
-                if (td1.innerHTML.toUpperCase().indexOf(filter1) > -1 && td2.innerHTML.toUpperCase().indexOf(filter2) > -1) {
-                        tr[i].style.display = "";
-                }
-                else {
-                        tr[i].style.display = "none";
-                }
-            }
+$(".form-control").keyup(function() {
+    var input = document.getElementsByClassName("form-control");
+    var full_name_value = input[0].value.toLowerCase();
+    var city_value = input[1].value.toLowerCase();
+    var row = $('table.ugd_table tr');
+    row.each(function() {
+        var full_name = $(this).children("td.full_name");
+        var city = $(this).children("td.city");
+        if ((full_name.text().toLowerCase().indexOf(full_name_value)) > -1 && city.text().toLowerCase().indexOf(city_value) > -1) {
+            full_name.parent().show();
+            full_name.closest('div').parent().show();
+        } else {
+            full_name.parent().hide();
         }
-    }
-};
+    });
+    var tables = $('table.ugd_table');
+    tables.each(function() {
+        var rows_count = ($(this).find('tr')).length;
+        var hidden_rows = ($(this).find('tr:hidden')).length;
+        if (hidden_rows >= (rows_count-1)) {
+            $(this).closest('div').parent().hide();
+        } else {
+            $(this).closest('div').parent().show();
+        }
+    });
+});
