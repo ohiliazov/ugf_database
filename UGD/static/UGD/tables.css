@@ -4,7 +4,8 @@ div.table-container {
 }
 
 table.ugd_table {
-    border: none;
+    border: 1px lightgrey solid;
+    background-color: snow;
     width: 1000px;
 }
 
@@ -57,50 +58,56 @@ table.ugd_table thead th.orderable.desc > a {
     background-image: url(images/arrow-active-down.png);
 }
 
-div.gold_belt table tr:hover,
-div.gold_belt table tr th,
-div.gold_belt table tr th a:link,
-div.gold_belt table tr:hover td a {
-    background-color: darkgoldenrod;
+tr.gold_belt:hover,
+tr.gold_belt th,
+tr.gold_belt th a:link,
+/*tr.gold_belt td.rank,*/
+tr.gold_belt:hover td a {
+    background-color: gold;
     color: black;
 }
 
-div.black_belt table tr:hover,
-div.black_belt table tr th,
-div.black_belt table tr th a:link,
-div.black_belt table tr:hover td a {
+tr.black_belt:hover,
+tr.black_belt th,
+tr.black_belt th a:link,
+/*tr.black_belt td.rank,*/
+tr.black_belt:hover td a {
     background-color: black;
     color: whitesmoke;
 }
 
-div.blue_belt table tr:hover,
-div.blue_belt table tr th,
-div.blue_belt table tr th a:link,
-div.blue_belt table tr:hover td a {
-    background-color: darkblue;
+tr.blue_belt:hover,
+tr.blue_belt th,
+tr.blue_belt th a:link,
+/*tr.blue_belt td.rank,*/
+tr.blue_belt:hover td a {
+    background-color: royalblue;
     color: whitesmoke;
 }
 
-div.green_belt table tr:hover,
-div.green_belt table tr th,
-div.green_belt table tr th a:link,
-div.green_belt table tr:hover td a {
-    background-color: darkgreen;
+tr.green_belt:hover,
+tr.green_belt th,
+tr.green_belt th a:link,
+/*tr.green_belt td.rank,*/
+tr.green_belt:hover td a {
+    background-color: forestgreen;
     color: whitesmoke;
 }
 
-div.yellow_belt table tr:hover,
-div.yellow_belt table tr th,
-div.yellow_belt table tr th a:link,
-div.yellow_belt table tr:hover td a {
+tr.yellow_belt:hover,
+tr.yellow_belt th,
+tr.yellow_belt th a:link,
+/*tr.yellow_belt td.rank,*/
+tr.yellow_belt:hover td a {
     background-color: yellow;
     color: black;
 }
 
-div.white_belt table tr:hover,
-div.white_belt table tr th,
-div.white_belt table tr th a:link,
-div.white_belt table tr:hover td a {
+tr.white_belt:hover,
+tr.white_belt th,
+tr.white_belt th a:link,
+/*tr.white_belt td.rank,*/
+tr.white_belt:hover td a {
     background-color: white;
     color: black;
 }

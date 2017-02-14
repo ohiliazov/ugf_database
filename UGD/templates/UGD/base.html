@@ -10,6 +10,7 @@
     {% block extrastyles %}{% endblock %}
 </head>
 <header>
+    {% block navigation %}{% endblock %}
     <div>
         <a href="{% url 'UGD:rating_list' %}"><img src="{%  static  'UGD/images/ufgo_logo.jpg' %}" style="width:1000px"></a>
         {% block header %}{% endblock %}

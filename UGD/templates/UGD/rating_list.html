@@ -7,6 +7,21 @@
 {% block extrastyles %}
     <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
 {% endblock %}
+{% block navigation %}
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'UGD:rating_list' %}">Головна сторінка</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{% url 'UGD:rating_list' %}">Рейтинг-лист</a></li>
+      <li><a href="{% url 'UGD:tournament_list' %}">Турніри</a></li>
+      <li><a href="{% url 'UGD:rating_calculator' %}">Калькулятор рейтингу</a></li>
+      <li><a href="{% url 'admin:index' %}">UGD админ</a></li>
+    </ul>
+  </div>
+</nav>
+{% endblock %}
 {% block header %}
     <div class="title"><h1>Рейтинг-лист УФГО</h1></div>
 {% endblock %}
@@ -27,12 +42,7 @@
         </table>
     </div>
     <div>
-        <div class="gold_belt">{% render_table tables.0 %}</div>
-        <div class="black_belt">{% render_table tables.1 %}</div>
-        <div class="blue_belt">{% render_table tables.2 %}</div>
-        <div class="green_belt">{% render_table tables.3 %}</div>
-        <div class="yellow_belt">{% render_table tables.4 %}</div>
-        <div class="white_belt">{% render_table tables.5 %}</div>
+        {% render_table table %}
     </div>
 {% endblock %}
 {% block javascripts %}
