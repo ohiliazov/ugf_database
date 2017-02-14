@@ -36,7 +36,7 @@ $(".form-control").keyup(function() {
 $(document).ready(function () {
    var cell = $("table td.rank");
    cell.each(function () {
-       if ($(this).text().match(/^\d про дан/)) {
+       if ($(this).text().match(/^\d про/)) {
            $(this).closest("tr").toggleClass("gold_belt");
        } else if ($(this).text().match(/^\d дан/)) {
            $(this).closest("tr").toggleClass("black_belt");

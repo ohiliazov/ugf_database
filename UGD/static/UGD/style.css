@@ -3,11 +3,13 @@ body {
 	text-align: center;
     align-self: center;
     vertical-align: baseline;
+    font-family: "Georgia", sans-serif;
 }
 
 h1 {
 	color: black;
 	font-family: "Georgia", sans-serif;
+	font-weight: bold;
 	margin: 5px;
 }
 
