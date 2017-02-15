@@ -7,21 +7,7 @@
 {% block extrastyles %}
     <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
 {% endblock %}
-{% block navigation %}
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'UGD:rating_list' %}">Головна сторінка</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="{% url 'UGD:rating_list' %}">Рейтинг-лист</a></li>
-      <li><a href="{% url 'UGD:tournament_list' %}">Турніри</a></li>
-      <li><a href="{% url 'UGD:rating_calculator' %}">Калькулятор рейтингу</a></li>
-      <li><a href="{% url 'admin:index' %}">UGD админ</a></li>
-    </ul>
-  </div>
-</nav>
-{% endblock %}
+
 {% block header %}
     <div class="title"><h1>Рейтинг-лист УФГО</h1></div>
 {% endblock %}

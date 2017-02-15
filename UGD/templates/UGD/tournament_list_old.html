@@ -1,0 +1,33 @@
+{% load render_table from django_tables2 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>UGF Database: події</title>
+        <link rel="shortcut icon" href="{% static 'favicon.png' %}"/>
+        <link rel="stylesheet" href="{% static 'UGD/style.css' %}" />
+        <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
+    </head>
+    <header>
+        <img src="{%  static  'UGD/images/ufgo_logo.jpg' %}">
+    </header>
+    <body>
+        <div class="title"><h1>Турніри УФГО</h1></div>
+        <div class="filter">
+            <form id="filter_submit" class="filter">
+                {% block content %}
+                    <div class="filter">
+                        <table class="filter">
+                            <tr><th><label for="name_search">Назва турніру:</label></th><td><input type="text" id="name_search" onkeyup="myFunction()" placeholder="Введіть назву турніру..."></td></tr>
+                        </table>
+                    </div>
+                {% endblock %}
+            </form>
+        </div>
+        <div>
+            {% render_table table %}
+        </div>
+    </body>
+    <script src="{% static 'UGD/js/tournament_list_filter.js' %}"></script>
+</html>
