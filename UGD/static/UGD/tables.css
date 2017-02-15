@@ -10,39 +10,42 @@
     color: black;
 }
 
-table.ugd_table a {
+.ugd_table a,
+.ugd_table a:link,
+.ugd_table a:visited {
     display: inline-block;
     text-decoration: underline;
     font-weight: bold;
-}
-
-table.ugd_table a:link,
-table.ugd_table a:visited {
     background-color: inherit;
     color: inherit;
 }
 
-table.ugd_table th {
+.ugd_table th {
     text-align: center;
     background: darkgreen;
     color: white;
 }
 
-table.ugd_table thead th > a:link,
-table.ugd_table thead th > a:visited {
+.ugd_table thead th > a:link,
+.ugd_table thead th > a:visited {
     color: white;
     text-decoration: none;
 }
 
-table.ugd_table thead th.orderable > a {
+.ugd_table thead th.orderable > a {
     padding-right: 15px;
     background: right center no-repeat;
 }
-table.ugd_table thead th.orderable.asc > a {
+.ugd_table thead th.orderable.asc > a {
     background-image: url(images/arrow-active-up.png);
 }
-table.ugd_table thead th.orderable.desc > a {
+.ugd_table thead th.orderable.desc > a {
     background-image: url(images/arrow-active-down.png);
+}
+
+.ugd_table tr:hover td a {
+    cursor: pointer;
+    display: block;
 }
 
 tr.gold_belt:hover {
@@ -73,9 +76,4 @@ tr.yellow_belt:hover {
 tr.white_belt:hover {
     background-color: #ffffff;
     color: black;
-}
-
-table.ugd_table tr:hover td a {
-    cursor: pointer;
-    display: block;
 }
