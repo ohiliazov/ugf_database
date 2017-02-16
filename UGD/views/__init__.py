@@ -1,1 +1,7 @@
-from . import rating_list, player_info, links, tournament_info, tournament_list
+from .index import *
+from .links import *
+from .rating_list import *
+from .tournament_list import *
+from .player_info import *
+from .tournament_info import *
+from .rating_calculator import *

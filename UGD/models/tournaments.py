@@ -1,5 +1,5 @@
 from django.db import models
-from .clubs import City
+from . import City
 
 
 class Tournament(models.Model):

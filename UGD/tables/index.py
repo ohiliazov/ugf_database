@@ -3,7 +3,7 @@ from django_tables2.utils import A
 from ..models import Player
 
 
-class PlayerTable(tables.Table):
+class IndexPlayerTable(tables.Table):
 
     place = tables.Column(
         verbose_name="№",
@@ -17,10 +17,6 @@ class PlayerTable(tables.Table):
         args=[A('pk')],
         attrs={"td": {"class":"col-lg-auto"}}
     )
-    city = tables.Column(
-        verbose_name="Місто",
-        attrs={"td": {"class":"col-md-auto"}}
-    )
     rating = tables.Column(
         verbose_name="Рейтинг",
         attrs={"td": {"class":"col-xs-auto"}}
@@ -29,32 +25,17 @@ class PlayerTable(tables.Table):
         verbose_name="Ранг",
         attrs={"td": {"class": "col-md-auto"}}
     )
-    local_rank = tables.Column(
-        accessor="local_rank.abbreviate",
-        order_by="local_rank.id",
-        verbose_name="Розряд",
-        attrs={"td": {"class":"col-md-auto"}}
-    )
-    egd_pin = tables.LinkColumn(
-        verbose_name="EGD",
-        viewname="UGD:egd_player_link",
-        args=[A('egd_pin')],
-        attrs={"td": {"class":"col-xs-auto"}}
-    )
 
     class Meta:
         model = Player
         fields = (
             'place',
             'full_name',
-            'city',
             'rating',
-            'rank',
-            'local_rank',
-            'egd_pin'
+            'rank'
         )
         attrs = {
-            'id': 'rating_list_table',
+            'id': 'index_player_table',
             'class': 'ugd_table'
         }
         default = ''

@@ -1,6 +1,5 @@
 from django.db import models
-from .clubs import City
-from .ranks import Rank, LocalRank
+from . import City, Rank, LocalRank
 
 
 class Player(models.Model):

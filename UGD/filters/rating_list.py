@@ -1,6 +1,5 @@
 import django_filters
-from ..models.players import Player
-from ..models.clubs import City
+from ..models import City
 # todo Обновить фильтры для работы со скриптом
 
 

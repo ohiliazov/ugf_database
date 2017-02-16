@@ -1,1 +1,5 @@
-from . import rating_list, tournament_list, tournament_info, player_tournament
+from .index import *
+from .rating_list import *
+from .tournament_list import *
+from .player_info import *
+from .tournament_info import *

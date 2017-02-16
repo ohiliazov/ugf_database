@@ -1,5 +1,5 @@
 from django.contrib.admin import ModelAdmin, site
-from ..models.players import Player
+from ..models import Player
 
 
 class PlayerAdmin(ModelAdmin):

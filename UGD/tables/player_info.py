@@ -1,10 +1,10 @@
 import django_tables2 as tables
 from django_tables2.utils import A
 
-from ..models.games import TournamentPlayer
+from ..models import TournamentPlayer
 
 
-class PlayerTournamentTable(tables.Table):
+class PlayerInfoTournamentTable(tables.Table):
     tournament = tables.LinkColumn(
         verbose_name="Назва турніру",
         viewname='UGD:tournament_info',
@@ -27,6 +27,6 @@ class PlayerTournamentTable(tables.Table):
             'get_rating_delta'
         )
         attrs = {
-            'id': 'player_tournament_table',
+            'id': 'player_info_tournament_table',
             'class': 'ugd_table'
         }

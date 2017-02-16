@@ -1,7 +1,5 @@
 from django.db import models
-from .tournaments import Tournament
-from .players import Player
-from .ranks import Rank
+from . import Player, Tournament, Rank
 
 
 class TournamentPlayer(models.Model):

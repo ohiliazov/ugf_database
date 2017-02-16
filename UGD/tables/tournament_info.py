@@ -1,6 +1,6 @@
 import django_tables2 as tables
 from django_tables2.utils import A
-from ..models.games import TournamentPlayer
+from ..models import TournamentPlayer
 
 
 class TournamentInfoTable(tables.Table):

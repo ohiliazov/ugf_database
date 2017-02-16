@@ -1,5 +1,5 @@
 import django_filters
-from ..models.tournaments import Tournament
+from ..models import Tournament
 # todo Обновить фильтры для работы со скриптом
 
 

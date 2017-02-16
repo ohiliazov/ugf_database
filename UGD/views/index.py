@@ -1,8 +1,10 @@
-from django_tables2 import MultiTableMixin
-from ..tables.rating_list import PlayerTable
-from ..models.players import Player
 from django.views.generic import TemplateView
+from django_tables2 import MultiTableMixin
+
+from ..tables import PlayerTable
+from ..models import Player, Tournament
 # todo ЗАКОНЧИТЬ ГЛАВНУЮ СТРАНИЦУ
+
 
 # Create your views here.
 class IndexView(MultiTableMixin, TemplateView):
@@ -12,5 +14,5 @@ class IndexView(MultiTableMixin, TemplateView):
     table_pagination = False
     template_name = 'UGD/rating_list.html'
     tables = [
-        PlayerTable(Player.objects.all().order_by('-rating')[:10]),
+        PlayerTable(Player.objects.all()[:10].order_by('-rating')),
     ]

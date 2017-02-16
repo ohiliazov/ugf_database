@@ -1,1 +1,1 @@
-from . import rating_history
+from .rating_history import *

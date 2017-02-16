@@ -1,5 +1,5 @@
 from django.contrib.admin import ModelAdmin, site
-from ..models.ranks import Rank, LocalRank
+from ..models import Rank, LocalRank
 
 
 class RankAdmin(ModelAdmin):

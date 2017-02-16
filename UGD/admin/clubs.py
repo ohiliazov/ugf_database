@@ -1,7 +1,5 @@
 from django.contrib.admin import TabularInline, ModelAdmin, site
-from ..models.clubs import Country, City
-from ..models.players import Player
-from ..models.tournaments import Tournament
+from ..models import Country, City, Player, Tournament
 
 
 class CityInline(TabularInline):

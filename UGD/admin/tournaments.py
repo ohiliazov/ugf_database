@@ -1,5 +1,5 @@
 from django.contrib.admin import ModelAdmin, site
-from ..models.tournaments import Tournament
+from ..models import Tournament
 
 
 class TournamentAdmin(ModelAdmin):

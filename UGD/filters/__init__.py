@@ -1,1 +1,2 @@
-from . import rating_list, tournament_list
+from .rating_list import *
+from .tournament_list import *
