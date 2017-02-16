@@ -1,0 +1,35 @@
+{% extends 'UGD/base.html' %}
+{% load static %}
+{% load render_table from django_tables2 %}
+{% block title %}UGF: рейтинг-лист{% endblock %}
+{% block extrastyles %}
+    <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
+{% endblock %}
+
+{% block header %}
+    <div class="title"><h1>Головна сторінка УФГО</h1></div>
+{% endblock %}
+{% block boy_attrs %}{% endblock %}
+{% block body %}
+    <div class="form-inline" style="display:inline-table">
+        <table id="player_filter">
+            <tr>
+                <td>
+                    <input type="text" class="form-control" id="full_name_search" placeholder="Введіть прізвище або ім'я...">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" class="form-control" id="city_search" placeholder="Введіть назву міста...">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        {% render_table tables.0 %}
+        {% render_table tables.1 %}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{% static 'UGD/js/rating_list_filter.js' %}"></script>
+{% endblock %}

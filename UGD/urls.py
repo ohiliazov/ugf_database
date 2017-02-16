@@ -6,7 +6,7 @@ from .views import *
 app_name = 'UGD'
 urlpatterns = [
     # Index
-    url(r'^$', IndexView.as_view(), name='rating_list'),
+    url(r'^$', IndexView.as_view(), name='index'),
 
     # Rating list
     url(r'^rating_list/$', RatingListView.as_view(), name='rating_list'),
