@@ -7,6 +7,7 @@ app_name = 'UGD'
 urlpatterns = [
     # Index
     url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^admin/mod_wsgi_reload/$', mod_wsgi_reload, name='reloader'),
 
     # Rating list
     url(r'^rating_list/$', RatingListView.as_view(), name='rating_list'),

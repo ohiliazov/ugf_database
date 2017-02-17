@@ -6,10 +6,10 @@ place.each(function() {
         var cell_value = $(this).html();
 
         if (cell_value == 1) {
-            $(this).css({'background-color' : 'gold'});
+            $(this).css({'background-color' : '#ffd700'});
         }
         else if (cell_value == 2) {
-            $(this).css({'background-color' : 'silver'});
+            $(this).css({'background-color' : '#C0C0C0'});
         }
         else if (cell_value == 3) {
             $(this).css({'background-color' : '#CD7F32'});

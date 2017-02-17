@@ -4,6 +4,10 @@ body {
     align-self: center;
     vertical-align: baseline;
     font-family: "Cambria", sans-serif;
+	margin-top: 60px;
+	margin-bottom: 20px;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 h1 {
