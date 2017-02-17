@@ -1,8 +1,16 @@
-from django.contrib.admin import ModelAdmin, site
-from ..models import Tournament
+from django.contrib.admin import TabularInline, ModelAdmin, site
+from ..models import Tournament, TournamentPlayer
+
+
+class PlayerTournamentInline(TabularInline):
+    model = TournamentPlayer
+    extra = 0
+    fields = ('place', 'player', 'rating_start', 'rating_finish')
+    ordering = ['place']
 
 
 class TournamentAdmin(ModelAdmin):
+    inlines = [PlayerTournamentInline]
     list_display = (
         'name',
         'date_begin',

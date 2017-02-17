@@ -15,15 +15,15 @@ class PlayerTable(tables.Table):
         order_by="last_name",
         viewname='UGD:player_info',
         args=[A('pk')],
-        attrs={"td": {"class":"col-lg-auto"}}
+        attrs={"td": {"class": "col-lg-auto"}}
     )
     city = tables.Column(
         verbose_name="Місто",
-        attrs={"td": {"class":"col-md-auto"}}
+        attrs={"td": {"class": "col-md-auto"}}
     )
     rating = tables.Column(
         verbose_name="Рейтинг",
-        attrs={"td": {"class":"col-xs-auto"}}
+        attrs={"td": {"class": "col-xs-auto"}}
     )
     rank = tables.Column(
         verbose_name="Ранг",
@@ -33,7 +33,11 @@ class PlayerTable(tables.Table):
         accessor="local_rank.abbreviate",
         order_by="local_rank.id",
         verbose_name="Розряд",
-        attrs={"td": {"class":"col-md-auto"}}
+        attrs={"td": {"class": "col-md-auto"}}
+    )
+    get_number_of_tournament = tables.Column(
+        verbose_name="Турнірів",
+        attrs={"td": {"class": "col-md-auto"}}
     )
     egd_pin = tables.LinkColumn(
         verbose_name="EGD",
@@ -51,6 +55,7 @@ class PlayerTable(tables.Table):
             'rating',
             'rank',
             'local_rank',
+            'get_number_of_tournament',
             'egd_pin'
         )
         attrs = {

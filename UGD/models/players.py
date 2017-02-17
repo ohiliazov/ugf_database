@@ -78,3 +78,6 @@ class Player(models.Model):
             return self.last_name + ' ' + self.first_name
         else:
             return self.id
+
+    def get_number_of_tournament(self):
+        return self.tournamentplayer_set.count()

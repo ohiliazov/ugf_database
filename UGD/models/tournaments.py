@@ -57,3 +57,6 @@ class Tournament(models.Model):
             return self.name
         else:
             return str(self.id)
+
+    def get_number_of_players(self):
+        return self.tournamentplayer_set.count()

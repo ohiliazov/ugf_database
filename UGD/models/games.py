@@ -1,5 +1,6 @@
 from django.db import models
 from . import Player, Tournament, Rank
+from decimal import Decimal
 
 
 class TournamentPlayer(models.Model):
@@ -62,12 +63,23 @@ class TournamentPlayer(models.Model):
     def get_rating_delta(self):
         if self.rating_start and self.rating_finish:
             if self.rating_finish > self.rating_start:
-                return "+%s" % self.rating_finish - self.rating_start
+                return "+%s" % Decimal(self.rating_finish - self.rating_start).normalize()
             else:
-                return self.rating_finish - self.rating_start
+                return Decimal(self.rating_finish - self.rating_start).normalize()
         else:
             return ""
-    get_rating_delta.short_description = 'ΔR'
+
+    def get_rating_start(self):
+        if self.rating_start:
+            return Decimal(self.rating_start).normalize()
+        else:
+            return ""
+
+    def get_rating_finish(self):
+        if self.rating_finish:
+            return Decimal(self.rating_finish).normalize()
+        else:
+            return ""
 
     def get_games_count(self):
         return Pairing.objects.filter(tournament_player=self.pk, tournament_player_opponent__isnull=False).count()

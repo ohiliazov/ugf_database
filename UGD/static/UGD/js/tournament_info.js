@@ -1,8 +1,8 @@
 $(document).ready(function () {
 
-var cell = $('table tr td.place');
+var place = $('table tr td.place');
 // console.log(cell);
-cell.each(function() {
+place.each(function() {
         var cell_value = $(this).html();
 
         if (cell_value == 1) {
@@ -13,6 +13,19 @@ cell.each(function() {
         }
         else if (cell_value == 3) {
             $(this).css({'background-color' : '#CD7F32'});
+        }
+    });
+var rating_delta = $('table tr td.get_rating_delta');
+// console.log(get_rating_delta);
+rating_delta.each(function() {
+
+        var cell_value = $(this).html();
+
+        if (cell_value > 0) {
+            $(this).css({'color' : 'green'});
+        }
+        else if (cell_value < 0) {
+            $(this).css({'color' : 'red'});
         }
     });
 });
