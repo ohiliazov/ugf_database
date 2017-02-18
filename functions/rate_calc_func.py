@@ -40,7 +40,7 @@ def winning_expectancy(rate1, rate2, e_param=0):
     """Вычисляем вероятность победы игрока над соперником"""
     higher_rate = max(rate1, rate2)
     lower_rate = min(rate1, rate2)
-    lower_win_exp = 1 / (exp((higher_rate - lower_rate) / a_param(lower_rate)) + 1) - e_param/2
+    lower_win_exp = 1 / (exp((higher_rate - lower_rate) / a_param(lower_rate)) + 1)
     higher_win_exp = 1 - e_param - lower_win_exp
     if rate1 <= rate2:
         return lower_win_exp
@@ -64,15 +64,24 @@ def growth(self_rate, opponent_rate, result=1):
 def calculate_player_rating(player_rating, opponents_data):
     
     """Вычисляем рейтинг игрока после нескольких туров"""
-    
+    round_count = len(opponents_data)
+    next_rating = player_rating
     rate_growth = 0
     for rnd in opponents_data:
-        rate_growth += growth(player_rating, rnd[0], rnd[1])
-        print('Прирост за', rnd[0], ':', round(growth(player_rating, rnd[0], rnd[1]), 2))
-    if rate_growth > abnormal_growth(player_rating, len(opponents_data)):
-        print('Промежуточный рейтинг:', round(player_rating + rate_growth, 2))
-        return calculate_player_rating((player_rating + rate_growth), opponents_data)
-    return player_rating + rate_growth
+        if rnd[1] is None:
+            round_count -= 1
+            continue
+
+        round_growth = round(growth(next_rating, rnd[0], rnd[1]))
+        rate_growth += round_growth
+        next_rating += round_growth
+        # print('Прирост за', rnd[0], ':', round_growth)
+
+    if rate_growth > abnormal_growth(player_rating, round_count):
+        # print('Промежуточный рейтинг:', round(player_rating + rate_growth, 2))
+        return calculate_player_rating(next_rating, opponents_data)
+
+    return next_rating
 
 
 def new_rating(self_rate, opponent_rate, result=1):

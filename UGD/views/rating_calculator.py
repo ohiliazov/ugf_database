@@ -28,5 +28,5 @@ class RatingCalculatorView(TemplateView):
             context['win_exp_1'] = round(rate_calc_func.winning_expectancy(first_rating, second_rating), 2)
             context['win_exp_2'] = round(rate_calc_func.winning_expectancy(second_rating, first_rating), 2)
         except KeyError:
-            print(2)
+            print(1)
         return context
