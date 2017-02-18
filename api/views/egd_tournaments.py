@@ -48,7 +48,7 @@ def upload_egd_tournament(request):
             r"(?P<last_name>[\w-]+)(\s)+(?P<first_name>[\w]+)(\s)+"  # +Полное имя
             r"(?P<rank>[\d]+(d|p|k)+)(\s)+"                          # +Ранг
             r"(?P<country>[\w]+)(\s)+(?P<club>[\w]+)(\s)+"           # -Страна и город
-            r"(?P<points>(([\d.])+(\s)+)+)*"                         # -Очки
+            r"(?P<points>(([\d.=])+(\s)+)+){0,5}"                         # -Очки
             r"(?P<results>([\d]+(=|\+|-)+(/[bw]+[\d]?)?[\s]+)+)+"    # +Результаты партии
             r"\|(?P<egd_pin>[\d]+)",                                 # +Код игрока в EGF
             line

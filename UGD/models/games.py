@@ -61,8 +61,12 @@ class TournamentPlayer(models.Model):
         return tournament_name+' @ '+str(full_name)
 
     def get_rating_delta(self):
+        """Считаем прирост в рейтинге"""
+
         if self.rating_start and self.rating_finish:
+
             if self.rating_finish > self.rating_start:
+                # Ставим + перед числом и обрезаем нули
                 return "+%s" % Decimal(self.rating_finish - self.rating_start).normalize()
             else:
                 return Decimal(self.rating_finish - self.rating_start).normalize()
@@ -82,12 +86,12 @@ class TournamentPlayer(models.Model):
             return ""
 
     def get_games_count(self):
-        return Pairing.objects.filter(tournament_player=self.pk, tournament_player_opponent__isnull=False).count()
+        return self.pairing_player.filter(
+            tournament_player_opponent__isnull=False  # Отсеиваем партии без соперника
+        ).count()
 
     def get_wins_count(self):
-        return Pairing.objects.filter(
-            tournament_player=self.pk,
-            tournament_player_opponent__isnull=False,
+        return self.pairing_player.filter(
             game_result=True
         ).count()
 
@@ -100,15 +104,14 @@ class Pairing(models.Model):
         TournamentPlayer,
         on_delete=models.CASCADE,
         verbose_name="гравець",
-        related_name="tournament_player"
+        related_name="pairing_player"
     )
     tournament_player_opponent = models.ForeignKey(
         TournamentPlayer,
         on_delete=models.CASCADE,
-        null=True,
-        blank=True,
+        default=None,
         verbose_name="суперник",
-        related_name="tournament_player_opponent"
+        related_name="pairing_opponent"
     )
     tournament_round = models.PositiveIntegerField(
         verbose_name="раунд"

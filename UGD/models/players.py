@@ -79,5 +79,8 @@ class Player(models.Model):
         else:
             return self.id
 
-    def get_number_of_tournament(self):
+    def get_number_of_tournaments(self):
         return self.tournamentplayer_set.count()
+
+    def get_number_of_games(self):
+        return self.tournamentplayer_set.filter(pairing_opponent__isnull=False).count()

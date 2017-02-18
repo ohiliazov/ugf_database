@@ -20,22 +20,24 @@ class TournamentInfoTable(tables.Table):
     )
     get_rating_start = tables.Column(
         verbose_name="R1",
-        attrs={"td": {"class": "col-md-auto"}}
+        attrs={"td": {"class": "col-md-auto"}},
+        order_by="rating_start"
     )
     get_rating_finish = tables.Column(
         verbose_name="R2",
-        attrs={"td": {"class": "col-md-auto"}}
+        attrs={"td": {"class": "col-md-auto"}},
+        order_by="rating_finish"
     )
     get_result = tables.Column(
         verbose_name="Перемог",
-        attrs={"td": {"class": "col-md-auto"}}
+        attrs={"td": {"class": "col-md-auto"}},
+        orderable=False
     )
     get_rating_delta = tables.Column(
         verbose_name="ΔR",
-        attrs={"td": {"class": "col-md-auto"}}
+        attrs={"td": {"class": "col-md-auto"}},
+        orderable=False
     )
-
-    orderable = False
 
     class Meta:
         model = TournamentPlayer
