@@ -1,58 +1,38 @@
 from functions import rate_calc_func
 
-player_rating = 2368
-opponents_rating = [
-    (2414, 1),
-    (2680, None),
-    (2459, 1),
-    (2548, 1),
-    (2500, 1),
-    (2561, 1),
-    (2704, 0),
-    # (2368, 1)
-    ]
+PLAYERS = {
+    1: 2704,
+    2: 2680,
+    3: 2472,
+    4: 2561,
+    5: 2414,
+    6: 2548,
+    7: 2500,
+    8: 2459
+}
 
-print('Корольов', player_rating)
-print('Конечный рейтинг:', round(rate_calc_func.calculate_player_rating(player_rating, opponents_rating), 2))
+GAMES = {
+    1: [(8, 1), (6, 1),    (7, 1), (4, 1), (2, 1), (5, 1), (3, 1)],
+    2: [(7, 1), (3, None), (4, 0), (8, 1), (1, 0), (6, 1), (5, 1)],
+    3: [(5, 1), (2, None), (8, 1), (6, 1), (7, 1), (4, 1), (1, 0)],
+    4: [(6, 1), (7, 1),    (2, 1), (1, 0), (5, 0), (3, 0), (8, 1)],
+    5: [(3, 0), (8, 1),    (6, 1), (7, 0), (4, 1), (1, 0), (2, 0)],
+    6: [(4, 0), (1, 0),    (5, 0), (3, 0), (8, 1), (2, 0), (7, 1)],
+    7: [(2, 0), (4, 0),    (1, 0), (5, 1), (3, 0), (8, 0), (6, 0)],
+    8: [(1, 0), (5, 0),    (3, 0), (2, 0), (6, 0), (7, 1), (4, 0)]
+}
 
-player_rating = 2561
-opponents_rating = [
-    (2548, 1),
-    (2500, 1),
-    (2680, 1),
-    (2704, 0),
-    (2414, 0),
-    (2472, 0),
-    (2459, 1)
-    # (2561, 1)
-    ]
-print('Жураковський')
-print('Конечный рейтинг:', round(rate_calc_func.calculate_player_rating(player_rating, opponents_rating), 2))
+TEMP_PLAYERS = PLAYERS
 
-player_rating = 2414
-opponents_rating = [
-    # (2414, 1),
-    (2472, 0),
-    (2459, 1),
-    (2548, 1),
-    (2500, 0),
-    (2561, 1),
-    (2704, 0),
-    (2680, 0)
-    ]
-print('Крушельницький')
-print('Конечный рейтинг:', round(rate_calc_func.calculate_player_rating(player_rating, opponents_rating), 2))
+for i in range(0, 7):
+    for player in TEMP_PLAYERS:
+        self_rate = TEMP_PLAYERS[player]
+        opponent_rate = TEMP_PLAYERS[GAMES[player][i][0]]
+        result = GAMES[player][i][1]
+        if result not in [0, 1]:
+            continue
+        self_rate_2 = rate_calc_func.new_rating(self_rate, opponent_rate, result)
+        TEMP_PLAYERS[player] = self_rate_2
 
-player_rating = 2704
-opponents_rating = [
-    (2459, 1),
-    (2548, 1),
-    (2500, 1),
-    (2561, 1),
-    (2680, 1),
-    (2414, 1),
-    (2472, 1)
-    # (2704, 0)
-    ]
-print('Качановський')
-print('Конечный рейтинг:', round(rate_calc_func.calculate_player_rating(player_rating, opponents_rating), 2))
+for player in TEMP_PLAYERS:
+    print(player, TEMP_PLAYERS[player])
