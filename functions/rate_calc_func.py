@@ -1,3 +1,12 @@
+"""
+    Данный модуль предназначен для расчета рейтинга по методу В.Корсака.
+    Методика отличается от системы расчета рейтинга двумя моментами:
+        1. В отличие от ЕГД вместо параметра е используется коэффциент развития при расчете нового рейтинга.
+        2. Рейтинг каждого тура считается исходя из рейтинга полученного после расчета предыдущего тура.
+    Более подробное описание здесь: http://forum.ufgo.org/viewtopic.php?f=3&t=1260
+"""
+
+
 from math import exp
 
 
@@ -44,9 +53,44 @@ def abnormal_growth(self_rate, number_of_rounds):
     return number_of_rounds * con(self_rate) * (0.45 + (3100 - self_rate) / 50000)
 
 
+def abnormal_rating(self_rate, number_of_rounds):
+    return self_rate + abnormal_growth(self_rate, number_of_rounds)
+
+
 def growth(self_rate, opponent_rate, result=1):
     return con(self_rate) * (result - winning_expectancy(self_rate, opponent_rate) + (3100 - self_rate) / 50000)
 
 
 def new_rating(self_rate, opponent_rate, result=1):
     return self_rate + growth(self_rate, opponent_rate, result)
+
+
+def calculate_tournament_results(total_rounds, start_ratings, tournament_data):
+    rated_rounds = {}
+    finish_ratings = dict(start_ratings)
+
+    for player in tournament_data:
+        rounds_count = 0
+        for pairing in tournament_data[player]:
+            if pairing[1] in [0,1]:
+                rounds_count += 1
+                rated_rounds[player] = rounds_count
+
+    for i in range(total_rounds):
+        for player in finish_ratings:
+            self_rate = finish_ratings[player]
+            opponent_rate = finish_ratings[tournament_data[player][i][0]]
+            result = tournament_data[player][i][1]
+            if result not in [0, 1]:
+                continue
+            self_rate_2 = new_rating(self_rate, opponent_rate, result)
+            finish_ratings[player] = self_rate_2
+    abnormal_counter = 0
+    for player in start_ratings:
+        if finish_ratings[player] > abnormal_rating(start_ratings[player], rated_rounds[player]):
+            abnormal_counter += 1
+            start_ratings[player] = finish_ratings[player]
+    if abnormal_counter:
+        return calculate_tournament_results(total_rounds, start_ratings, tournament_data)
+    else:
+        return finish_ratings
