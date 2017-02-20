@@ -1,6 +1,6 @@
 """
     Данный модуль предназначен для расчета рейтинга по методу В.Корсака.
-    Методика отличается от системы расчета рейтинга двумя моментами:
+    Методика отличается от системы EGD двумя моментами:
         1. В отличие от ЕГД вместо параметра е используется коэффциент развития при расчете нового рейтинга.
         2. Рейтинг каждого тура считается исходя из рейтинга полученного после расчета предыдущего тура.
     Более подробное описание здесь: http://forum.ufgo.org/viewtopic.php?f=3&t=1260
@@ -49,6 +49,7 @@ def winning_expectancy(rate1, rate2, e_param=0):
         return higher_win_exp
 
 
+# РАССЧЕТ АНОМАЛЬНОГО РЕЗУЛЬТАТА
 def abnormal_growth(self_rate, number_of_rounds):
     return number_of_rounds * con(self_rate) * (0.45 + (3100 - self_rate) / 50000)
 
@@ -57,34 +58,48 @@ def abnormal_rating(self_rate, number_of_rounds):
     return self_rate + abnormal_growth(self_rate, number_of_rounds)
 
 
-def growth(self_rate, opponent_rate, result=1):
-    return con(self_rate) * (result - winning_expectancy(self_rate, opponent_rate) + (3100 - self_rate) / 50000)
+# РАССЧЕТ НОВОГО РЕЙТИНГА
+def growth(self_rate, opponent_rate, result):
+    if result not in [0, 0.5, 1]:
+        return 0
+    else:
+        return con(self_rate) * (result - winning_expectancy(self_rate, opponent_rate) + (3100 - self_rate) / 50000)
 
 
 def new_rating(self_rate, opponent_rate, result=1):
     return self_rate + growth(self_rate, opponent_rate, result)
 
 
-def calculate_tournament_results(total_rounds, start_ratings, tournament_data):
-    rated_rounds = {}
-    finish_ratings = dict(start_ratings)
-
+# ПОДСЧЕТ КОЛИЧЕСТВА ТУРОВ
+def count_rated_rounds(tournament_data):
+    rated_rounds = dict()
     for player in tournament_data:
         rounds_count = 0
         for pairing in tournament_data[player]:
-            if pairing[1] in [0,1]:
+            if pairing[1] in [0, 0.5, 1]:
                 rounds_count += 1
-                rated_rounds[player] = rounds_count
+        rated_rounds[player] = rounds_count
+    return rated_rounds
 
-    for i in range(total_rounds):
+
+# РАССЧЕТ РЕЗУЛЬТАТОВ ТУРНИРА
+def calculate_tournament_results(total_rounds, start_ratings, tournament_data):
+    rated_rounds = count_rated_rounds(tournament_data)
+    finish_ratings = dict(start_ratings)
+
+    for current_round in range(total_rounds):
         for player in finish_ratings:
+            opponent = tournament_data[player][current_round][0]
             self_rate = finish_ratings[player]
-            opponent_rate = finish_ratings[tournament_data[player][i][0]]
-            result = tournament_data[player][i][1]
-            if result not in [0, 1]:
+            opponent_rate = finish_ratings[opponent]
+            result = tournament_data[player][current_round][1]
+
+            if result not in [0, 0.5, 1]:
                 continue
-            self_rate_2 = new_rating(self_rate, opponent_rate, result)
-            finish_ratings[player] = self_rate_2
+
+            next_rate = new_rating(self_rate, opponent_rate, result)
+            finish_ratings[player] = next_rate
+
     abnormal_counter = 0
     for player in start_ratings:
         if finish_ratings[player] > abnormal_rating(start_ratings[player], rated_rounds[player]):
