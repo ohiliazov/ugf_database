@@ -50,14 +50,13 @@ def rating_history_plot(player):
 
     data = go.Data([trace1, trace2, trace3])
     layout = go.Layout(
-        title="Історія зміну рейтингу",
+        title="Історія зміни рейтингу",
         xaxis={'title': 'Дата'},
         yaxis={'title': 'Рейтинг'},
         plot_bgcolor="#eff4ef",
-        paper_bgcolor="#eff4ef",
-        hiddenlabels=True
+        paper_bgcolor="#eff4ef"
     )
     figure = go.Figure(data=data, layout=layout)
-    div = opy.plot(figure, show_link=False, auto_open=False, output_type='div')
+    div = opy.plot(figure, show_link=False, output_type='div', filename=player, image_filename=player)
 
     return div

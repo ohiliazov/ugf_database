@@ -98,6 +98,8 @@ def calculate_tournament_results(total_rounds, start_ratings, tournament_data):
                 continue
 
             next_rate = new_rating(self_rate, opponent_rate, result)
+            if next_rate < 100:
+                next_rate = 100
             finish_ratings[player] = next_rate
 
     abnormal_counter = 0
