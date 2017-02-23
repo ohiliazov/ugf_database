@@ -11,6 +11,11 @@
     <div class="title"><h1>{{ player }} ({{ player.rank }})</h1></div>
 {% endblock %}
 {% block body %}
+{% if rating_history_plot %}
+<div style="width:1000px;height:300px;display: inline-table;">
+{{ rating_history_plot|safe }}
+</div>
+{% endif %}
     {% render_table table %}
 {% endblock %}
 {% block javascripts %}

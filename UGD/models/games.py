@@ -67,7 +67,7 @@ class TournamentPlayer(models.Model):
 
             if self.rating_finish > self.rating_start:
                 # Ставим + перед числом и обрезаем нули
-                return "+%s" % Decimal(self.rating_finish - self.rating_start).normalize()
+                return "+%d" % Decimal(self.rating_finish - self.rating_start).normalize()
             else:
                 return Decimal(self.rating_finish - self.rating_start).normalize()
         else:

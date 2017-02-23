@@ -3,6 +3,11 @@ from django_tables2 import SingleTableMixin
 
 from ..models import Player, TournamentPlayer
 from ..tables import PlayerInfoTournamentTable
+from ..plots import rating_history_plot
+
+import plotly.offline as opy
+import plotly.graph_objs as go
+
 # todo Незакончено
 
 
@@ -17,4 +22,5 @@ class PlayerInfoView(SingleTableMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(PlayerInfoView, self).get_context_data(**kwargs)
         context['player'] = Player.objects.get(pk=self.kwargs['pk'])
+        context['rating_history_plot'] = rating_history_plot(self.kwargs['pk'])
         return context

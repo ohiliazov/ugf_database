@@ -1,8 +1,5 @@
 from django.http import HttpResponse
-from UGD.models.tournaments import Tournament
-from UGD.models.players import Player
-from UGD.models.games import TournamentPlayer, Pairing
-from UGD.models.ranks import Rank
+from UGD.models import Tournament, TournamentPlayer, Pairing, Player, Rank
 import re
 
 INFO_TAGS = [

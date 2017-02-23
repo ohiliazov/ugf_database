@@ -1,1 +1,4 @@
-from . import rating_list, egd_pins, egd_tournaments
+from .rating_list import *
+from .egd_pins import *
+from .egd_tournaments import *
+from .ufgo_ratings import *

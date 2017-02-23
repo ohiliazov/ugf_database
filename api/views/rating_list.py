@@ -1,8 +1,6 @@
 from django.http import HttpResponse, JsonResponse
-from UGD.models.ranks import Rank, LocalRank
-from UGD.models.players import Player
-from UGD.models.clubs import City, Country
-from functions.current_rank import current_rank
+from UGD.models import Country, City, Player, Rank, LocalRank
+from functions import current_rank
 import re
 # Create your views here.
 
