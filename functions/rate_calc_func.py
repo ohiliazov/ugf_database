@@ -11,20 +11,19 @@ from math import exp
 
 
 def con(rate):
-    rate = int(rate)
     res = 0
     if 100 <= rate < 200:
-        res = 116 - ((rate - 100) * 3 / 50)
+        res = 122 - rate * 0.06
     elif 200 <= rate < 1300:
-        res = 110 - ((rate - 200) * 1 / 20)
+        res = 120 - rate * 0.05
     elif 1300 <= rate < 2000:
-        res = 55 - ((rate - 1300) * 1 / 25)
+        res = 107 - rate * 0.04
     elif 2000 <= rate < 2400:
-        res = 27 - ((rate - 2000) * 3 / 100)
+        res = 87 - rate * 0.03
     elif 2400 <= rate < 2600:
-        res = 15 - ((rate - 2400) * 1 / 50)
+        res = 63 - rate * 0.02
     elif 2600 <= rate < 2700:
-        res = 11 - ((rate - 2600) * 1 / 100)
+        res = 37 - rate * 0.01
     elif rate >= 2700:
         res = 10
     return res
@@ -33,16 +32,18 @@ def con(rate):
 def a_param(rate):
     res = 0
     if 100 <= rate < 2700:
-        res = 200 - ((rate - 100) * 130 / 2600)
+        res = 205 - rate / 20
     elif rate >= 2700:
         res = 70
     return res
 
 
-def winning_expectancy(rate1, rate2, e_param=0):
+def winning_expectancy(rate1, rate2):
     higher_rate, lower_rate = max(rate1, rate2), min(rate1, rate2)
+    if higher_rate - lower_rate > 900:
+        lower_rate -= 50
     lower_win_exp = 1 / (exp((higher_rate - lower_rate) / a_param(lower_rate)) + 1)
-    higher_win_exp = 1 - e_param - lower_win_exp
+    higher_win_exp = 1 - lower_win_exp
     if rate1 <= rate2:
         return lower_win_exp
     else:
@@ -67,7 +68,11 @@ def growth(self_rate, opponent_rate, result):
 
 
 def new_rating(self_rate, opponent_rate, result=1):
-    return self_rate + growth(self_rate, opponent_rate, result)
+    next_rating = self_rate + growth(self_rate, opponent_rate, result)
+    if next_rating < 100:
+        return 100
+    else:
+        return next_rating
 
 
 # ПОДСЧЕТ КОЛИЧЕСТВА ТУРОВ

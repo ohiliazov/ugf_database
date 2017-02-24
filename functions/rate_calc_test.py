@@ -24,4 +24,6 @@ tournament_data = {
     8: [(1, 0), (5, 0),    (3, 0), (2, 0), (6, 0), (7, 1), (4, 0)]
 }
 
-print(rate_calc_func.calculate_tournament_results(total_rounds, start_ratings, tournament_data))
+finish_ratings = rate_calc_func.calculate_tournament_results(total_rounds, start_ratings, tournament_data)
+for line in finish_ratings:
+    print(line, round(start_ratings[line]), round(finish_ratings[line]))

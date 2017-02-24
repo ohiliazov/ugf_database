@@ -8,7 +8,7 @@
     <div class="title"><h1>Калькулятор рейтингу УФГО</h1></div>
 {% endblock %}
 {% block body %}
-<div class="filter">
+<div class="table-container">
 <form id="rating_form" class="rating_calculator" method="get" action="{% url 'UGD:rating_calculator' %}">
 <table class="ugd_table">
 <tr>
@@ -30,7 +30,7 @@
 <table class="ugd_table">
 <tr>
     <th>Новый R1:</th><td>{{ new_rating_1 }}</td>
-    <th>Новый R2:<td>{{ new_rating_2 }}</td>
+    <th>Новый R2:</th><td>{{ new_rating_2 }}</td>
 </tr>
 <tr>
     <th>Альтернативний R1:</th><td>{{ new_rating_1a }}</td>
