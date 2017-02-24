@@ -40,8 +40,6 @@ def a_param(rate):
 
 def winning_expectancy(rate1, rate2):
     higher_rate, lower_rate = max(rate1, rate2), min(rate1, rate2)
-    if higher_rate - lower_rate > 900:
-        lower_rate -= 50
     lower_win_exp = 1 / (exp((higher_rate - lower_rate) / a_param(lower_rate)) + 1)
     higher_win_exp = 1 - lower_win_exp
     if rate1 <= rate2:

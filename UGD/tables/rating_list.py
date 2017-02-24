@@ -21,7 +21,7 @@ class PlayerTable(tables.Table):
         verbose_name="Місто",
         attrs={"td": {"class": "col-md-auto"}}
     )
-    rating = tables.Column(
+    get_rating = tables.Column(
         verbose_name="Рейтинг",
         attrs={"td": {"class": "col-xs-auto"}}
     )
@@ -56,7 +56,7 @@ class PlayerTable(tables.Table):
             'place',
             'full_name',
             'city',
-            'rating',
+            'get_rating',
             'rank',
             'local_rank',
             'get_number_of_tournaments',

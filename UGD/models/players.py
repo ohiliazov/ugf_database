@@ -1,5 +1,6 @@
 from django.db import models
 from . import City, Rank, LocalRank
+from decimal import Decimal
 
 
 class Player(models.Model):
@@ -27,9 +28,11 @@ class Player(models.Model):
         blank=True,
         verbose_name="позиція в рейтингу"
     )
-    rating = models.PositiveIntegerField(
+    rating = models.DecimalField(
         null=True,
         blank=True,
+        max_digits=8,
+        decimal_places=4,
         verbose_name="рейтинг"
     )
     rank = models.ForeignKey(
@@ -78,6 +81,9 @@ class Player(models.Model):
             return self.last_name + ' ' + self.first_name
         else:
             return self.id
+
+    def get_rating(self):
+        return Decimal(self.rating).normalize()
 
     def get_number_of_tournaments(self):
         return self.tournamentplayer_set.count()

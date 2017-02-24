@@ -1,4 +1,4 @@
-from UGD.models import TournamentPlayer, Pairing
+from UGD.models import TournamentPlayer, Pairing, Player
 from django.shortcuts import redirect
 from functions.rate_calc_func import calculate_tournament_results
 
@@ -23,6 +23,21 @@ def tournament_rating_calculator(request, pk):
             tournament_data[player.place].append((opponent, result))
     finish_ratings = calculate_tournament_results(6, start_ratings, tournament_data)
     for row in finish_ratings:
-        print(row, finish_ratings[row])
+        player = player_list.get(place=row)
+        player.rating_finish = finish_ratings[row]
+        player.save()
+        print(row, start_ratings[row], finish_ratings[row])
 
     return redirect("UGD:tournament_info", pk=pk)
+
+
+def update_rating_list(request):
+    all_active_players = Player.objects.filter(active=True)
+    for player in all_active_players:
+        tourney = TournamentPlayer.objects.filter(player=player, tournament__date_begin__year__gte=2017).order_by('-tournament__date_begin').first()
+        if tourney is not None:
+            player.rating = tourney.rating_finish
+            player.save()
+            print(player, player.rating)
+
+    return redirect("UGD:rating_list")

@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^upload/ufgo_ratings/$', upload_ufgo_ratings, name='upload_ufgo_ratings'),
 
     url(r'^tournament_rating_calculator/(?P<pk>[\d]+)/$', tournament_rating_calculator, name='tournament_rating_calculator'),
+    url(r'^update_rating_list/$', update_rating_list, name='update_rating_list'),
 
     url(r'^upload/pin_list/$', upload_egd_pins, name='upload_egd_pins'),
     url(r'^download/rating_list/$', download_rating_list, name='download_rating_list'),

@@ -64,12 +64,7 @@ class TournamentPlayer(models.Model):
         """Считаем прирост в рейтинге"""
 
         if self.rating_start and self.rating_finish:
-
-            if self.rating_finish > self.rating_start:
-                # Ставим + перед числом и обрезаем нули
-                return "+%d" % Decimal(self.rating_finish - self.rating_start).normalize()
-            else:
-                return Decimal(self.rating_finish - self.rating_start).normalize()
+            return Decimal(self.rating_finish - self.rating_start).normalize()
         else:
             return ""
 
@@ -110,6 +105,8 @@ class Pairing(models.Model):
         TournamentPlayer,
         on_delete=models.CASCADE,
         default=None,
+        null=True,
+        blank=True,
         verbose_name="суперник",
         related_name="pairing_opponent"
     )
