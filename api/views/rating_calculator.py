@@ -24,5 +24,5 @@ def tournament_rating_calculator(request, pk):
     finish_ratings = calculate_tournament_results(6, start_ratings, tournament_data)
     for row in finish_ratings:
         print(row, finish_ratings[row])
-    
+
     return redirect("UGD:tournament_info", pk=pk)
