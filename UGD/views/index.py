@@ -3,7 +3,6 @@ from django_tables2 import MultiTableMixin
 
 from ..tables import IndexPlayerTable, IndexTournamentTable
 from ..models import Player, Tournament
-# todo ЗАКОНЧИТЬ ГЛАВНУЮ СТРАНИЦУ
 
 
 # Create your views here.

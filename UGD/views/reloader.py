@@ -1,10 +1,8 @@
 import signal
 from os import kill, getpid
 from django.shortcuts import redirect
-# todo ЗАКОНЧИТЬ ГЛАВНУЮ СТРАНИЦУ
 
 
-# Create your views here.
 def mod_wsgi_reload(request):
     if request.user.is_authenticated():
         try:

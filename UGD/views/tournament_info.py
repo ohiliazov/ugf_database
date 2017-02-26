@@ -3,7 +3,6 @@ from django_tables2 import SingleTableMixin
 
 from ..tables import TournamentInfoTable
 from ..models import Tournament, TournamentPlayer
-# todo Незакончено
 
 
 class TournamentInfoView(SingleTableMixin, TemplateView):

@@ -5,7 +5,6 @@ from ..models import Player
 from ..tables import PlayerTable
 
 
-# Create your views here.
 class RatingListView(SingleTableMixin, TemplateView):
     """
     Рейтинг-лист УФГО

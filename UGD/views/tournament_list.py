@@ -4,11 +4,7 @@ from ..tables.tournament_list import TournamentTable
 from ..models.tournaments import Tournament
 
 
-# Create your views here.
 class TournamentListView(SingleTableMixin, TemplateView):
-    """
-    Рейтинг-лист УФГО
-    """
     table_class = TournamentTable
     table_pagination = False
     template_name = 'UGD/tournament_list.html'

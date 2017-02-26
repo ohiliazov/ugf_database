@@ -1,6 +1,5 @@
 from django.views.generic.base import TemplateView
 from functions import rate_calc_func
-# todo Незакончено
 
 
 class RatingCalculatorView(TemplateView):

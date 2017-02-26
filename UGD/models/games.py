@@ -4,6 +4,7 @@ from decimal import Decimal
 
 
 class TournamentPlayer(models.Model):
+
     player = models.ForeignKey(
         Player,
         on_delete=models.CASCADE,
@@ -61,8 +62,6 @@ class TournamentPlayer(models.Model):
         return tournament_name+' @ '+str(full_name)
 
     def get_rating_delta(self):
-        """Считаем прирост в рейтинге"""
-
         if self.rating_start and self.rating_finish:
             return Decimal(self.rating_finish - self.rating_start).normalize()
         else:
@@ -91,7 +90,7 @@ class TournamentPlayer(models.Model):
         ).count()
 
     def get_result(self):
-        return "%s/%s" % (self.get_wins_count(), self.get_games_count())
+        return "%d/%d" % (self.get_wins_count(), self.get_games_count())
 
 
 class Pairing(models.Model):

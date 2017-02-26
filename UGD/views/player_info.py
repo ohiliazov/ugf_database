@@ -5,11 +5,6 @@ from ..models import Player, TournamentPlayer
 from ..tables import PlayerInfoTournamentTable
 from ..plots import rating_history_plot
 
-import plotly.offline as opy
-import plotly.graph_objs as go
-
-# todo Незакончено
-
 
 class PlayerInfoView(SingleTableMixin, TemplateView):
     template_name = 'UGD/player_info.html'
