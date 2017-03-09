@@ -3,33 +3,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}" />
     <link rel="stylesheet" href="{% static 'UGD/style.css' %}" />
     <link rel="shortcut icon" href="{% static 'favicon.png' %}"/>
     {% block extrastyles %}{% endblock %}
 </head>
-<header>
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="{% url 'UGD:index' %}">UGD</a>
-        </div>
-        <ul class="nav navbar-nav">
-          <li><a href="{% url 'UGD:rating_list' %}">Рейтинг-лист</a></li>
-          <li><a href="{% url 'UGD:tournament_list' %}">Турніри</a></li>
-          <li><a href="{% url 'UGD:games_list' %}">Партії</a></li>
-          <li><a href="{% url 'UGD:rating_calculator' %}">Калькулятор рейтингу</a></li>
-          <li><a href="{% url 'admin:index' %}">UGD админ</a></li>
-        </ul>
-      </div>
-    </nav>
-    <div>
-        <a href="{% url 'UGD:rating_list' %}"><img src="{%  static  'UGD/images/ufgo_logo.jpg' %}" style="width:1000px"></a>
-        {% block header %}{% endblock %}
-    </div>
-</header>
 <body>
+	<header>
+		<nav class="navbar navbar-default navbar-fixed-top">
+		  <div class="container-fluid">
+			<div class="navbar-header">
+			  <a class="navbar-brand" href="{% url 'UGD:index' %}">UGD</a>
+			</div>
+			<ul class="nav navbar-nav">
+			  <li><a href="{% url 'UGD:rating_list' %}">Рейтинг-лист</a></li>
+			  <li><a href="{% url 'UGD:tournament_list' %}">Турніри</a></li>
+			  <li><a href="{% url 'UGD:games_list' %}">Партії</a></li>
+			  <li><a href="{% url 'UGD:rating_calculator' %}">Калькулятор рейтингу</a></li>
+			  <li><a href="{% url 'admin:index' %}">UGD админ</a></li>
+			</ul>
+		  </div>
+		</nav>
+		<div>
+			<a href="{% url 'UGD:rating_list' %}"><img src="{%  static  'UGD/images/ufgo_logo.jpg' %}" style="width:1000px"></a>
+			{% block header %}{% endblock %}
+		</div>
+</header>
+
     {% block body %}{% endblock %}
 </body>
 <script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
