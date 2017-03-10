@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import JsonResponse
 
 from UGD.models.players import Player
@@ -8,14 +9,11 @@ from UGD.models.players import Player
 
 def player_list(request):
     try:
-        players = Player.objects.filter(
-            active=True,
-            last_name__contains=request.GET['full_name']) | Player.objects.filter(
-            active=True,
-            first_name__contains=request.GET['full_name'])
-        players = players.order_by('-rating')
+        players = Player.objects.filter(Q(active=True),
+                                        (Q(last_name__contains=request.GET['full_name']))
+                                        | Q(first_name__contains=request.GET['full_name'])).order_by('-rating')
     except KeyError:
-        players = Player.objects.filter(active=True)
+        players = Player.objects.filter(active=True).order_by('-rating')
     data = {}
     for player in players:
         data[player.pk] = (player.get_full_name(), player.rating)
