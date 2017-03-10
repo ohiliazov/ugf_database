@@ -8,8 +8,9 @@
     <div class="title"><h1>Калькулятор рейтингу УФГО</h1></div>
 {% endblock %}
 {% block body %}
-<div class="table-container">
-<form id="rating_form" class="rating_calculator" method="get" action="{% url 'UGD:rating_calculator' %}">
+<div class="table-container container">
+	<div class="row">	
+	<form id="rating_form" class="rating_calculator col-12" method="get" action="{% url 'UGD:rating_calculator' %}">
 <table class="ugd_table">
 <tr>
     <th><label for="first_rating">Текущий R1:</label></th>
@@ -54,30 +55,50 @@
 </tr>
 </table>
 </form>
+</div>
 {% if request.GET %}
 <div class="title"><h1>Результати розрахунку</h1></div>
-<table class="ugd_table">
-<tr>
-    <th>Новый R1:</th><td>{{ new_rating_1 }}</td>
-    <th>Новый R2:</th><td>{{ new_rating_2 }}</td>
-</tr>
-<tr>
-    <th>Альтернативний R1:</th><td>{{ new_rating_1a }}</td>
-    <th>Альтернативний R2:</th><td>{{ new_rating_2a }}</td>
-</tr>
-<tr>
-    <th>Вероятность победы R1:</th><td>{{ win_exp_1 }}</td>
-    <th>Вероятность победы R2:</th><td>{{win_exp_2 }}</td>
-</tr>
-<tr>
-    <th>con R1:</th><td>{{ con_param_1 }}</td>
-    <th>con R2:</th><td>{{con_param_2 }}</td>
-</tr>
-<tr>
-    <th>a R1:</th><td>{{ a_param_1 }}</td>
-    <th>a R2:</th><td>{{ a_param_2 }}</td>
-</tr>
-</table>
+<div class="row">
+	<div class="col-xs-12 col-sm-6">
+		<table class="ugd_table">
+		<tr>
+			<th>Новый R1:</th><td>{{ new_rating_1 }}</td>
+		</tr>
+		<tr>
+			<th>Альтернативний R1:</th><td>{{ new_rating_1a }}</td>
+		</tr>
+		<tr>
+			<th>Вероятность победы R1:</th><td>{{ win_exp_1 }}</td>
+		</tr>
+		<tr>
+			<th>con R1:</th><td>{{ con_param_1 }}</td>
+		</tr>
+		<tr>
+			<th>a R1:</th><td>{{ a_param_1 }}</td>
+		</tr>
+		</table>
+	</div>
+	<div class="col-xs-12 col-sm-6">
+		<table class="ugd_table col">
+		<tr>
+			<th>Новый R2:</th><td>{{ new_rating_2 }}</td>
+		</tr>
+		<tr>
+			<th>Альтернативний R2:</th><td>{{ new_rating_2a }}</td>
+		</tr>
+		<tr>
+			<th>Вероятность победы R2:</th><td>{{win_exp_2 }}</td>
+		</tr>
+		<tr>
+			<th>con R2:</th><td>{{con_param_2 }}</td>
+		</tr>
+		<tr>
+			<th>a R2:</th><td>{{ a_param_2 }}</td>
+		</tr>
+		</table>
+	</div>
+</div>
+
 </div>
 {% endif %}
 {% endblock %}
