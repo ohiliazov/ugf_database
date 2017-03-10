@@ -18,20 +18,22 @@
 	/* Create Suggest Block */
 	function suggestOn(event) {
 		suggestOff();
-		$('<div id="' + opts.suggest_block + '"></div>')
-			.attr(opts.target_by, $(this).attr(opts.target_by))
-			.appendTo($(this).parent());
 		var request = $(this).val();
-		getPlayersList(request);
+		if (request !== '') {
+			$('<div id="' + opts.suggest_block + '"></div>')
+				.attr(opts.target_by, $(this).attr(opts.target_by))
+				.appendTo($(this).parent());
+			getPlayersList(request);
+		}
 	}
 
 	function suggestLost (event) {
-		setTimeout(suggestOff, 800);
+		setTimeout(suggestOff, 300);
 	}
 
 	/* Destroy suggest Block */
 	function suggestOff() {
-		$('#suggest').remove();
+		$('#' + opts.suggest_block).remove();
 	}
 
 	/* Write rating in target input */
@@ -39,7 +41,7 @@
 		var text = $(this).text();
 		var target = $('#' + opts.suggest_block).attr(opts.target_by);
 		var rating = $(this).attr('data-rating');
-		$('#' + opts.suggest_block).parent().find('input').val(text);
+		$('#' + opts.suggest_block).parent().find(data_type).val(text);
 		$('#' + target).val(rating);
 		suggestOff();
 	}
