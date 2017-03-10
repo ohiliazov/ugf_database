@@ -31,11 +31,10 @@
 			{% block header %}{% endblock %}
 		</div>
 </header>
-
     {% block body %}{% endblock %}
 </body>
-<script src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
-<script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
-<script src="{% static 'UGD/js/navbar.js' %}"></script>
+<script src="{% static 'admin/js/vendor/jquery/jquery.js' %}" async></script>
+<script src="{% static 'bootstrap/js/bootstrap.js' %}" async></script>
+<script src="{% static 'UGD/js/navbar.js' %}" async></script>
 {% block javascripts %}{% endblock %}
 </html>

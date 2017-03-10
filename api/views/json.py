@@ -13,7 +13,7 @@ def player_list(request):
             Q(active=True),
             Q(last_name__contains=request.GET['full_name']) |
             Q(first_name__contains=request.GET['full_name'])
-        ).order_by('-rating')
+        ).order_by('-rating')[:10]
     except KeyError:
         players = Player.objects.filter(active=True).order_by('-rating')
     data = {}
