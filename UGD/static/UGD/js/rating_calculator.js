@@ -2,7 +2,7 @@
 $('#suggest_form').delegate('input', 'keyup', suggestOn);
 
 /* if input lost focus delete suggest block */
-$('#suggest_form').delegate('input', 'focusoff', suggestOff);
+$('#suggest_form').on('change',$('input').parent(), suggestLost);
 
 /* click inside suggest block will call function complete */
 $('#suggest_form').delegate('#suggest div', 'click', complete);
@@ -16,6 +16,10 @@ function suggestOn(event) {
 		.appendTo($(this).parent());
 	var request = $(this).val();
 	getPlayersList(request);
+}
+
+function suggestLost (event) {
+	setTimeout(suggestOff, 800);
 }
 
 /* Destroy suggest Block */
@@ -35,26 +39,20 @@ function complete (event) {
 
 /* Fill Suggest block */
 function suggestRender(data) {
-	var i=0;
 	for(var item in data) {
 		var suggestString = data[item][0] + " (" + data[item][1] + ")";
 		$('<div></div>').attr('data-rating', data[item][1])
 						.html(suggestString)
 						.appendTo('#suggest');
-		i++;
-		/* TODO: create suggest parameter in admin */
-		if (i > 9) break;
 	}
 }
 
 /* Get players from server */
 function getPlayersList (query) {
-	if(query.length > 1) {
 		$.getJSON('/api/json/player_list/?full_name=' + query)
 			.success(suggestRender)
 			.error(function(err){
 				console.log(err);
 				alert('Не удалось !!');
 			});
-	}
 }
