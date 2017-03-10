@@ -18,10 +18,39 @@
     <th><label for="submit">Отправить</label></th>
 </tr>
 <tr class="input">
-    <td><input type="number" maxlength="8" id="first_rating" name="first_rating" value="{{ request.GET.first_rating }}"></td>
-    <td><input type="number" id="second_rating" name="second_rating" value="{{ request.GET.second_rating }}"></td>
-    <td><input type="number" name="result" id="result" value="{{ request.GET.result }}"></td>
-    <td><input type="submit" id="submit" value="Рассчет"></td>
+	<td><input	type="number" 
+				maxlength="8" 
+				id="first_rating" 
+				name="first_rating" 
+				min="100" 
+				max="3000" 
+				value="{{ request.GET.first_rating }}"
+				placeholder="Рейтинг первого игрока"
+				data-toggle="tooltip" 
+				data-placement="bottom" 
+				title="Рейтинг первого игрока"
+				required>
+	</td>
+	<td><input	type="number" 
+				id="second_rating" 
+				name="second_rating"
+				min="100"
+				max="3000"
+				value="{{ request.GET.second_rating }}"
+				placeholder="Рейтинг второго игрока"
+				data-toggle="tooltip" 
+				data-placement="bottom" 
+				title="Рейтинг второго игрока"
+				required>
+	</td>
+	<td>
+		<select name="result" id="result" data-result={{ request.GET.result }} requred>
+			<option value="1" {% if request.GET.result == "1" %} selected {% endif %}>Виграв</option>	
+			<option value="0" {% if request.GET.result == "0" %} selected {% endif %}>Програв</option>	
+			<option value="0.5" {% if request.GET.result == "0.5" %} selected {% endif %}>Дзіго</option>	
+		</select>
+	</td>
+    <td><input type="submit" id="submit" class="btn btn-success" value="Рассчет"></td>
 </tr>
 </table>
 </form>
