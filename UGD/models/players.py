@@ -1,6 +1,8 @@
-from django.db import models
-from . import City, Rank, LocalRank
 from decimal import Decimal
+
+from django.db import models
+
+from . import City, Rank, LocalRank
 
 
 class Player(models.Model):
@@ -81,6 +83,16 @@ class Player(models.Model):
             return self.last_name + ' ' + self.first_name
         else:
             return self.id
+
+    def get_full_name(self):
+        if self.last_name and self.first_name:
+            return self.last_name + ' ' + self.first_name
+        elif self.last_name:
+            return self.last_name
+        elif self.first_name:
+            return self.first_name
+        else:
+            return ""
 
     def get_rating(self):
         return Decimal(self.rating).normalize()
