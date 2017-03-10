@@ -1,5 +1,7 @@
 from django.conf.urls import url
+
 from .views import *
+
 # Create your urls here.
 
 app_name = 'api'
@@ -15,4 +17,6 @@ urlpatterns = [
 
     url(r'^upload/pin_list/$', upload_egd_pins, name='upload_egd_pins'),
     url(r'^download/rating_list/$', download_rating_list, name='download_rating_list'),
+
+    url(r'^json/player_list/$', player_list, name='player_list'),
 ]
