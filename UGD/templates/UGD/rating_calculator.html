@@ -9,9 +9,9 @@
 {% endblock %}
 {% block body %}
 <div class="table-container container">
-	<div class="row">	
+	<div class="row ugd_table">	
 	<form id="rating_form" class="rating_calculator col-12" method="get" action="{% url 'UGD:rating_calculator' %}">
-<table class="ugd_table">
+<table class="table">
 <tr>
     <th><label for="first_rating">Текущий R1:</label></th>
     <th><label for="second_rating">Текущий R2:</label></th>
@@ -31,6 +31,18 @@
 				data-placement="bottom" 
 				title="Рейтинг первого игрока"
 				required>
+		<div class="form-row">
+			<input type="checkbox" class="suggest-trigger" id="rtgchb_1">
+			<label for="rtgchb_1">Взять из базы</label>
+			<div class="suggest-input">
+			<input	type="text" 
+					class="suggest-input"
+					data-type="suggest" 
+					data-target="first_rating" 
+					placeholder="Введите имя" />
+			</div>
+		</div>
+
 	</td>
 	<td><input	type="number" 
 				id="second_rating" 
@@ -43,6 +55,16 @@
 				data-placement="bottom" 
 				title="Рейтинг второго игрока"
 				required>
+		<div class="form-row">
+			<input type="checkbox" class="suggest-trigger" id="rtgchb_2">
+			<label for="rtgchb_2">Взять из базы</label>
+			<div class="suggest-input">
+			<input type="text" 
+				data-type="suggest" 
+				data-target="second_rating" 
+				placeholder="Введите имя" />
+			</div>
+		</div>
 	</td>
 	<td>
         <select name="result" id="result" data-result={{ request.GET.result }} required>
@@ -54,13 +76,6 @@
     <td><input type="submit" id="submit" class="btn btn-success" value="Рассчет"></td>
 </tr>
 </table>
-</form>
-<form id="suggest_form" class="col-12" action="">
-	<div class="form-row text-left">
-		<div class="col-sm-3">
-			<input type="text" data-type="suggest" data-target="first_rating" placeholder="Введите имя" />
-		</div>
-	</div>
 </form>
 </div>
 {% if request.GET %}
