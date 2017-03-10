@@ -1,4 +1,5 @@
 from django.views.generic.base import TemplateView
+
 from functions import rate_calc_func
 
 
@@ -9,9 +10,9 @@ class RatingCalculatorView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(RatingCalculatorView, self).get_context_data(**kwargs)
         try:
-            first_rating = int(self.request.GET['first_rating'])
-            second_rating = int(self.request.GET['second_rating'])
-            result = int(self.request.GET['result'])
+            first_rating = float(self.request.GET['first_rating'])
+            second_rating = float(self.request.GET['second_rating'])
+            result = float(self.request.GET['result'])
             context['new_rating_1'] = rate_calc_func.new_rating(
                 first_rating, second_rating, result)
             context['new_rating_1a'] = rate_calc_func.new_rating(
