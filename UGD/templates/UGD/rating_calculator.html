@@ -45,7 +45,7 @@
 				required>
 	</td>
 	<td>
-		<select name="result" id="result" data-result={{ request.GET.result }} requred>
+        <select name="result" id="result" data-result={{ request.GET.result }} required>
 			<option value="1" {% if request.GET.result == "1" %} selected {% endif %}>Виграв</option>	
 			<option value="0" {% if request.GET.result == "0" %} selected {% endif %}>Програв</option>	
 			<option value="0.5" {% if request.GET.result == "0.5" %} selected {% endif %}>Дзіго</option>	
