@@ -1,6 +1,6 @@
 .table-container {
     display: inline-table;
-    width: 1000px;
+    max-width: 1000px;
 }
 
 .ugd_table {
