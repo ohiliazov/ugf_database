@@ -20,3 +20,22 @@ h1 {
 td, th {
 	padding: 5px 5px;
 }
+
+#suggest {
+	display: block;
+	padding: 6px;
+	border: 1px solid #ccc;
+	background: #fff;
+	position: absolute;
+	z-index: 100;
+}
+#suggest div:hover {
+	background: #999;
+	color: #fff;
+}
+
+.suggest-input {
+	display: none;
+	margin: 0 auto;
+
+}
