@@ -61,7 +61,6 @@
 		$.getJSON('/api/json/player_list/?full_name=' + query)
 			.success(suggestRender)
 			.error(function(err){
-				console.log(err);
 				alert('Не удалось !!');
 			});
 	}
@@ -93,17 +92,19 @@ $(document).ready(function () {
 		console.log(form_data);
 		$.getJSON('/api/json/calculated_rating/' + '?' + form_data)
 			.success(drawResult)
-			.error(showErrorMessage);
+			.fail(showErrorMessage);
 	}
 
 	function drawResult (data) {
 		console.log(data);
 		var template = Handlebars.compile( $('#rating_output').html() );
-		$('#calculator_output').append(template(data));
+		$('#calculator_output').html(template(data));
 	}
 
-	function showErrorMessage (msg) {
-		console.log(msg);
+	function showErrorMessage (jqxhr, textStatus, error) {
+	//	console.log(jqxhr);
+		var template = Handlebars.compile( $('#rating_error').html() );
+		$('#calculator_output').html(template(jqxhr.responseJSON));
 	}
 
 });
