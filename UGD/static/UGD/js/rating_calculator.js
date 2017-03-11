@@ -65,6 +65,8 @@
 				alert('Не удалось !!');
 			});
 	}
+
+	return this;
 };
 
 $.fn.suggest.default = {
@@ -79,17 +81,30 @@ $.fn.suggest.default = {
 $(document).ready(function () {
 	$('#rating_form').suggest({
 		link: '/api/json/player_list/?full_name=' 
-	});
+		})
+		.on('submit', submitRating);
 
-	$('#rating_form').on('click','.suggest-trigger',showSuggestInput);
+	
+		$('.suggest-input').show();
 
-	function showSuggestInput () {
-		var target = $(this).parent().find('.suggest-input');
-		if (!this.checked) {
-			target.hide();
-		} else {
-			target.show();
-		}
+	function submitRating ( event) {
+		event.preventDefault();
+		var form_data = $(this).serialize();
+		console.log(form_data);
+		$.getJSON('/api/json/calculated_rating/' + '?' + form_data)
+			.success(drawResult)
+			.error(showErrorMessage);
 	}
+
+	function drawResult (data) {
+		console.log(data);
+		var template = Handlebars.compile( $('#rating_output').html() );
+		$('#calculator_output').append(template(data));
+	}
+
+	function showErrorMessage (msg) {
+		console.log(msg);
+	}
+
 });
 

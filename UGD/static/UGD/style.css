@@ -35,7 +35,5 @@ td, th {
 }
 
 .suggest-input {
-	display: none;
-	margin: 0 auto;
-
+	margin: 0 auto 12px;
 }
