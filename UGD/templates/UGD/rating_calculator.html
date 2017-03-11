@@ -2,128 +2,112 @@
 {% load static %}
 {% block title %}UGF: калькулятор рейтингу{% endblock %}
 {% block extrastyles %}
-    <link rel="stylesheet" href="{% static 'UGD/tables.css' %}" />
+    <link rel="stylesheet" href="{% static 'UGD/tables.css' %}"/>
 {% endblock %}
 {% block header %}
     <div class="title"><h1>Калькулятор рейтингу УФГО</h1></div>
 {% endblock %}
 {% block body %}
-<div class="table-container container">
-	<div class="row ugd_table">	
-	<form id="rating_form" class="rating_calculator col-12" method="get" action="{% url 'UGD:rating_calculator' %}">
-<table class="table">
-<tr>
-    <th><label for="first_rating">Текущий R1:</label></th>
-    <th><label for="second_rating">Текущий R2:</label></th>
-    <th><label for="result">Результат:</label></th>
-    <th><label for="submit">Отправить</label></th>
-</tr>
-<tr class="input">
-	<td><input	type="number" 
-				maxlength="8" 
-				id="first_rating" 
-				name="first_rating" 
-				min="100" 
-				max="3000" 
-				value="{{ request.GET.first_rating }}"
-				placeholder="Рейтинг первого игрока"
-				data-toggle="tooltip" 
-				data-placement="bottom" 
-				title="Рейтинг первого игрока"
-				required>
-		<div class="form-row">
-			<input type="checkbox" class="suggest-trigger" id="rtgchb_1">
-			<label for="rtgchb_1">Взять из базы</label>
-			<div class="suggest-input">
-			<input	type="text" 
-					class="suggest-input"
-					data-type="suggest" 
-					data-target="first_rating" 
-					placeholder="Введите имя" />
-			</div>
-		</div>
+    <div class="table-container container">
+        <div class="row">
+            <form id="rating_form" class="rating_calculator col-12" method="get"
+                  action="{% url 'UGD:rating_calculator' %}">
+                <table class="ugd_table">
+                    <tr>
+                        <th><label for="first_rating">Текущий R1:</label></th>
+                        <th><label for="second_rating">Текущий R2:</label></th>
+                        <th><label for="result">Результат:</label></th>
+                        <th><label for="submit">Отправить</label></th>
+                    </tr>
+                    <tr class="input">
+                        <td><input
+                                id="first_rating"
+                                name="first_rating"
+                                value="{{ request.GET.first_rating }}"
+                                placeholder="Рейтинг первого игрока"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="Рейтинг первого игрока"
+                                required>
+                        </td>
+                        <td><input
+                                id="second_rating"
+                                name="second_rating"
+                                value="{{ request.GET.second_rating }}"
+                                placeholder="Рейтинг второго игрока"
+                                data-toggle="tooltip"
+                                data-placement="bottom"
+                                title="Рейтинг второго игрока"
+                                required>
+                        </td>
+                        <td>
+                            <select name="result" id="result" data-result={{ request.GET.result }} required>
+                                <option value="1" {% if request.GET.result == "1" %} selected {% endif %}>Виграв
+                                </option>
+                                <option value="0" {% if request.GET.result == "0" %} selected {% endif %}>Програв
+                                </option>
+                                <option value="0.5" {% if request.GET.result == "0.5" %} selected {% endif %}>Дзіго
+                                </option>
+                            </select>
+                        </td>
+                        <td><input type="submit" id="submit" class="btn btn-success" value="Рассчет"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        {% if request.GET %}
+            <div class="title"><h1>Результати розрахунку</h1></div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <table class="ugd_table">
+                        <tr>
+                            <th>Новый R1:</th>
+                            <td>{{ new_rating_1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Альтернативний R1:</th>
+                            <td>{{ new_rating_1a }}</td>
+                        </tr>
+                        <tr>
+                            <th>Вероятность победы R1:</th>
+                            <td>{{ win_exp_1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>con R1:</th>
+                            <td>{{ con_param_1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>a R1:</th>
+                            <td>{{ a_param_1 }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <table class="ugd_table col">
+                        <tr>
+                            <th>Новый R2:</th>
+                            <td>{{ new_rating_2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>Альтернативний R2:</th>
+                            <td>{{ new_rating_2a }}</td>
+                        </tr>
+                        <tr>
+                            <th>Вероятность победы R2:</th>
+                            <td>{{ win_exp_2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>con R2:</th>
+                            <td>{{ con_param_2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>a R2:</th>
+                            <td>{{ a_param_2 }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
 
-	</td>
-	<td><input	type="number" 
-				id="second_rating" 
-				name="second_rating"
-				min="100"
-				max="3000"
-				value="{{ request.GET.second_rating }}"
-				placeholder="Рейтинг второго игрока"
-				data-toggle="tooltip" 
-				data-placement="bottom" 
-				title="Рейтинг второго игрока"
-				required>
-		<div class="form-row">
-			<input type="checkbox" class="suggest-trigger" id="rtgchb_2">
-			<label for="rtgchb_2">Взять из базы</label>
-			<div class="suggest-input">
-			<input type="text" 
-				data-type="suggest" 
-				data-target="second_rating" 
-				placeholder="Введите имя" />
-			</div>
-		</div>
-	</td>
-	<td>
-        <select name="result" id="result" data-result={{ request.GET.result }} required>
-			<option value="1" {% if request.GET.result == "1" %} selected {% endif %}>Виграв</option>	
-			<option value="0" {% if request.GET.result == "0" %} selected {% endif %}>Програв</option>	
-			<option value="0.5" {% if request.GET.result == "0.5" %} selected {% endif %}>Дзіго</option>	
-		</select>
-	</td>
-    <td><input type="submit" id="submit" class="btn btn-success" value="Рассчет"></td>
-</tr>
-</table>
-</form>
-</div>
-{% if request.GET %}
-<div class="title"><h1>Результати розрахунку</h1></div>
-<div class="row">
-	<div class="col-xs-12 col-sm-6">
-		<table class="ugd_table">
-		<tr>
-			<th>Новый R1:</th><td>{{ new_rating_1 }}</td>
-		</tr>
-		<tr>
-			<th>Альтернативний R1:</th><td>{{ new_rating_1a }}</td>
-		</tr>
-		<tr>
-			<th>Вероятность победы R1:</th><td>{{ win_exp_1 }}</td>
-		</tr>
-		<tr>
-			<th>con R1:</th><td>{{ con_param_1 }}</td>
-		</tr>
-		<tr>
-			<th>a R1:</th><td>{{ a_param_1 }}</td>
-		</tr>
-		</table>
-	</div>
-	<div class="col-xs-12 col-sm-6">
-		<table class="ugd_table col">
-		<tr>
-			<th>Новый R2:</th><td>{{ new_rating_2 }}</td>
-		</tr>
-		<tr>
-			<th>Альтернативний R2:</th><td>{{ new_rating_2a }}</td>
-		</tr>
-		<tr>
-			<th>Вероятность победы R2:</th><td>{{win_exp_2 }}</td>
-		</tr>
-		<tr>
-			<th>con R2:</th><td>{{con_param_2 }}</td>
-		</tr>
-		<tr>
-			<th>a R2:</th><td>{{ a_param_2 }}</td>
-		</tr>
-		</table>
-	</div>
-</div>
-
-</div>
-{% endif %}
-{% endblock %}
-{% block javascripts %}
-    <script src="{% static 'UGD/js/rating_calculator.js' %}"></script>
+            </div>
+        {% endif %}
 {% endblock %}
