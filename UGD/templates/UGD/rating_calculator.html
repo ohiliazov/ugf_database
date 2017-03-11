@@ -30,6 +30,9 @@
 
 							<input
                                 id="first_rating"
+								type="number"
+								min="100"
+								max="3000"
                                 name="first_rating"
                                 value="{{ request.GET.first_rating }}"
                                 placeholder="Рейтинг первого игрока"
@@ -47,7 +50,10 @@
 							</div>
 
 							<input
-                                id="second_rating"
+								id="second_rating"
+								type="number"
+								min="100"
+								max="3000"
                                 name="second_rating"
                                 value="{{ request.GET.second_rating }}"
                                 placeholder="Рейтинг второго игрока"
