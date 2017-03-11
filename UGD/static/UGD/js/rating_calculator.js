@@ -58,12 +58,12 @@
 
 	/* Get players from server */
 	function getPlayersList (query) {
-			$.getJSON('/api/json/player_list/?full_name=' + query)
-				.success(suggestRender)
-				.error(function(err){
-					console.log(err);
-					alert('Не удалось !!');
-				});
+		$.getJSON('/api/json/player_list/?full_name=' + query)
+			.success(suggestRender)
+			.error(function(err){
+				console.log(err);
+				alert('Не удалось !!');
+			});
 	}
 };
 
