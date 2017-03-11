@@ -3,11 +3,12 @@ from django.http import JsonResponse
 
 from UGD.models.players import Player
 
+from functions import rate_calc_func
 
 # Create your views here.
 
 
-def player_list(request):
+def json_player_list(request):
     try:
         players = Player.objects.filter(
             Q(active=True),
@@ -20,3 +21,30 @@ def player_list(request):
     for player in players:
         data[player.pk] = (player.get_full_name(), float(player.get_rating()))
     return JsonResponse(status=200, data=data)
+
+
+def json_calculated_rating(request):
+    try:
+        first_rating = float(request.GET['first_rating'])
+        second_rating = float(request.GET['second_rating'])
+        result = float(request.GET['result'])
+    except (KeyError, ValueError):
+        return JsonResponse(status=400, data={"error_message": "Bad data"})
+    else:
+        data = {
+            "first_player": {
+                "next_rating": round(rate_calc_func.new_rating(first_rating, second_rating, result), 2),
+                "alternative_rating": round(rate_calc_func.new_rating(first_rating, second_rating, (1 - result)), 2),
+                "winning_expectancy": round(rate_calc_func.winning_expectancy(first_rating, second_rating), 2),
+                "con_param": round(rate_calc_func.con(first_rating), 2),
+                "a_param": round(rate_calc_func.a_param(first_rating), 2)
+            },
+            "second_player": {
+                "next_rating": round(rate_calc_func.new_rating(second_rating, first_rating, (1 - result)), 2),
+                "alternative_rating": round(rate_calc_func.new_rating(second_rating, first_rating, result), 2),
+                "winning_expectancy": round(rate_calc_func.winning_expectancy(second_rating, first_rating), 2),
+                "con_param": round(rate_calc_func.con(second_rating), 2),
+                "a_param": round(rate_calc_func.a_param(second_rating), 2)
+            }
+        }
+        return JsonResponse(status=200, data=data)
