@@ -30,6 +30,10 @@ td, th {
 .navbar-toggler {
 	top: 10px;
 }
+
+.navbar-toggler-icon:before {
+	content: "\2630";
+}
 .navbar-toggler-right {
     position: absolute;
     right: 1rem;
@@ -52,4 +56,10 @@ td, th {
 	display: none;
 	margin: 0 auto;
 
+}
+
+@media (min-width: 768px) {
+	.navbar-toggleable-sm .navbar-toggler {
+			display: none;
+	}
 }
