@@ -6,19 +6,19 @@ from ..models import Pairing
 class GamesTable(tables.Table):
     date_begin = tables.Column(
         verbose_name="Дата",
-        accessor="tournament_player.tournament.date_begin"
+        accessor="pairing_player.tournament.date_begin"
     )
     tournament = tables.Column(
         verbose_name="Турнір",
-        accessor="tournament_player.tournament"
+        accessor="pairing_player.tournament"
     )
-    tournament_player = tables.Column(
+    pairing_player = tables.Column(
         verbose_name="Гравець",
-        accessor="tournament_player.player"
+        accessor="pairing_player.player"
     )
-    tournament_player_opponent = tables.Column(
+    pairing_opponent = tables.Column(
         verbose_name="Суперник",
-        accessor="tournament_player_opponent.player"
+        accessor="pairing_opponent.player"
     )
     game_result = tables.BooleanColumn(
         verbose_name="Перемога"
@@ -29,8 +29,8 @@ class GamesTable(tables.Table):
         fields = (
             'date_begin',
             'tournament',
-            'tournament_player',
-            'tournament_player_opponent',
+            'pairing_player',
+            'pairing_opponent',
             'game_result'
         )
         attrs = {

@@ -35,11 +35,11 @@ class PlayerTable(tables.Table):
         verbose_name="Розряд",
         attrs={"td": {"class": "col-md-auto"}}
     )
-    get_number_of_tournaments = tables.Column(
+    count_player_tournaments = tables.Column(
         verbose_name="Турнірів",
         attrs={"td": {"class": "col-md-auto"}}
     )
-    get_number_of_games = tables.Column(
+    count_player_games = tables.Column(
         verbose_name="Партій",
         attrs={"td": {"class": "col-md-auto"}}
     )
@@ -59,8 +59,8 @@ class PlayerTable(tables.Table):
             'get_rating',
             'rank',
             'local_rank',
-            'get_number_of_tournaments',
-            'get_number_of_games',
+            'count_player_tournaments',
+            'count_player_games',
             'egd_pin'
         )
         attrs = {

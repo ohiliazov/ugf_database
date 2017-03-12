@@ -1,7 +1,7 @@
 from django_tables2 import SingleTableMixin
 from django.views.generic import TemplateView
 from ..tables.tournament_list import TournamentTable
-from ..models.tournaments import Tournament
+from ..models import Tournament
 
 
 class TournamentListView(SingleTableMixin, TemplateView):
