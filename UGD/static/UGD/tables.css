@@ -2,6 +2,7 @@
     display: inline-table;
 	width: 100%;
     max-width: 1000px;
+	min-width: 320px;
 }
 
 .ugd_responsive {
