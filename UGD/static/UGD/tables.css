@@ -1,8 +1,12 @@
 .table-container {
     display: inline-table;
+	width: 100%;
     max-width: 1000px;
 }
 
+.ugd_responsive {
+	overflow-x: auto;
+}
 .ugd_table {
     border: 1px lightgrey solid;
     background-color: snow;
@@ -78,3 +82,4 @@ tr.white_belt:hover {
     background-color: #ffffff;
     color: black;
 }
+

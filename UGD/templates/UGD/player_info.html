@@ -16,7 +16,9 @@
 {{ rating_history_plot|safe }}
 </div>
 {% endif %}
-    {% render_table table %}
+	<div class="ugd_responsive">
+		{% render_table table %}
+	</div>
 {% endblock %}
 {% block javascripts %}
     <script src="{% static 'UGD/js/tournament_info.js' %}" async></script>
