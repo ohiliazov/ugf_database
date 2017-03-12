@@ -1,4 +1,4 @@
-from UGD.models.ranks import Rank
+from UGD.models import Rank
 
 
 def current_rank(rating: int):

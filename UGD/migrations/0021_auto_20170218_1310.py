@@ -15,12 +15,12 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='pairing',
-            name='tournament_player',
+            name='pairing_player',
             field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='pairing_player', to='UGD.TournamentPlayer', verbose_name='гравець'),
         ),
         migrations.AlterField(
             model_name='pairing',
-            name='tournament_player_opponent',
+            name='pairing_opponent',
             field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='pairing_opponent', to='UGD.TournamentPlayer', verbose_name='суперник'),
         ),
     ]

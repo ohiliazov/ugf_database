@@ -1,14 +1,16 @@
 from django.db.models import Q
 from django.http import JsonResponse
 
-from UGD.models.players import Player
-
+from UGD.models import Player
 from functions import rate_calc_func
-
-# Create your views here.
 
 
 def json_player_list(request):
+    """
+    Player list
+    :param request: GET should have full_name
+    :return: JSON of matched players
+    """
     try:
         players = Player.objects.filter(
             Q(active=True),
@@ -24,6 +26,11 @@ def json_player_list(request):
 
 
 def json_calculated_rating(request):
+    """
+    Rating calculator
+    :param request: GET must have float ratings of players and result 1, 0.5 or 0 (or any float -_-)
+    :return: JSON of rating calculations
+    """
     try:
         first_rating = float(request.GET['first_rating'])
         second_rating = float(request.GET['second_rating'])

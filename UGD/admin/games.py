@@ -27,14 +27,14 @@ class TournamentPlayerAdmin(ModelAdmin):
 
 class PairingAdmin(ModelAdmin):
     list_display = (
-        'tournament_player',
-        'tournament_player_opponent',
+        'pairing_player',
+        'pairing_opponent',
         'tournament_round',
         'game_result'
     )
     fieldsets = (
         (None, {
-            'fields': ('tournament_player', 'tournament_player_opponent', 'tournament_round', 'color', 'handicap')
+            'fields': ('pairing_player', 'pairing_opponent', 'tournament_round', 'color', 'handicap')
         }),
         ('Інформація про партію', {
             'classes': ('wide',),
@@ -42,8 +42,8 @@ class PairingAdmin(ModelAdmin):
         })
     )
     search_fields = [
-        'tournament_player',
-        'tournament_player_opponent'
+        'pairing_player',
+        'pairing_opponent'
     ]
 
 site.register(TournamentPlayer, TournamentPlayerAdmin)

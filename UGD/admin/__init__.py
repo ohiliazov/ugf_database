@@ -1,4 +1,4 @@
-from .clubs import *
+from .cities import *
 from .ranks import *
 from .players import *
 from .tournaments import *

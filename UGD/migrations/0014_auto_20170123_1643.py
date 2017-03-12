@@ -49,14 +49,14 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='pairing',
-            name='tournament_player',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='tournament_player', to='UGD.TournamentPlayer', verbose_name='гравець'),
+            name='pairing_player',
+            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='pairing_player', to='UGD.TournamentPlayer', verbose_name='гравець'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='pairing',
-            name='tournament_player_opponent',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='tournament_player_opponent', to='UGD.TournamentPlayer', verbose_name='суперник'),
+            name='pairing_opponent',
+            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='pairing_opponent', to='UGD.TournamentPlayer', verbose_name='суперник'),
         ),
         migrations.AlterField(
             model_name='pairing',
