@@ -1,6 +1,8 @@
-from django.http import HttpResponse
-from UGD.models import Tournament, TournamentPlayer, Pairing, Player, Rank
 import re
+
+from django.http import HttpResponse
+
+from UGD.models import Tournament, TournamentPlayer, Pairing, Player, Rank
 
 INFO_TAGS = [
     'DT', 'PC', 'TC', 'EV'
@@ -95,15 +97,15 @@ def upload_egd_tournament(request):
 
             if result.group('opponent_place') == '0':
                 pairing = Pairing.objects.update_or_create(
-                    tournament_player=tournament_results[place][0],
+                    pairing_player=tournament_results[place][0],
                     tournament_round=round_count
                 )[0]
                 pairing.round_skip = True
 
             else:
                 pairing = Pairing.objects.update_or_create(
-                    tournament_player=tournament_results[place][0],
-                    tournament_player_opponent=tournament_results[result.group('opponent_place')][0],
+                    pairing_player=tournament_results[place][0],
+                    pairing_opponent=tournament_results[result.group('opponent_place')][0],
                     tournament_round=round_count
                 )[0]
 
@@ -115,9 +117,9 @@ def upload_egd_tournament(request):
                 pairing.game_result = None
 
             if result.group('player_color') == 'w':
-                pairing.color = True
+                pairing.color = 'w'
             elif result.group('player_color') == 'b':
-                pairing.color = False
+                pairing.color = 'b'
             else:
                 pairing.color = None
 
