@@ -21,6 +21,24 @@ td, th {
 	padding: 5px 5px;
 }
 
+.ugf-banner img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.navbar-toggler {
+	top: 10px;
+}
+
+.navbar-toggler-icon:before {
+	content: "\2630";
+}
+.navbar-toggler-right {
+    position: absolute;
+    right: 1rem;
+}
+
 #suggest {
 	display: block;
 	padding: 6px;
@@ -38,4 +56,10 @@ td, th {
 	display: none;
 	margin: 0 auto;
 
+}
+
+@media (min-width: 768px) {
+	.navbar-toggleable-sm .navbar-toggler {
+			display: none;
+	}
 }

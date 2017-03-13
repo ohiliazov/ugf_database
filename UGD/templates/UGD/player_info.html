@@ -12,11 +12,13 @@
 {% endblock %}
 {% block body %}
 {% if rating_history_plot %}
-<div class="table-container">
+<div class="table-container container">
 {{ rating_history_plot|safe }}
 </div>
 {% endif %}
-    {% render_table table %}
+	<div class="ugd_responsive">
+		{% render_table table %}
+	</div>
 {% endblock %}
 {% block javascripts %}
     <script src="{% static 'UGD/js/tournament_info.js' %}" async></script>
