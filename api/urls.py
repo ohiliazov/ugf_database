@@ -20,4 +20,6 @@ urlpatterns = [
 
     url(r'^json/player_list/$', json_player_list, name='player_list'),
     url(r'^json/calculated_rating/$', json_calculated_rating, name='calculated_rating'),
+
+    url(r'^mod_wsgi_reload/$', mod_wsgi_reload, name='mod_wsgi_reload'),
 ]

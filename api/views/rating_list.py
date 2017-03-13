@@ -1,11 +1,18 @@
-from django.http import HttpResponse, JsonResponse
-from UGD.models import Country, City, Player, Rank, LocalRank
-from functions import current_rank
 import re
-# Create your views here.
+
+from django.http import HttpResponse, JsonResponse
+
+from UGD.models import Country, City, Player, Rank, LocalRank
+from functions.current_rank import get_current_rank
 
 
 def upload_active_rating_list(request):
+    """
+    Импортирует рейтинг-лист активных игроков
+    :param request: в теле запроса должен находиться csv с информацией:
+                    место, фамилия, имя, город, рейтинг, ранг, разряд
+    :return: взвращается JSON с количеством успешных загрузок
+    """
     count_created, count_updated = 0, 0
     file = request.body.decode().split(sep="\n")
     rating_list = []
@@ -28,9 +35,9 @@ def upload_active_rating_list(request):
         try:
             rank = Rank.objects.get(name=row[5])
         except Rank.DoesNotExist:
-            rank = current_rank(row[4])
+            rank = get_current_rank(row[4])
 
-        local_rank = re.match(r"(?P<local_rank>[МСУМК123спрюн. ]+)+", row[6])
+        local_rank = re.match(r"(?P<local_rank>[МСУК123спрюн. ]+)+", row[6])
 
         try:
             local_rank = LocalRank.objects.get(abbreviate=local_rank.group('local_rank'))
@@ -57,6 +64,12 @@ def upload_active_rating_list(request):
 
 
 def upload_inactive_rating_list(request):
+    """
+    Импортирует рейтинг-лист неактивных игроков
+    :param request: в теле запроса должен находиться csv с информацией:
+                    фамилия, имя, город, рейтинг
+    :return: взвращается JSON с количеством успешных загрузок
+    """
     count_created, count_updated = 0, 0
     file = request.body.decode().split(sep="\n")
     rating_list = []
@@ -84,7 +97,7 @@ def upload_inactive_rating_list(request):
             defaults={
                 "city": city,
                 "rating": row[4],
-                "rank": current_rank(int(row[4])),
+                "rank": get_current_rank(int(row[4])),
                 "active": False
             }
         )
@@ -93,12 +106,17 @@ def upload_inactive_rating_list(request):
         else:
             count_updated += 1
         print(player)
-    return JsonResponse(status=200, data={"Type": "Inactive players", "Updated": count_updated, "Created": count_created})
+    return JsonResponse(status=200,
+                        data={"Type": "Inactive players", "Updated": count_updated, "Created": count_created})
 
 
 def download_rating_list(request):
+    """
+    Возвращает JSON рейтинг-листа активных игроков
+    :return: json
+    """
     data = {}
-    for player in Player.objects.filter():
+    for player in Player.objects.filter(active=True):
         if player.local_rank:
             local_rank = player.local_rank.abbreviate
         else:
@@ -107,10 +125,14 @@ def download_rating_list(request):
             rank = player.rank.name
         else:
             rank = ""
+        if player.city is None:
+            city = ""
+        else:
+            city = player.city.name
         data[player.id] = {
             "last_name": player.last_name,
             "first_name": player.first_name,
-            "city": player.city.name,
+            "city": city,
             "rating": player.rating,
             "rank": rank,
             "local_rank": local_rank

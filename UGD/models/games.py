@@ -1,14 +1,11 @@
 from decimal import Decimal
+
 from django.db import models
 
 from . import City, Rank, LocalRank
 
 """
-This file contains next models:
-    Player
-    Tournament
-    TournamentPlayer
-    Pairing
+В этом файле содержится информация об игроках, турнирах и результатах партий.
 """
 
 
@@ -130,7 +127,7 @@ class TournamentPlayer(models.Model):
         verbose_name_plural = "учасники турніру"
 
     def __str__(self):
-        return "%s @ %s" % (self.tournament, self.player.get_full_name())
+        return "%s @ %s" % (self.tournament.name, self.player.get_full_name())
 
     def get_rating_delta(self):
         """

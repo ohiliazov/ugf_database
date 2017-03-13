@@ -1,4 +1,5 @@
 from django.conf.urls import url
+
 from .views import *
 
 # Create your urls here.
@@ -7,12 +8,11 @@ app_name = 'UGD'
 urlpatterns = [
     # Index
     url(r'^$', IndexView.as_view(), name='index'),
-    url(r'^admin/mod_wsgi_reload/$', mod_wsgi_reload, name='mod_wsgi_reload'),
 
     # Rating list
     url(r'^rating_list/$', RatingListView.as_view(), name='rating_list'),
     url(r'^tournament_list/$', TournamentListView.as_view(), name='tournament_list'),
-    url(r'^games_list/$', GamesView.as_view(), name='games_list'),
+    url(r'^games_list/$', PairingListView.as_view(), name='games_list'),
 
     # EGD links
     url(r'^egd_player/(?P<egd_pin>[\d]+)/$', egd_player_link, name='egd_player_link'),
