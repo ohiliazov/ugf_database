@@ -6,7 +6,7 @@ from requests import post
 path = 'D:/Python/egd_data_manager/tables/'
 tournament_dir_list = os.listdir(path)
 for directory in tournament_dir_list:
-    if directory == '2015':
+    if directory == '2017':
         tournament_path = path + directory + '/'
         tournament_list = os.listdir(tournament_path)
         for name in tournament_list:

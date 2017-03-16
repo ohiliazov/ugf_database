@@ -86,9 +86,9 @@ def count_rated_rounds(tournament_data):
 
 
 # РАССЧЕТ РЕЗУЛЬТАТОВ ТУРНИРА
-def calculate_tournament_results(total_rounds, start_ratings, tournament_data):
+def calculate_tournament_results(total_rounds, start_ratings: dict, tournament_data: dict):
     rated_rounds = count_rated_rounds(tournament_data)
-    finish_ratings = dict(start_ratings)
+    finish_ratings = start_ratings.copy()
 
     for current_round in range(total_rounds):
         for player in finish_ratings:
