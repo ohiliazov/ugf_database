@@ -1,11 +1,10 @@
 from django.test import TestCase
 
-from functions.rate_calc_func import new_rating, calculate_tournament_results
+from functions.rate_calc_func import new_rating, calculate_tournament
 
 
 class FullTournamentTests(TestCase):
     def test_001(self):
-        TOTAL_ROUNDS = 7
         START_RATINGS = {
             1: 2704,
             2: 2680,
@@ -28,14 +27,13 @@ class FullTournamentTests(TestCase):
         }
 
         FINISH_RATINGS = {1: 2713, 2: 2672, 3: 2507, 4: 2563, 5: 2438, 6: 2531, 7: 2479, 8: 2447}
-        RESULTS = calculate_tournament_results(TOTAL_ROUNDS, START_RATINGS, TOURNAMENT_DATA)
+        RESULTS = calculate_tournament(START_RATINGS, TOURNAMENT_DATA)
         NEXT_RATINGS = {}
         for place in RESULTS:
             NEXT_RATINGS[place] = round(RESULTS[place])
 
         self.assertEqual(NEXT_RATINGS, FINISH_RATINGS)
 
-    """
     def test_002(self):
         TOTAL_ROUNDS = 6
 
@@ -76,7 +74,7 @@ class FullTournamentTests(TestCase):
             18: 179, 19: 169, 20: 226, 21: 100, 22: 225, 23: 100, 24: 100
         }
 
-        RESULTS = calculate_tournament_results(TOTAL_ROUNDS, START_RATINGS, TOURNAMENT_DATA)
+        RESULTS = calculate_tournament(START_RATINGS, TOURNAMENT_DATA)
 
         NEXT_RATINGS = {}
 
@@ -84,7 +82,6 @@ class FullTournamentTests(TestCase):
             NEXT_RATINGS[place] = round(RESULTS[place])
         self.maxDiff = None
         self.assertEqual(NEXT_RATINGS, FINISH_RATINGS)
-    """
 
 
 class SingleTournamentCalculator(TestCase):

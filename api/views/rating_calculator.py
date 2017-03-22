@@ -1,6 +1,6 @@
 from UGD.models import TournamentPlayer, Pairing, Player
 from django.shortcuts import redirect
-from functions.rate_calc_func import calculate_tournament_results
+from functions.rate_calc_func import calculate_tournament
 
 
 def tournament_rating_calculator(request, pk):
@@ -23,7 +23,7 @@ def tournament_rating_calculator(request, pk):
             tournament_data[player.place].append((opponent, result))
     print(start_ratings)
     print(tournament_data)
-    finish_ratings = calculate_tournament_results(6, start_ratings, tournament_data)
+    finish_ratings = calculate_tournament(start_ratings, tournament_data)
     for row in finish_ratings:
         player = player_list.get(place=row)
         player.rating_finish = finish_ratings[row]
