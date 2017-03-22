@@ -9,7 +9,12 @@
 from math import exp
 
 
-def con(rate):
+def k_factor(rate: float):
+    """
+    Returns the K-factor for given rating
+    :param rate: float >= 100
+    :return: 10 <= float <= 122
+    """
     res = 0
     if 100 <= rate < 200:
         res = 122 - rate * 0.06
@@ -28,7 +33,12 @@ def con(rate):
     return res
 
 
-def a_param(rate):
+def a_factor(rate: float):
+    """
+    Returns A-factor for given rating
+    :param rate: float >= 100
+    :return: 70 <= float <= 200
+    """
     res = 0
     if 100 <= rate < 2700:
         res = 205 - rate / 20
@@ -37,42 +47,69 @@ def a_param(rate):
     return res
 
 
-def winning_expectancy(rate1, rate2):
-    higher_rate, lower_rate = max(rate1, rate2), min(rate1, rate2)
-    lower_win_exp = 1 / (exp((higher_rate - lower_rate) / a_param(lower_rate)) + 1)
-    higher_win_exp = 1 - lower_win_exp
-    if rate1 <= rate2:
+def winning_expectancy(player_rating: float, opponent_rating: float):
+    """
+    Returns the winning expectancy of player.
+    :param player_rating: float >= 100
+    :param opponent_rating: float >= 100
+    :return: 0 <= float <= 1
+    """
+    lower_win_exp = 1 / (exp(abs(player_rating - opponent_rating) / a_factor(min(player_rating, opponent_rating))) + 1)
+    if player_rating <= opponent_rating:
         return lower_win_exp
     else:
-        return higher_win_exp
+        return 1 - lower_win_exp
 
 
-# РАССЧЕТ АНОМАЛЬНОГО РЕЗУЛЬТАТА
-def abnormal_growth(self_rate, number_of_rounds):
-    return number_of_rounds * con(self_rate) * (0.45 + (3100 - self_rate) / 50000)
+def abnormal_growth(player_rating: float, number_of_rounds: int):
+    """
+    Returns abnormal growth for a player within given number of rounds.
+    :param player_rating: float >= 100
+    :param number_of_rounds: int > 0
+    :return: float >= self_rate
+    """
+    return number_of_rounds * k_factor(player_rating) * (0.45 + (3100 - player_rating) / 50000)
 
 
-def abnormal_rating(self_rate, number_of_rounds):
-    return self_rate + abnormal_growth(self_rate, number_of_rounds)
+def abnormal_rating(player_rating: float, number_of_rounds: int):
+    """
+    Returns abnormal rating for a player within given number of rounds.
+    :param player_rating: float >= 100
+    :param number_of_rounds: int > 0
+    :return:
+    """
+    return player_rating + abnormal_growth(player_rating, number_of_rounds)
 
 
-# РАССЧЕТ НОВОГО РЕЙТИНГА
-def growth(self_rate, opponent_rate, result):
-    if result not in [0, 0.5, 1]:
+def growth(player_rating: float, opponent_rating: float, result=1):
+    """
+    Returns growth for a player within given opponent and result.
+    :param player_rating: float >= 100
+    :param opponent_rating: float >= 100
+    :param result: [0, 0.5, 1]
+    :return: float
+    """
+    if result in [0, 0.5, 1]:
+        return k_factor(player_rating) * (
+            result - winning_expectancy(player_rating, opponent_rating) + (3100 - player_rating) / 50000)
+    else:
         return 0
-    else:
-        return con(self_rate) * (result - winning_expectancy(self_rate, opponent_rate) + (3100 - self_rate) / 50000)
 
 
-def new_rating(self_rate, opponent_rate, result=1):
-    next_rating = self_rate + growth(self_rate, opponent_rate, result)
+def new_rating(player_rating: float, opponent_rating: float, result=1):
+    """
+    Returns rating for a player within given opponent and result.
+    :param player_rating: float >= 100
+    :param opponent_rating: float >= 100
+    :param result: [0, 0.5, 1]
+    :return: float
+    """
+    next_rating = player_rating + growth(player_rating, opponent_rating, result)
     if next_rating < 100:
-        return 100
-    else:
-        return next_rating
+        next_rating = 100
+    return next_rating
 
 
-# ПОДСЧЕТ КОЛИЧЕСТВА ТУРОВ
 def count_rated_rounds(tournament_data):
     rated_rounds = dict()
     for player in tournament_data:
