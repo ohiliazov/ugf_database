@@ -1,4 +1,5 @@
 $(".form-control").keyup(function() {
+
     var input = document.getElementsByClassName("form-control");
     // Записываем значения ввода
     var full_name_value = input[0].value.toLowerCase();
