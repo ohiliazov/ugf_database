@@ -6,7 +6,6 @@
     Более подробное описание здесь: http://forum.ufgo.org/viewtopic.php?f=3&t=1260
 """
 
-
 from math import exp
 
 
@@ -85,32 +84,48 @@ def count_rated_rounds(tournament_data):
     return rated_rounds
 
 
-# РАССЧЕТ РЕЗУЛЬТАТОВ ТУРНИРА
-def calculate_tournament_results(total_rounds, start_ratings, tournament_data):
+def count_round_results(current_ratings: dict, round_data: dict):
+    round_ratings = current_ratings.copy()
+
+    for player in round_data:
+        player_rating = current_ratings[player]
+        opponent_rating = current_ratings[round_data[player][0]]
+        result = round_data[player][1]
+
+        if result not in [0, 0.5, 1]:
+            continue
+
+        next_rating = new_rating(player_rating, opponent_rating, result)
+
+        if next_rating < 100:
+            next_rating = 100
+        round_ratings[player] = next_rating
+
+    return round_ratings
+
+
+def calculate_tournament(initial_ratings: dict, tournament_data: dict):
+    rounds = list(tournament_data[1]).__len__()
     rated_rounds = count_rated_rounds(tournament_data)
-    finish_ratings = dict(start_ratings)
-
-    for current_round in range(total_rounds):
-        for player in finish_ratings:
-            opponent = tournament_data[player][current_round][0]
-            self_rate = finish_ratings[player]
-            opponent_rate = finish_ratings[opponent]
-            result = tournament_data[player][current_round][1]
-
-            if result not in [0, 0.5, 1]:
-                continue
-
-            next_rate = new_rating(self_rate, opponent_rate, result)
-            if next_rate < 100:
-                next_rate = 100
-            finish_ratings[player] = next_rate
+    finish_ratings = initial_ratings.copy()
+    for current_round in range(rounds):
+        round_data = {}
+        for player in tournament_data:
+            round_data[player] = tournament_data[player][current_round]
+        finish_ratings = count_round_results(finish_ratings, round_data)
 
     abnormal_counter = 0
-    for player in start_ratings:
-        if finish_ratings[player] > abnormal_rating(start_ratings[player], rated_rounds[player]):
+    abnormal_data = {}
+
+    for player in initial_ratings:
+
+        if finish_ratings[player] > abnormal_rating(initial_ratings[player], rated_rounds[player]):
+            abnormal_data[player] = finish_ratings[player]
             abnormal_counter += 1
-            start_ratings[player] = finish_ratings[player]
+        else:
+            abnormal_data[player] = initial_ratings[player]
+
     if abnormal_counter:
-        return calculate_tournament_results(total_rounds, start_ratings, tournament_data)
+        return calculate_tournament(abnormal_data, tournament_data)
     else:
         return finish_ratings
