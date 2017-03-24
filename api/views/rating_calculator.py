@@ -1,6 +1,6 @@
 from UGD.models import TournamentPlayer, Pairing, Player
 from django.shortcuts import redirect
-from functions.rate_calc_func import calculate_tournament
+from functions_data.rate_calc_func import calculate_tournament
 
 
 def tournament_rating_calculator(request, pk):

@@ -67,7 +67,7 @@ function removeChildren(a) {
 }
 
 // ----------------------------------------------------------------------------
-// Find-position functions by PPK
+// Find-position functions_data by PPK
 // See http://www.quirksmode.org/js/findpos.html
 // ----------------------------------------------------------------------------
 function findPosX(obj) {
@@ -225,7 +225,7 @@ function findPosY(obj) {
             ++i;
         }
         // Create Date object from UTC since the parsed value is supposed to be
-        // in UTC, not local time. Also, the calendar uses UTC functions for
+        // in UTC, not local time. Also, the calendar uses UTC functions_data for
         // date extraction.
         return new Date(Date.UTC(year, month, day));
     };

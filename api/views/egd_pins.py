@@ -1,6 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from UGD.models import Player
-from functions import translit
+from functions_data import translit
 # Create your views here.
 
 

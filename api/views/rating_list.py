@@ -3,7 +3,7 @@ import re
 from django.http import HttpResponse, JsonResponse
 
 from UGD.models import Country, City, Player, Rank, LocalRank
-from functions.current_rank import get_current_rank
+from functions_data.current_rank import get_current_rank
 
 
 def upload_active_rating_list(request):

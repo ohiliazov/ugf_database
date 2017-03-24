@@ -1,12 +1,12 @@
 /*global gettext, pgettext, get_format, quickElement, removeChildren, addEvent*/
 /*
-calendar.js - Calendar functions by Adrian Holovaty
-depends on core.js for utility functions like removeChildren or quickElement
+calendar.js - Calendar functions_data by Adrian Holovaty
+depends on core.js for utility functions_data like removeChildren or quickElement
 */
 
 (function() {
     'use strict';
-    // CalendarNamespace -- Provides a collection of HTML calendar-related helper functions
+    // CalendarNamespace -- Provides a collection of HTML calendar-related helper functions_data
     var CalendarNamespace = {
         monthsOfYear: [
             gettext('January'),
@@ -58,7 +58,7 @@ depends on core.js for utility functions like removeChildren or quickElement
             var todayYear = today.getFullYear();
             var todayClass = '';
 
-            // Use UTC functions here because the date field does not contain time
+            // Use UTC functions_data here because the date field does not contain time
             // and using the UTC function variants prevent the local time offset
             // from altering the date, specifically the day field.  For example:
             //

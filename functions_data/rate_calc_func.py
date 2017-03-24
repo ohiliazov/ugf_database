@@ -110,40 +110,44 @@ def new_rating(player_rating: float, opponent_rating: float, result=1):
     return next_rating
 
 
-def count_rated_rounds(tournament_data):
-    rated_rounds = dict()
-    for player in tournament_data:
-        rounds_count = 0
-        for pairing in tournament_data[player]:
-            if pairing[1] in [0, 0.5, 1]:
-                rounds_count += 1
-        rated_rounds[player] = rounds_count
-    return rated_rounds
-
-
-def count_round_results(current_ratings: dict, round_data: dict):
-    round_ratings = current_ratings.copy()
-
-    for player in round_data:
-        player_rating = current_ratings[player]
-        opponent_rating = current_ratings[round_data[player][0]]
-        result = round_data[player][1]
-
-        if result not in [0, 0.5, 1]:
-            continue
-
-        next_rating = new_rating(player_rating, opponent_rating, result)
-
-        if next_rating < 100:
-            next_rating = 100
-        round_ratings[player] = next_rating
-
-    return round_ratings
-
-
 def calculate_tournament(initial_ratings: dict, tournament_data: dict):
+    def count_rounds(tournament_results):
+        counted_rounds = dict()
+
+        for tournament_player in tournament_results:
+            rounds_count = 0
+
+            for pairing in tournament_results[tournament_player]:
+                if pairing[1] in [0, 0.5, 1]:
+                    rounds_count += 1
+
+            counted_rounds[tournament_player] = rounds_count
+
+        return counted_rounds
+
+    def count_round_results(current_round_ratings: dict, current_round_data: dict):
+        ratings_after_round = current_round_ratings.copy()
+
+        for round_player in current_round_data:
+            player_rating = current_round_ratings[round_player]
+            opponent_rating = current_round_ratings[current_round_data[round_player][0]]
+            result = current_round_data[round_player][1]
+
+            if result not in [0, 0.5, 1]:
+                continue
+
+            next_rating = new_rating(player_rating, opponent_rating, result)
+
+            if next_rating < 100:
+                next_rating = 100
+
+            ratings_after_round[round_player] = next_rating
+
+        return ratings_after_round
+
     rounds = list(tournament_data[1]).__len__()
-    rated_rounds = count_rated_rounds(tournament_data)
+
+    rated_rounds = count_rounds(tournament_data)
     finish_ratings = initial_ratings.copy()
     for current_round in range(rounds):
         round_data = {}

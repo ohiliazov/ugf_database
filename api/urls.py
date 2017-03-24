@@ -18,8 +18,5 @@ urlpatterns = [
     url(r'^upload/pin_list/$', upload_egd_pins, name='upload_egd_pins'),
     url(r'^download/rating_list/$', download_rating_list, name='download_rating_list'),
 
-    url(r'^json/player_list/$', json_player_list, name='player_list'),
-    url(r'^json/calculated_rating/$', json_calculated_rating, name='calculated_rating'),
-
     url(r'^mod_wsgi_reload/$', mod_wsgi_reload, name='mod_wsgi_reload'),
 ]

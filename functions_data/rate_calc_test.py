@@ -1,4 +1,4 @@
-from functions import rate_calc_func
+from functions_data import rate_calc_func
 
 total_rounds = 7
 

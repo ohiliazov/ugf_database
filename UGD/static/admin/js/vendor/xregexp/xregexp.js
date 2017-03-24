@@ -88,7 +88,7 @@ XRegExp = XRegExp || (function (undef) {
         registeredFlags = "gim" + (hasNativeY ? "y" : "");
 
 /*--------------------------------------
- *  Private helper functions
+ *  Private helper functions_data
  *------------------------------------*/
 
 /**
@@ -212,7 +212,7 @@ XRegExp = XRegExp || (function (undef) {
  * @param {String} pattern Original pattern from which an XRegExp object is being built.
  * @param {Number} pos Position to search for tokens within `pattern`.
  * @param {Number} scope Current regex scope.
- * @param {Object} context Context object assigned to token handler functions.
+ * @param {Object} context Context object assigned to token handler functions_data.
  * @returns {Object} Object with properties `output` (the substitution string returned by the
  *   successful token handler) and `match` (the token's match array), or null.
  */
@@ -221,7 +221,7 @@ XRegExp = XRegExp || (function (undef) {
             result = null,
             match,
             t;
-        // Protect against constructing XRegExps within token handler and trigger functions
+        // Protect against constructing XRegExps within token handler and trigger functions_data
         isInsideConstructor = true;
         // Must reset `isInsideConstructor`, even if a `trigger` or `handler` throws
         try {
@@ -314,7 +314,7 @@ XRegExp = XRegExp || (function (undef) {
         // Tokens become part of the regex construction process, so protect against infinite recursion
         // when an XRegExp is constructed within a token handler function
         if (isInsideConstructor) {
-            throw new Error("can't call the XRegExp constructor within token definition functions");
+            throw new Error("can't call the XRegExp constructor within token definition functions_data");
         }
 
         var output = [],
@@ -425,7 +425,7 @@ XRegExp = XRegExp || (function (undef) {
  *     if a flag is set. If `false` is returned, the matched string can be matched by other tokens.
  *     Has access to persistent properties of the regex being built, through `this` (including
  *     function `this.hasFlag`).
- *   <li>`customFlags` {String} Nonnative flags used by the token's handler or trigger functions.
+ *   <li>`customFlags` {String} Nonnative flags used by the token's handler or trigger functions_data.
  *     Prevents XRegExp from throwing an invalid flag error when the specified flags are used.
  * @example
  *
@@ -674,7 +674,7 @@ XRegExp = XRegExp || (function (undef) {
  * or regex, and the replacement can be a string or a function to be called for each match. To
  * perform a global search and replace, use the optional `scope` argument or include flag `g` if
  * using a regex. Replacement strings can use `${n}` for named and numbered backreferences.
- * Replacement functions can use named backreferences via `arguments[0].name`. Also fixes browser
+ * Replacement functions_data can use named backreferences via `arguments[0].name`. Also fixes browser
  * bugs compared to the native `String.prototype.replace` and can be used reliably cross-browser.
  * @memberOf XRegExp
  * @param {String} str String to search.
@@ -689,7 +689,7 @@ XRegExp = XRegExp || (function (undef) {
  *       backreference n/nn.
  *     <li>${n} - Where n is a name or any number of digits that reference an existent capturing
  *       group, inserts backreference n.
- *   Replacement functions are invoked with three or more arguments:
+ *   Replacement functions_data are invoked with three or more arguments:
  *     <li>The matched substring (corresponds to $& above). Named backreferences are accessible as
  *       properties of this first argument.
  *     <li>0..n arguments, one for each backreference (corresponding to $1, $2, etc. above).
@@ -972,7 +972,7 @@ XRegExp = XRegExp || (function (undef) {
 
 /**
  * Adds support for `${n}` tokens for named and numbered backreferences in replacement text, and
- * provides named backreferences to replacement functions as `arguments[0].name`. Also fixes
+ * provides named backreferences to replacement functions_data as `arguments[0].name`. Also fixes
  * browser bugs in replacement text syntax when performing a replacement using a nonregex search
  * value, and the value of a replacement regex's `lastIndex` property during replacement iterations
  * and upon completion. Note that this doesn't support SpiderMonkey's proprietary third (`flags`)
@@ -1289,7 +1289,7 @@ XRegExp = XRegExp || (function (undef) {
     var unicode = {};
 
 /*--------------------------------------
- *  Private helper functions
+ *  Private helper functions_data
  *------------------------------------*/
 
 // Generates a standardized token name (lowercase, with hyphens, spaces, and underscores removed)

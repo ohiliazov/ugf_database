@@ -36,6 +36,16 @@ class Player(models.Model):
         else:
             return "Player %d" % self.id
 
+    def get_local_rank(self):
+        """
+        Returns rank of the player
+        :return: string
+        """
+        if self.local_rank:
+            return self.local_rank.abbreviate
+        else:
+            return ""
+
     def get_full_name(self):
         """
         Returns full name of the player
@@ -50,12 +60,35 @@ class Player(models.Model):
         else:
             return ""
 
+    def get_city(self):
+        """
+        Returns city of the player
+        :return: string
+        """
+        if self.city:
+            return self.city.name
+        else:
+            return ""
+
+    def get_rank(self):
+        """
+        Returns rank of the player
+        :return: decimal
+        """
+        if self.rank:
+            return self.rank.name
+        else:
+            return ""
+
     def get_rating(self):
         """
         Returns rating of the player
         :return: decimal
         """
-        return Decimal(self.rating).normalize()
+        if self.rating:
+            return round(self.rating)
+        else:
+            return ""
 
     def count_player_tournaments(self):
         """

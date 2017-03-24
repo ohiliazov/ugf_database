@@ -36,8 +36,9 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'django_tables2',
-    'api.apps.ApiConfig',
     'UGD.apps.UgdConfig',
+    'api.apps.ApiConfig',
+    'json_ugd.apps.JsonUgdConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

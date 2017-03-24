@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from functions.rate_calc_func import new_rating, calculate_tournament
+from functions_data.rate_calc_func import new_rating, calculate_tournament
 
 
 class FullTournamentTests(TestCase):
